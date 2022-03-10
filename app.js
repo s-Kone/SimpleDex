@@ -2,7 +2,7 @@
 const http = require('http');
 const url = require('url');
 const express = require('express');
-const api_routes = require('./api_routes');
+const api_routes = require('./routes/api_routes');
 
 // Constants
 const endPointRoot = '/comp4537/termproject/API/V1';
