@@ -19,7 +19,7 @@ router.get('/', function(req, res)
     })
 });
 
-// About page route
+// Documentation page route
 router.get('/documentation', function(req, res)
 {
     fs.readFile('./html/admin.html', 'utf8', (err, data) =>
@@ -34,6 +34,7 @@ router.get('/documentation', function(req, res)
     })
 });
 
+// Admin page route
 router.get('/admin', function(req, res)
 {
     fs.readFile('./html/admin.html', 'utf8', (err, data) =>
