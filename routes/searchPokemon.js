@@ -3,7 +3,6 @@ var axios = require('axios');
 var router = express.Router();
 
 
-
 /**
  * GET request for pokemon listings
  * Query param: pokemon=nameOfPokemon
