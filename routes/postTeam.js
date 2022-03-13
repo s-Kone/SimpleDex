@@ -18,7 +18,7 @@ router.post('/', (req, res, next) => {
     let pokemonID = '7';
 
     // TODO: check if table exists before executing
-    let sql = 'insert into teamrecord (teamID, userID, PokemonID, DateModifiedUTC) values (?, ?, ?, ?)'
+    let sql = 'insert into teamrecord (teamID, userID, PokemonID, DateModifiedUTC) values (?, ?, ?, ?);'
     pool.query(sql, [userID, teamID, pokemonID, utcTime], function(err, results){
         if (err) {
             console.log(err);
@@ -27,6 +27,18 @@ router.post('/', (req, res, next) => {
         else {
             console.log(results);
             res.send(results);
+        }
+    });
+
+    // Admin stats
+    // TODO: make this into a middleware
+    let adminSql = 'insert into LogEndpointAccess (EndpointID, UserID, LogDateUTC) values (2, ?, ?);'
+    pool.query(adminSql, [userID, utcTime], function (err, results) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(results);
         }
     });
 });
