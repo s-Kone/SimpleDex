@@ -3,11 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var adminRouter = require('./routes/admin');
 var documentationRouter = require('./routes/documentation');
-var exampleAPIRouter = require('./routes/exampleAPIRoute');
+var searchPokemonRouter = require('./routes/searchPokemon');
 
 const endPointRoot = '/comp4537/termproject/api/v1';
 
@@ -22,12 +23,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
 // routers
 app.use(endPointRoot, indexRouter);
 app.use(endPointRoot + '/admin', adminRouter);
 app.use(endPointRoot + '/documentation', documentationRouter);
-app.use(endPointRoot + '/pokemon', exampleAPIRouter);
+app.use(endPointRoot + '/searchPokemon', searchPokemonRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
