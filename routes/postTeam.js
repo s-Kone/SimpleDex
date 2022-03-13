@@ -1,6 +1,7 @@
 var express = require('express');
 var pool = require('../modules/pool.js');
 var date = require('../modules/date.js');
+var admin_stats = require('../modules/admin_stats');
 var router = express.Router();
 
 router.post('/', (req, res, next) => {
@@ -30,17 +31,9 @@ router.post('/', (req, res, next) => {
         }
     });
 
-    // Admin stats
-    // TODO: make this into a middleware
-    let adminSql = 'insert into LogEndpointAccess (EndpointID, UserID, LogDateUTC) values (2, ?, ?);'
-    pool.query(adminSql, [userID, utcTime], function (err, results) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log(results);
-        }
-    });
+    // Log Admin Stats
+    admin_stats.logAdminStats('2', userID);
+
 });
 
 module.exports = router;
