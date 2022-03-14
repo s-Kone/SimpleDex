@@ -51,18 +51,18 @@
       }
     },
   
-  "/postTeam/": {
+  "/postTeam": {
     "post": {
       "description": "posts a pokemon team consisting of 6 pokemon",
       "operationId": "postTeam",
       "produces": [
-        "application/json"
+        "text"
       ],
       "responses": {
         "200": {
-          "description": "pokemon response",
+          "description": "team posted successfully",
           "schema": {
-            "type": "object",
+            "type": "string",
             "items": {
               "$ref": "#/definitions/Pokemon"
             }
