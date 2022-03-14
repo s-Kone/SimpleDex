@@ -4,5 +4,6 @@ CREATE TABLE TeamRecord (
         UserID          INT NOT NULL,
         PokemonID       INT NOT NULL,
         DateModifiedUTC DATETIME,
-        PRIMARY KEY (TeamRecordID)
+        PRIMARY KEY (TeamRecordID),
+        FOREIGN KEY (UserID) REFERENCES User(UserID)
 );
