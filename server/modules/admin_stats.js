@@ -19,7 +19,8 @@ exports.logAdminStats = (endpointID, userID) => {
 }
 
 // get admin stats and return json
-exports.getAdminStats = () => {
+// TODO: avoid callback stacking
+exports.getAdminStats = async () => {
     jsonStats = {};
     let sql = 'select count (LogEndpointAccessID) from LogEndpointAccess where EndpointID = 1';
     pool.query(sql, function(err, results) {
@@ -27,24 +28,19 @@ exports.getAdminStats = () => {
             console.log(err);
         }
         else {
-            console.log(results);
-            // jsonStats.SearchPokemon = results[0]['count (LogEndpointAccessID)'];
-            jsonStats.fake = 'hello';
+            jsonStats.SearchPokemon = results[0]['count (LogEndpointAccessID)'];
+
+            sql = 'select count (LogEndpointAccessID) from LogEndpointAccess where EndpointID = 2';
+            pool.query(sql, function(err, results) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    jsonStats.PostTeam = results[0]['count (LogEndpointAccessID)'];
+                    console.log(jsonStats);
+                    return jsonStats;
+                }
+            });
         }
     });
-
-    sql = 'select count (LogEndpointAccessID) from LogEndpointAccess where EndpointID = 2';
-    pool.query(sql, function(err, results) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log(results);
-            jsonStats.PostTeam = results[0]['count (LogEndpointAccessID)'];
-        }
-    });
-
-    jsonStats.something = 'hi';
-    console.log(jsonStats);
-    return jsonStats;
 }

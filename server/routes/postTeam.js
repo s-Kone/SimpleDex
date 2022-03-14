@@ -4,13 +4,15 @@ var date = require('../modules/date.js');
 var admin_stats = require('../modules/admin_stats');
 var router = express.Router();
 
-router.post('/', (req, res, next) => {
+
+// TODO: change the method back to GET
+router.get('/', (req, res, next) => {
     // When this endpoint is hit, we need the userID
     // TODO: extract userID from app
     let userID = '1';
 
     // TODO: figure out team ID
-    let teamID = '0';
+    let teamID = req.query.teamID;
 /*
 
 {
@@ -21,10 +23,10 @@ router.post('/', (req, res, next) => {
     const utcTime = date.getCurrentUTC();
 
     // TODO: figure out pokemonID
-    let pokemonID = '7';
+    let pokemonID = req.query.pokemonID;
 
     // TODO: check if table exists before executing
-    let sql = 'insert into teamrecord (teamID, userID, PokemonID, DateModifiedUTC) values (?, ?, ?, ?);'
+    let sql = 'insert into TeamRecord (teamID, userID, PokemonID, DateModifiedUTC) values (?, ?, ?, ?);'
     pool.query(sql, [userID, teamID, pokemonID, utcTime], function(err, results){
         if (err) {
             console.log(err);
@@ -32,7 +34,10 @@ router.post('/', (req, res, next) => {
         }
         else {
             console.log(results);
-            res.send(results);
+            let jsonRes = {};
+            jsonRes.success = 'true';
+            jsonRes.payload = results;
+            res.send(JSON.stringify(jsonRes));
         }
     });
 
