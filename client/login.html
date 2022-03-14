@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimpleDex API admin login</title>
+</head>
+<body>
+    <div>
+    <h3>login to admin stats page</h3>
+    <input type="text" placeholder="username" id="user">
+    <input type="text" placeholder="password" id="pass">
+    <input type="button" value="submit" onclick="getADLogin()">
+    <p id="adminStats"></p>
+    </div>
+
+    <script>
+        const xhttp = new XMLHttpRequest();
+        const endPointRoot = "https://alexgiasson.me/comp4537/termproject/api/v1/admin/";
+
+        function getADLogin() {
+            let u = document.getElementById("user").value;
+            let p = document.getElementById("pass").value;
+            let params = '?username=' + u + '&password=' + p;
+            let url = endPointRoot + params;
+            xhttp.open("GET", url, true);
+            xhttp.send(url);
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    document.getElementById('adminStats').innerHTML = this.responseText;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
