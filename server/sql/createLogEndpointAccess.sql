@@ -3,5 +3,7 @@ CREATE TABLE LogEndpointAccess(
     EndpointID          INT NOT NULL,
     UserID              INT,
     LogDateUTC          DATETIME,
-    PRIMARY KEY (LogEndpointAccessID)
+    PRIMARY KEY (LogEndpointAccessID),
+    FOREIGN KEY (EndpointID) REFERENCES Endpoint(EndpointID),
+    FOREIGN KEY (UserID) REFERENCES User(UserID)
 );
