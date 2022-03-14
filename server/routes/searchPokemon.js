@@ -33,19 +33,12 @@ router.get('/', function(req, res, next) {
       console.log(axres.data);
 
       // TODO: handle 'not found' case and any other error case
-      if (axres.data === 'Not Found') {
-        res.type('json');
-        res.send(JSON.stringify({status: 'Not Found'}));
-      }
-      else {
-        res.type('json');
-        res.send(axres.data);
-      }
+
+      res.type('json');
+      res.send(axres.data);
     })
     .catch(axerror => {
       console.error(axerror);
-      res.type('json');
-      res.send(JSON.stringify({status: 'Not Found'}));
     })
 
   // Log Admin Stats
