@@ -12,10 +12,10 @@
       "name": "MIT"
     }
   },
-  "host": "petstore.swagger.io",
+  "host": "alexgiasson.me",
   "basePath": "/comp4537/termproject/api/v1",
   "schemes": [
-    "http"
+    "https"
   ],
   "consumes": [
     "application/json"
