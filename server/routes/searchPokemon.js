@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
   }
 
   // TODO: extract userID from app
-  let userID = 0;
+  let userID = 1;
 
   // Get Date
   const utcTime = date.getCurrentUTC();

@@ -7,7 +7,8 @@ VALUES
 INSERT INTO UserType (UserTypeID, UserTypeDesc)
 VALUES
     (1, 'Admin'),
-    (2, 'User');
+    (2, 'User')
+;
 
 -- TODO: store passwords as hash
 INSERT INTO User (Username, UserPassword, UserTypeID, DateCreatedUTC)

@@ -7,7 +7,7 @@ var router = express.Router();
 router.post('/', (req, res, next) => {
     // When this endpoint is hit, we need the userID
     // TODO: extract userID from app
-    let userID = '0';
+    let userID = '1';
 
     // TODO: figure out team ID
     let teamID = '0';
