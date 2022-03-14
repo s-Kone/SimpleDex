@@ -11,7 +11,12 @@ router.post('/', (req, res, next) => {
 
     // TODO: figure out team ID
     let teamID = '0';
+/*
 
+{
+    1,2,3,4,5,6
+}
+*/
     // Get Date
     const utcTime = date.getCurrentUTC();
 

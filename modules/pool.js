@@ -15,7 +15,7 @@ module.exports = {
     var args = [];
     for (var i=0; i<arguments.length; i++) {
       args.push(arguments[i]);
-    }
+    } 
     var callback = args[args.length-1]; //last arg is callback
     pool.getConnection(function(err, connection) {
       if(err) {
