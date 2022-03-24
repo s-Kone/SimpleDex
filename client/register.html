@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SimpleDex API Login</title>
-    
+    <title>SimpleDex API Register</title>
+    <script defer src="./js/Register.js"></script>
+    <link rel="stylesheet" href="./css/register.css">
 </head>
 <body>
     <form>
-        <h3>Login</h3>
+        <h3>Register</h3>
         <label for="Email">Email</label>
         <input type="text" placeholder="Email" id="email">
         <label for="password">Password</label>
         <input type="text" placeholder="Password" id="password">
-        <button id="login">Login</button>
-        <button id="register">Register</button>
+        <label for="password">Confirm Password</label>
+        <input type="text" id="input">
+        <button id="register" onclick="onRegister()">Register</button>
     </form>
 </body>
 </html>
