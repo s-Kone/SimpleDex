@@ -4,14 +4,18 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+var jwt = require('jsonwebtoken');
 var pool = require('./modules/pool.js');
 var init_db = require('./modules/database_init.js');
+require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 var adminRouter = require('./routes/admin');
 var documentationRouter = require('./routes/documentation');
 var searchPokemonRouter = require('./routes/searchPokemon');
 var postTeamRouter = require('./routes/postTeam');
+var postsRouter = require('./routes/posts');
+var loginRouter = require('./routes/login');
 
 const endPointRoot = '/comp4537/termproject/api/v1';
 
@@ -40,6 +44,9 @@ app.use(endPointRoot + '/admin', adminRouter);
 app.use(endPointRoot + '/documentation', documentationRouter);
 app.use(endPointRoot + '/searchPokemon', searchPokemonRouter);
 app.use(endPointRoot + '/postTeam', postTeamRouter);
+
+app.use(endPointRoot + '/posts', postsRouter);
+app.use(endPointRoot + '/login', loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

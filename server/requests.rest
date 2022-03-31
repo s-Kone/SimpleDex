@@ -1,0 +1,13 @@
+GET http://localhost:8084/comp4537/termproject/api/v1/posts
+authorization: Bearer
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWxleCIsImlhdCI6MTY0ODc2MzYxOX0.d7OqTjgLgVIT5JjqBFaD32QJBB_R722iPqIDXK__yPU
+
+
+###
+
+POST http://localhost:8084/comp4537/termproject/api/v1/login
+Content-Type: application/json
+
+{
+    "username": "alex"
+}
