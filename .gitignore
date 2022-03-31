@@ -4,7 +4,7 @@
 /client/node_modules
 
 # MacOS
-.DS_Store
-package-lock.json
-package.json
-server/package.json
+**/.DS_Store
+
+# Environment variables
+**/.env
