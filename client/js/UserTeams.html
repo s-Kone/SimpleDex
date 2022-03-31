@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimpleDex API search & team</title>
+    <script defer src="./js/EndPoints.js"></script>
+    <link type="stylesheet" href="./css/endpoints.css">
+</head>
+<body>
+
+    <div>
+        <p>view your team </p>
+        <input type="text" placeholder="team ID" id="teamID">
+        <input type="button" value="submit" onclick="getTeam()">
+        <p id="getTeamResult"></p>
+    </div>
+
+    <div id="userTeamsList" onload="viewTeam()">
+    </div>
+
+
+</body>
+</html>
