@@ -93,18 +93,18 @@ function putTeam()
 {
     //inprogress
 }
-
-function deleteTeam()
-{
-    let teamID = document.getElementById("teamID").value;
-    let params = 'deleteTeam/?teamID=' + teamID;
-    let url = endPointRoot + params;
-    console.log(url);
-    xhttp.open("DELETE", url, true);
-    xhttp.send(url);
-    xhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            document.getElementById("searchResult").innerHTML = this.responseText;
-        }
-    }
-}
+// to be tested
+// function deleteTeam()
+// {
+//     let teamID = document.getElementById("teamID").value;
+//     let params = 'deleteTeam/?teamID=' + teamID;
+//     let url = endPointRoot + params;
+//     console.log(url);
+//     xhttp.open("DELETE", url, true);
+//     xhttp.send(url);
+//     xhttp.onreadystatechange = function () {
+//         if (this.readyState === 4 && this.status === 200) {
+//             document.getElementById("searchResult").innerHTML = this.responseText;
+//         }
+//     }
+// }
