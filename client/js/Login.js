@@ -16,8 +16,9 @@ function getADLogin() {
 }
 
 function onRegister() {
+    
 }
 
-function onClick() {
+function onUserLogin() {
     
 }
