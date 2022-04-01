@@ -15,7 +15,7 @@ var documentationRouter = require('./routes/documentation');
 var searchPokemonRouter = require('./routes/searchPokemon');
 var postTeamRouter = require('./routes/postTeam');
 var postsRouter = require('./routes/posts');
-var loginRouter = require('./routes/login');
+var usersRouter = require('./routes/users');
 
 const endPointRoot = '/comp4537/termproject/api/v1';
 
@@ -38,6 +38,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
+
 // routers
 app.use(endPointRoot, indexRouter);
 app.use(endPointRoot + '/admin', adminRouter);
@@ -46,7 +47,8 @@ app.use(endPointRoot + '/searchPokemon', searchPokemonRouter);
 app.use(endPointRoot + '/postTeam', postTeamRouter);
 
 app.use(endPointRoot + '/posts', postsRouter);
-app.use(endPointRoot + '/login', loginRouter);
+app.use(endPointRoot + '/users', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

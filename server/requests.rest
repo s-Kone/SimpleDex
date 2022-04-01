@@ -1,7 +1,5 @@
 GET http://localhost:8084/comp4537/termproject/api/v1/posts
-authorization: Bearer
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWxleCIsImlhdCI6MTY0ODc2MzYxOX0.d7OqTjgLgVIT5JjqBFaD32QJBB_R722iPqIDXK__yPU
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiamltIiwiaWF0IjoxNjQ4NzY0MTI0fQ.Ql5Nvokt8oaXxox1E7qFyU_nAjeTa6hDPVnHa2yxbbM
 
 ###
 
@@ -9,5 +7,17 @@ POST http://localhost:8084/comp4537/termproject/api/v1/login
 Content-Type: application/json
 
 {
-    "username": "alex"
+    "username": "jim"
+}
+
+###
+
+GET http://localhost:8084/comp4537/termproject/api/v1/users
+
+###
+POST http://localhost:8084/comp4537/termproject/api/v1/users
+Content-Type: application/json
+{
+    "name": "alex",
+    "password": "simpsons123"
 }
