@@ -1,31 +1,25 @@
 var createError = require('http-errors');
 var express = require('express');
+var bodyParser = require('body-parser');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 var jwt = require('jsonwebtoken');
-var pool = require('./modules/pool.js');
-var init_db = require('./modules/database_init.js');
 require('dotenv').config();
 
-var indexRouter = require('./routes/index');
-var adminRouter = require('./routes/admin');
-var documentationRouter = require('./routes/documentation');
-var searchPokemonRouter = require('./routes/searchPokemon');
-var postTeamRouter = require('./routes/postTeam');
-var postsRouter = require('./routes/posts');
-var usersRouter = require('./routes/users');
-
-const endPointRoot = '/comp4537/termproject/api/v1';
+var pool = require('./modules/pool.js');
+var init_db = require('./modules/database_init.js');
+const mountRoutes = require('./routes/index');
 
 var app = express();
+mountRoutes(app);
 
 // Initialize Database
 init_db.init_db();
 
 // set pool
-app.set('pool', pool);
+app.set('pool', pool); // I actually don't know what this does anymore
 
 // setup view engine
 app.set('views', path.join(__dirname, 'views'));
@@ -37,18 +31,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
-
-
-// routers
-app.use(endPointRoot, indexRouter);
-app.use(endPointRoot + '/admin', adminRouter);
-app.use(endPointRoot + '/documentation', documentationRouter);
-app.use(endPointRoot + '/searchPokemon', searchPokemonRouter);
-app.use(endPointRoot + '/postTeam', postTeamRouter);
-
-app.use(endPointRoot + '/posts', postsRouter);
-app.use(endPointRoot + '/users', usersRouter);
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}) );
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -2,7 +2,7 @@ var express = require('express');
 var jwt = require('jsonwebtoken');
 var router = express.Router();
 const bcrypt = require('bcrypt');
-
+const db = require('../modules/pool');
 
 const users = [];
 const defaultNumHashRounds = 10;
