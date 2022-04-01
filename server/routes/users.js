@@ -10,6 +10,7 @@ const defaultNumHashRounds = 10;
 
 router.post('/login', async (req, res, next) => {
     // TODO: Authenticate user creds against db
+
     const user = users.find(user => user.name == req.body.name);
     if (user == null) {
         return res.status(400).send('Authentication failed');
@@ -50,8 +51,10 @@ router.post('/register', async (req, res, next) => {
     }
 });
 
-router.get('', (req, res, next) => {
-    res.json(users);
+router.get('/', async (req, res, next) => {
+    console.log('get users');
+    const db_res = await db.query('SELECT * FROM users;');
+    res.send(db_res);
 })
 
 module.exports = router;
