@@ -1,6 +1,7 @@
-var express = require('express');
 var fs = require('fs');
-var router = express.Router();
+var Router = require('express-promise-router');
+
+const router = new Router();
 
 /* GET documentation page. */
 router.get('/', function(req, res, next) {

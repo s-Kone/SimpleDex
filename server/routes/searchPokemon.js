@@ -1,8 +1,9 @@
-var express = require('express');
 var axios = require('axios');
 var date = require('../modules/date');
 var admin_stats = require('../modules/admin_stats');
-var router = express.Router();
+var Router = require('express-promise-router');
+
+const router = new Router();
 
 
 /**

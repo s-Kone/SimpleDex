@@ -1,8 +1,8 @@
-var express = require('express');
 var admin_stats = require('../modules/admin_stats');
 var pool = require('../modules/pool');
-var router = express.Router();
+var Router = require('express-promise-router');
 
+const router = new Router();
 
 router.get('/', async (req, res) => {
   // check username and password against db

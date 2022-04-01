@@ -1,8 +1,9 @@
-var express = require('express');
 var pool = require('../modules/pool.js');
 var date = require('../modules/date.js');
 var admin_stats = require('../modules/admin_stats');
-var router = express.Router();
+var Router = require('express-promise-router');
+
+const router = new Router();
 
 
 // TODO: change the method back to GET
