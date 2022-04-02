@@ -1,9 +1,9 @@
 import Head from 'next/head'
-
+import { PokemonDisplay } from '../components/pokemon_display'
 
 export default function Home() {
   return (
-    <div className="container" style={{backgroundImage: 'url(${img})'}}>
+    <div className="container" style={{ backgroundImage: 'url(${img})' }}>
       <Head>
         <title>SimpleDex</title>
         <link rel="icon" href="/favicon.ico" />
@@ -19,10 +19,11 @@ export default function Home() {
             <h3>Login &rarr;</h3>
             <p>Find in-depth information about Next.js features and API.</p>
           </div>
-            <div className="card">
+          <div className="card">
             <h3>Register &rarr;</h3>
             <p>Learn about Next.js in an interactive course with quizzes!</p>
-            </div>
+          </div>
+          {/* <PokemonDisplay /> */}
         </div>
       </main>
 
