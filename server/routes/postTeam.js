@@ -1,12 +1,14 @@
-var express = require('express');
 var pool = require('../modules/pool.js');
 var date = require('../modules/date.js');
 var admin_stats = require('../modules/admin_stats');
-var router = express.Router();
+var Router = require('express-promise-router');
+var auth = require('../modules/auth');
+
+const router = new Router();
 
 
 // TODO: change the method back to GET
-router.get('/', (req, res, next) => {
+router.get('/', auth.authenticateToken, (req, res, next) => {
     // When this endpoint is hit, we need the userID
     // TODO: extract userID from app
     let userID = '1';

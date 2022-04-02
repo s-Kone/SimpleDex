@@ -5,6 +5,6 @@
 
 # MacOS
 .DS_Store
-package-lock.json
-package.json
-server/package.json
+
+# Environment variables
+.env

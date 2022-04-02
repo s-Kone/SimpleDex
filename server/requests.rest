@@ -1,0 +1,40 @@
+###
+
+# Get users (unsecured endpoint, exists for testing)
+GET http://localhost:8084/comp4537/termproject/api/v1/users
+
+###
+
+# secured endpoint. requires JWT token in cookie. do this same thing in postman ( use /register and /login) to get a cookie stored in local storage, then try this endpoint again (in postman).
+ GET http://localhost:8084/comp4537/termproject/api/v1/searchPokemon?pokemon=charizard
+
+ ###
+
+# POST a new user to register
+POST http://localhost:8084/comp4537/termproject/api/v1/users/register 
+Content-Type: application/json
+
+{
+     "name": "Miyazaki", "password": "password", "email": "me@goog.com" 
+}
+
+###
+
+POST http://localhost:8084/comp4537/termproject/api/v1/users/login
+Content-Type: application/json
+
+{
+    "email": "me@goog.com", "password": "password"
+}
+
+###
+
+#wrong password
+POST http://localhost:8084/comp4537/termproject/api/v1/users/login
+Content-Type: application/json
+
+{
+    "email": "me@goog.com", "password": "pass"
+}
+
+###
