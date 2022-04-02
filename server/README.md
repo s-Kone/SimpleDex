@@ -57,6 +57,7 @@ JWT basics:
 - all endpoints besides /users/login and /users/register are now protected by JWT authorization
 - this means the server expects to see a valid JWT included in the cookies of the request
 - a client user will obtain a valid JWT into their cookies by logging in at /users/login
-- there are example POST/GET requests contained in the file server/requests.rest
-    - install VScode extension `REST CLIENT` and click the button above each request in requests.rest to send it to the server. requests must be separated by '###'
-    - to get a cookie, you'll need something with local storage enabled, which the rest client doesn't as far as i can tell. try postman
+- there are example POST/GET requests contained in the postman collection file in the /server and in the /server/requests.rust
+    - to use request.rust, install VScode extension `REST CLIENT` and click the button above each request in requests.rest to send it to the server. requests must be separated by '###'
+    - to get a cookie, you'll need something with local storage enabled, which the rest client doesn't as far as i can tell. try postman. 
+    

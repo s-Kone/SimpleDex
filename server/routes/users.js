@@ -5,20 +5,22 @@ var Router = require('express-promise-router');
 
 const router = new Router();
 
-const users = [];
-const defaultNumHashRounds = 10;
-
 router.post('/login', async (req, res, next) => {
-    // TODO: Authenticate user creds against db
+    // TODO: check if email is valid
+    const email = req.body.email;
+    
+    const text = 'Select HashedPassword FROM Users WHERE Email = $1';
+    const values = [email];
 
-    const user = users.find(user => user.name == req.body.name);
-    if (user == null) {
+    const db_res = await db.query(text, values);
+    const hashedPassword = db_res.rows[0].hashedpassword;
+
+    if (db_res.rowCount == 0) {
         return res.status(400).send('Authentication failed');
     }
     try {
-        if ( await bcrypt.compare(req.body.password, user.password) ) {
-            const userSignObj = { name: user.name };
-
+        if ( await bcrypt.compare(req.body.password, hashedPassword) ) {
+            const userSignObj = { name: email };
             const accessToken = jwt.sign(userSignObj, process.env.ACCESS_TOKEN_SECRET);
             // res.json({ accessToken: accessToken });
             // res.cookie('jwt', accessToken, { secure: true, httpOnly: true });
@@ -28,7 +30,8 @@ router.post('/login', async (req, res, next) => {
         else {
             res.send('Invalid credentials');
         }
-    } catch {
+    } catch(err) {
+        console.log(err);
         res.status(500).send('Authentication failed');
     }
 });
@@ -40,16 +43,15 @@ router.post('/register', async (req, res, next) => {
                         name: req.body.name,
                         email: req.body.email,
                         hashedPassword: hashedPassword,
-                        userTypeID: 2
+                        userTypeID: 2 // user
                     }
         console.log(user);
-        user.userType = 2; // user
 
         // TODO: validate user info, check against existing user...all that
         const text = 'INSERT INTO USERS (Username, Email, HashedPassword, UserTypeID) VALUES ($1, $2, $3, $4)';
         const values = [user.name, user.email, user.hashedPassword, user.userTypeID];
-        const db_res = await db.query(text, values);
-        res.status(201).send(db_res);
+        const db_res = await db.query(text, values); // TODO: error handling
+        res.status(201).send();
 
         // db.query(text, values).then(
         //     (res) => {

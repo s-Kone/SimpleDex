@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS UserType (
 CREATE TABLE IF NOT EXISTS Users (
     UserID          SERIAL,
     Username        VARCHAR(255) NOT NULL,
-    Email           VARCHAR(255),
+    Email           VARCHAR(255) NOT NULL UNIQUE,
     HashedPassword    VARCHAR(255) NOT NULL,
     UserTypeID      INT NOT NULL,
     DateCreatedUTC  TIMESTAMP,
