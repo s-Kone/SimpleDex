@@ -1,11 +1,29 @@
 import Link from 'next/link'
 import Head from 'next/head'
+import axios from 'axios'
+
+const APIDomain = "http://localhost:8084"; // for debug, replace with http://localhost:8084
+const APIRootPath = "/comp4537/termproject/api/v1";
+const resource = "/users/login";
 
 export default function Login() {
-    const loginUser = event => {
+    const loginUser = async (event) => {
         event.preventDefault() // don't redirect the page
+        
+        var user = {
+            email: event.target.email.value,
+            password: event.target.password.value
+        }
 
-        // TODO: post to SimpleDex API /login endpoint
+        axios.post(APIDomain + APIRootPath + resource, user)
+            .then((res) => {
+                console.log(res);
+                alert("Login succeeded");
+            })
+            .catch((err) => {
+                console.log(err);
+                alert("Login failed");
+            })     
     }
 
     return ( 
@@ -18,15 +36,14 @@ export default function Login() {
             <main>
                 <h1>Login</h1>
                     <form onSubmit={loginUser}>
-                    <label htmlFor="Email">Email</label>
-                    <input type="text" placeholder="Email" id="email" required />
+                        <label htmlFor="Email">Email</label>
+                        <input type="text" placeholder="Email" id="email" required />
 
-                    <label htmlFor="password">Password</label>
-                    <input type="password" placeholder="Password" id="password" required />
+                        <label htmlFor="password">Password</label>
+                        <input type="password" placeholder="Password" id="password" required />
 
-                    <button type="submit">Login</button>
-
-                </form>
+                        <button type="submit">Login</button>
+                    </form>
 
                 <Link href="/">
                     <a>Back to Home</a>
@@ -93,8 +110,8 @@ export default function Login() {
                     margin-top: 20px;
                     font-size: 16px;
                     font-weight: 500;
-                }
-            `}</style>
+                }`
+            }</style>
         </>
 
 
