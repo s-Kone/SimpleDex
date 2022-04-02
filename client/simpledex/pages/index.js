@@ -23,7 +23,7 @@ export default function Home() {
             <h3>Register &rarr;</h3>
             <p>Learn about Next.js in an interactive course with quizzes!</p>
           </div>
-          {/* <PokemonDisplay /> */}
+          <PokemonDisplay />
         </div>
       </main>
 
