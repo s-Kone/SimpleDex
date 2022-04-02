@@ -1,28 +1,37 @@
 import Head from 'next/head'
 
-
 export default function Home() {
+
   return (
-    <div className="container" style={{backgroundImage: 'url(${img})'}}>
+    <div className="container">
       <Head>
         <title>SimpleDex</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="./favicon.ico"/>
       </Head>
-
+      
       <main>
         <h1 className="title">
           Welcome to SimpleDex!
         </h1>
 
         <div className="grid">
-          <div className="card">
-            <h3>Login &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </div>
-            <div className="card">
-            <h3>Register &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-            </div>
+            <a href="/login">
+              <div className="card">
+                <h3>Login &rarr;</h3>
+                <p>Login to see all sorts of diffrent types of pokemon!</p>
+              </div>
+            </a>
+            <a href="/register">
+              <div className="card">
+                <h3>Register &rarr;</h3>
+              <p>Register an account!</p>
+              </div>
+            </a>
+            <a href='/about'>
+              <div className="card"> 
+              <h3>About Us</h3>
+              </div>
+            </a>
         </div>
       </main>
 
@@ -41,25 +50,6 @@ export default function Home() {
           flex: 1;
           display: flex;
           flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
           justify-content: center;
           align-items: center;
         }
