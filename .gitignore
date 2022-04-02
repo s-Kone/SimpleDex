@@ -5,7 +5,8 @@
 
 # MacOS
 .DS_Store
-package-lock.json
-server/package.json
+
+# Environment variables
+.env
 
 *.rdb
