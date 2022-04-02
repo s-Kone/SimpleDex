@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimpleDex API search & team</title>
+    <script defer src="./js/EndPoints.js"></script>
+    <link type="stylesheet" href="./css/endpoints.css">
+</head>
+<body>
+    <div>
+    <p>search a pokemon by their name and returns the pokemon info in json (only charizard works rn)</p>
+    <input type="text" placeholder="enter pokemon name here" id="pokemon">
+    <input type="button" value="submit" onclick="getPokemon()">
+    <p id="searchResult"></p>
+    </div>
+    <div>
+        <p>view your team </p>
+        <input type="text" placeholder="team ID" id="teamID">
+        <input type="text" placeholder="pokemon ID" id="pokemonID">
+        <input type="button" value="submit" onclick="getTeam()">
+        <p id="getTeamResult"></p>
+        </div>
+
+    <div>
+        <p>save your team to view later -> this is for later</p>
+        <input type="text" placeholder="team name" id="teamName">
+        <input type="text" placeholder="enter pokemon 1 here" id="pokemon1">
+        <input type="text" placeholder="enter pokemon 2 here" id="pokemon2">
+        <input type="text" placeholder="enter pokemon 3 here" id="pokemon3">
+        <input type="text" placeholder="enter pokemon 4 here" id="pokemon4">
+        <input type="text" placeholder="enter pokemon 5 here" id="pokemon5">
+        <input type="button" value="submit" onclick="postTeam()">
+        <p id="postResult"></p>
+    </div>
+</body>
+</html>
