@@ -5,8 +5,4 @@
 
 # MacOS
 .DS_Store
-package-lock.json
-package.json
-server/package.json
-
 *.rdb
