@@ -11,6 +11,6 @@ VALUES
 ;
 
 -- TODO: store passwords as hash
-INSERT INTO User (Username, UserPassword, UserTypeID, DateCreatedUTC)
+INSERT INTO User (Username, HashedPassword, UserTypeID, DateCreatedUTC)
 VALUES
     ('admin', '1234abcd', 1, UTC_TIMESTAMP);

@@ -26,6 +26,7 @@ module.exports = {
 
   /**
    * Checks out a client for several queries in a row in a transaction
+   * Reason for existence: Calling pool.query() twice may use two different connections and run in parallel
    * Performs error handling for if leak occurs
    * @returns 
    */

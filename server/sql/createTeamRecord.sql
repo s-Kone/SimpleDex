@@ -1,14 +1,9 @@
-CREATE TABLE TeamRecord (
-        TeamRecordID     INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS TeamRecord (
+        TeamRecordID     SERIAL,
         UserTeamID       INT NOT NULL,
         UserID           INT NOT NULL,
-        PokemonID1       INT NOT NULL,
-        PokemonID2       INT NOT NULL,
-        PokemonID3       INT NOT NULL,
-        PokemonID4       INT NOT NULL,
-        PokemonID5       INT NOT NULL,
-        PokemonID6       INT NOT NULL,
-        DateModifiedUTC DATETIME,
+        Pokemon          JSON NOT NULL,
+        DateModifiedUTC TIMESTAMP,
         PRIMARY KEY (TeamRecordID),
-        FOREIGN KEY (UserID) REFERENCES User(UserID)
+        FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );

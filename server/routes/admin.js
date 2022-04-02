@@ -1,10 +1,11 @@
 var admin_stats = require('../modules/admin_stats');
 var pool = require('../modules/pool');
 var Router = require('express-promise-router');
+var auth = require('../modules/auth');
 
 const router = new Router();
 
-router.get('/', async (req, res) => {
+router.get('/', auth.authenticateToken, async (req, res) => {
   // check username and password against db
   let username = req.query.username;
   let password = req.query.password;
@@ -62,6 +63,5 @@ const getAdminStats = async () => {
       }
   });
 }
-
 
 module.exports = router;

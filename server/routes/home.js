@@ -1,9 +1,10 @@
 var Router = require('express-promise-router');
+var auth = require('../modules/auth');
 
 const router = new Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', auth.authenticateToken, function(req, res, next) {
   res.render('home', { title: 'SimpleDex Home' });
 });
 

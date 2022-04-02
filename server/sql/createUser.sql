@@ -1,9 +1,10 @@
-CREATE TABLE User (
-    UserID          INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS Users (
+    UserID          SERIAL,
     Username        VARCHAR(255) NOT NULL,
-    UserPassword    VARCHAR(255) NOT NULL,
+    Email           VARCHAR(255),
+    HashedPassword    VARCHAR(255) NOT NULL,
     UserTypeID      INT NOT NULL,
-    DateCreatedUTC  DateTime,
+    DateCreatedUTC  TIMESTAMP,
     PRIMARY KEY (UserID),
     FOREIGN KEY (UserTypeID) references UserType(UserTypeID)
 );

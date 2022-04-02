@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 var jwt = require('jsonwebtoken');
+var cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 var pool = require('./modules/pool.js');
@@ -13,13 +14,12 @@ var init_db = require('./modules/database_init.js');
 const mountRoutes = require('./routes/index');
 
 var app = express();
-mountRoutes(app);
 
 // Initialize Database
 init_db.init_db();
 
 // set pool
-app.set('pool', pool); // I actually don't know what this does anymore
+app.set('pool', pool); // I don't actually know what this does anymore
 
 // setup view engine
 app.set('views', path.join(__dirname, 'views'));
@@ -33,6 +33,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}) );
+app.use(cookieParser());
+
+mountRoutes(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

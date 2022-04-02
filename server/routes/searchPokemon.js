@@ -2,15 +2,15 @@ var axios = require('axios');
 var date = require('../modules/date');
 var admin_stats = require('../modules/admin_stats');
 var Router = require('express-promise-router');
+var auth = require('../modules/auth');
 
 const router = new Router();
-
 
 /**
  * GET request for pokemon listings
  * Query param: pokemon=nameOfPokemon
  */
-router.get('/', function(req, res, next) {
+router.get('/', auth.authenticateToken, function(req, res, next) {
   let param = req.query.pokemon;
 
   // TODO: Handle error in some way. Probably return some http status code
@@ -43,7 +43,7 @@ router.get('/', function(req, res, next) {
     })
 
   // Log Admin Stats
-  admin_stats.logAdminStats('1', userID);
+  // admin_stats.logAdminStats('1', userID);
 
 });
 

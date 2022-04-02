@@ -31,20 +31,36 @@ router.post('/login', async (req, res, next) => {
     } catch {
         res.status(500).send('Authentication failed');
     }
-
-
 });
 
 router.post('/register', async (req, res, next) => {
-    res.send('hi');
     try {
-        const hashedPassword = await bcrypt.hash(req.body.password, defaultNumHashRounds);
-        const user = {  id: Date.now().toString(),
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        var user = {    date: Date.now().toString(),
                         name: req.body.name,
                         email: req.body.email,
-                        password: hashedPassword }
-        users.push(user)
-        res.status(201).send();
+                        hashedPassword: hashedPassword,
+                        userTypeID: 2
+                    }
+        console.log(user);
+        user.userType = 2; // user
+
+        // TODO: validate user info, check against existing user...all that
+        const text = 'INSERT INTO USERS (Username, Email, HashedPassword, UserTypeID) VALUES ($1, $2, $3, $4)';
+        const values = [user.name, user.email, user.hashedPassword, user.userTypeID];
+        const db_res = await db.query(text, values);
+        res.status(201).send(db_res);
+
+        // db.query(text, values).then(
+        //     (res) => {
+        //         console.log(res);
+        //         res.status(201).send(db_res);
+        //     },
+        //     (rej) => {
+        //         console.log(rej);
+        //         res.status(500).send();
+        //     }
+        // );
     }
     catch {
         res.status(500).send();
@@ -52,9 +68,8 @@ router.post('/register', async (req, res, next) => {
 });
 
 router.get('/', async (req, res, next) => {
-    console.log('get users');
     const db_res = await db.query('SELECT * FROM users;');
-    res.send(db_res);
+    res.send(db_res.rows);
 })
 
 module.exports = router;
