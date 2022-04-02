@@ -1,11 +1,11 @@
 const xhttp = new XMLHttpRequest();
-const endPointRoot = "https://alexgiasson.me/comp4537/termproject/api/v1/admin/";
+const endPointRoot = "https://alexgiasson.me/comp4537/termproject/api/v1";
 
 function getADLogin() {
     let u = document.getElementById("user").value;
     let p = document.getElementById("pass").value;
     let params = '?username=' + u + '&password=' + p;
-    let url = endPointRoot + params;
+    let url = endPointRoot + '/admin' + params;
     xhttp.open("GET", url, true);
     xhttp.send(url);
     xhttp.onreadystatechange = function () {
@@ -15,9 +15,6 @@ function getADLogin() {
     }
 }
 
-function onRegister() {
-}
-
-function onClick() {
+function login() {
     
 }

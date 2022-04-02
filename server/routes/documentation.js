@@ -1,9 +1,11 @@
-var express = require('express');
 var fs = require('fs');
-var router = express.Router();
+var Router = require('express-promise-router');
+var auth = require('../modules/auth');
+
+const router = new Router();
 
 /* GET documentation page. */
-router.get('/', function(req, res, next) {
+router.get('/', auth.authenticateToken, function(req, res, next) {
   fs.readFile('./swagger.json', 'utf8', (err, data) => {
     if (err) {
       console.error(err);

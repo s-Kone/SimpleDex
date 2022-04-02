@@ -1,9 +1,21 @@
-var express = require('express');
-var router = express.Router();
+var homeRouter = require('./home');
+var adminRouter = require('./admin');
+var documentationRouter = require('./documentation');
+var searchPokemonRouter = require('./searchPokemon');
+var postTeamRouter = require('./postTeam');
+var postsRouter = require('./posts');
+var usersRouter = require('./users');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'SimpleDex Index' });
-});
+const endPointRoot = '/comp4537/termproject/api/v1';
 
-module.exports = router;
+module.exports = app => {
+    app.use(endPointRoot + '', homeRouter);
+    app.use(endPointRoot + '/admin', adminRouter);
+    app.use(endPointRoot + '/documentation', documentationRouter);
+    app.use(endPointRoot + '/searchPokemon', searchPokemonRouter);
+    app.use(endPointRoot + '/postTeam', postTeamRouter);
+    app.use(endPointRoot + '/users', usersRouter);
+
+    // demo
+    app.use(endPointRoot + '/posts', postsRouter);
+}
