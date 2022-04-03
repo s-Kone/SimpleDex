@@ -91,20 +91,41 @@ function viewTeam()
 // updates to team
 function putTeam()
 {
-    //inprogress
+    let tid = document.getElementById("teamID").value;
+    let tn = document.getElementById("teamName").value;
+    let t1 = document.getElementById("pokemon1").value;
+    let t2 = document.getElementById("pokemon2").value;
+    let t3 = document.getElementById("pokemon3").value;
+    let t4 = document.getElementById("pokemon4").value;
+    let t5 = document.getElementById("pokemon5").value;
+    let params = 'postTeam/?teamID=' + tid + 'teamname=' + tn + '&pokemon1=' + t1 + '&pokemon2=' + t2 + '&pokemon3=' + t3 + '&pokemon4=' + t4 + '&pokemon5=' + t5;
+    let url = endPointRoot + params;
+    console.log(url);
+    let obj = {teamID: tid, teamname: tn, pokemon1: t1, pokemon2: t2, pokemon3: t3, pokemon4: t4, pokemon5: t5}
+    let data = JSON.stringify(obj);
+    console.log(obj);
+    console.log(data);
+    xhttp.open("PUT", url, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(data);
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            console.log(this.responseText);
+        }
+    }
 }
-// to be tested
-// function deleteTeam()
-// {
-//     let teamID = document.getElementById("teamID").value;
-//     let params = 'deleteTeam/?teamID=' + teamID;
-//     let url = endPointRoot + params;
-//     console.log(url);
-//     xhttp.open("DELETE", url, true);
-//     xhttp.send(url);
-//     xhttp.onreadystatechange = function () {
-//         if (this.readyState === 4 && this.status === 200) {
-//             document.getElementById("searchResult").innerHTML = this.responseText;
-//         }
-//     }
-// }
+
+function deleteTeam()
+{
+    let teamID = document.getElementById("teamID").value;
+    let params = 'deleteTeam/?teamID=' + teamID;
+    let url = endPointRoot + params;
+    console.log(url);
+    xhttp.open("DELETE", url, true);
+    xhttp.send(url);
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            document.getElementById("searchResult").innerHTML = this.responseText;
+        }
+    }
+}
