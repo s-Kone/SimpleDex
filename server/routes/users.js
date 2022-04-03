@@ -22,10 +22,7 @@ router.post('/login', async (req, res, next) => {
         if ( await bcrypt.compare(req.body.password, hashedPassword) ) {
             const userSignObj = { name: email };
             const accessToken = jwt.sign(userSignObj, process.env.ACCESS_TOKEN_SECRET);
-            // res.json({ accessToken: accessToken });
-            // res.cookie('jwt', accessToken, { secure: true, httpOnly: true });
-            res.cookie('jwt', accessToken);
-            res.send('Success');
+            res.json({ accessToken: accessToken });
         }
         else {
             res.send('Invalid credentials');

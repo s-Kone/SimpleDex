@@ -78,7 +78,7 @@ function getOrSetCache(){}
 
 // Copy-pastad unauthorized version. Note the only difference is the lack of the middleware function
 router.get('/unauth', async (req, res, next) => {
-  let param = req.query.pokemon;
+  let param = req.query.name;
 
   // TODO: Handle error in some way. Probably return some http status code
   if (!param)
