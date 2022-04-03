@@ -9,7 +9,7 @@ const router = new Router();
 
 router.post('/', auth.authenticateToken, async (req, res,next) => {
     try {
-        let userEmail = req.user.name
+        let userEmail = req.user.email
         let pokemon = req.body.pokemon
         console.log(pokemon)
         // validate inputs
@@ -41,25 +41,32 @@ router.post('/', auth.authenticateToken, async (req, res,next) => {
 })
 
 router.get('/', auth.authenticateToken, async (req, res, next) => {
-    let userEmail = req.user.name
-    
-    // validate inputs
-    let userID = await user_utils.getUserID(userEmail)
-    if(!userID) {
-        return res.status(500).send()
+    try {
+        let userEmail = req.user.email
+        
+        // validate inputs
+        let userID = await user_utils.getUserID(userEmail)
+        if(!userID) {
+            console.log('no user id')
+            return res.status(500).send()
+        }
+
+        let text = 'select * from teamrecord where userid = $1'
+        let values = [userID]
+        const db_res = await pool.query(text, values)
+        res.json(db_res.rows)
+
+        admin_stats.logAdminStats('8', userEmail);
+    } catch (e) {
+        console.log(e)
+        res.status(500).send()
     }
 
-    let text = 'select * from teamrecord where userid = $1'
-    let values = [userID]
-    const db_res = await pool.query(text, values)
-    res.json(db_res.rows)
-
-    admin_stats.logAdminStats('8', userEmail);
 });
 
 router.patch('/', auth.authenticateToken, async (req, res,next) => {
     try {
-        let userEmail = req.user.name
+        let userEmail = req.user.email
         let pokemon = req.body.pokemon
         let userTeamID = req.body.userTeamID
     
@@ -93,7 +100,7 @@ router.patch('/', auth.authenticateToken, async (req, res,next) => {
 
 router.delete('/', auth.authenticateToken, async (req, res,next) => {
     try {
-        let userEmail = req.user.name
+        let userEmail = req.user.email
         let userTeamID = req.body.userTeamID
     
         // validate inputs

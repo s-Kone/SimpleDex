@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 // import { PokemonDisplay } from '../components/pokemon_display'
 
+
 export default function Home() {
 
   return (

@@ -1,8 +1,5 @@
 import Head from 'next/head'
-import { PokemonDisplay } from '../components/pokemon_display'
-import Nav from '../components/Nav'
-import Footer from '../components/Footer'
-
+import { PokemonDisplay } from '../components/search/pokemon_display'
 export default function search() {
     return (
         <>

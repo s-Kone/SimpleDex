@@ -1,1 +1,3 @@
 # Server gitignore
+
+.env
