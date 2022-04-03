@@ -3,13 +3,14 @@ import Link from 'next/link'
 // import { PokemonDisplay } from '../components/pokemon_display'
 
 export default function Home() {
+
   return (
-    <div className="container" style={{ backgroundImage: 'url(${img})' }}>
+    <div className="container">
       <Head>
         <title>SimpleDex</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="./favicon.ico"/>
       </Head>
-
+      
       <main>
         <h1 className="title">
           Welcome to SimpleDex
@@ -53,25 +54,6 @@ export default function Home() {
           flex: 1;
           display: flex;
           flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
           justify-content: center;
           align-items: center;
         }

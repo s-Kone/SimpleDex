@@ -6,8 +6,8 @@ function about() {
     return(
         <>
             <Head>
-                <title>SimpleDex</title>
-                <link rel="icon" href="/favicon.ico" />
+                <title>SimpleDex About</title>
+                <link rel="icon" href="./favicon.ico" />
             </Head>
             <Nav/>
             <h1>This is the about page</h1>

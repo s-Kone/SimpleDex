@@ -3,3 +3,24 @@
     padding: 0 1rem;
     margin: 3rem auto 6rem;
 }
+
+.input {
+    border: none;
+    width: 40%;
+    border-bottom: 2px solid black;
+}
+
+.box {
+    margin: 10px;
+    text-align: center;
+}
+
+.list {
+    list-style-type: none;
+    text-align: center;
+    margin-right: 4%;
+}
+
+.list li:hover {
+    background-color: aqua;
+}

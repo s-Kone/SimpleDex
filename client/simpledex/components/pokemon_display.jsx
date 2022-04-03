@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import styles from './pokemon_display.module.css'
 import { pokemon_lookups } from '../lookups/pokemon_lookup'
+
 export function PokemonDisplay() {
     const [pokemon, setPokemon] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -14,15 +15,15 @@ export function PokemonDisplay() {
     }
 
     return (
-        <div id="container">
+        <div id="container" className={styles.box}>
             <AutoComplete data={pokemon_lookups} name={setName} />
-            <button onClick={handleClick}></button>
+            <button onClick={handleClick}>Search</button>
             {loading ? <div className={styles.container}>
                 <Sprite pokemon={pokemon} />
                 <p>{pokemon.name}</p>
                 <Types pokemon={pokemon} />
                 <Stats pokemon={pokemon} />
-            </div> : <div>not loaded</div>}
+            </div> : <div></div>}
         </div>
 
     );
@@ -116,10 +117,11 @@ const AutoComplete = (props) => {
 
     const Suggestions = () => {
         return (
-            <ul className="suggestions">
+            <ul className={styles.list}>
                 {suggestions.map((suggestion, index) => {
                     return (
                         <li
+                            id="item"
                             className={index === suggestionIndex ? "active" : ""}
                             key={index}
                             onClick={handleClick}
@@ -133,12 +135,14 @@ const AutoComplete = (props) => {
     };
 
     return (
-        <div className="autocomplete">
+        <div className={styles.box}>
+            <h3>Search for your pokemon</h3>
             <input
                 type="text"
                 value={value}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
+                className={styles.input}
             />
             {suggestionsActive && <Suggestions />}
         </div>
