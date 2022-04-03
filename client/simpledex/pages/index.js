@@ -47,6 +47,7 @@ export default function Home() {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          background-image: url('/background.png');
         }
 
         main {

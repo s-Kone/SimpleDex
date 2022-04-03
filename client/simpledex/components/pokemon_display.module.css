@@ -18,9 +18,18 @@
 .list {
     list-style-type: none;
     text-align: center;
-    margin-right: 4%;
+    margin-right: 3%;
 }
 
 .list li:hover {
     background-color: aqua;
 }
+
+.type {
+    color: red;
+}
+
+.stat {
+    color: rebeccapurple;
+}
+
