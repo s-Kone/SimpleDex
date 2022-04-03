@@ -7,7 +7,7 @@ const router = new Router();
 
 /* GET documentation page. */
 router.get('/', auth.authenticateToken, function(req, res, next) {
-  let userEmail = req.user.name
+  let userEmail = req.user.email
   fs.readFile('./swagger.json', 'utf8', (err, data) => {
     if (err) {
       console.error(err);

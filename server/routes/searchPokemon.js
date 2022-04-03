@@ -14,7 +14,7 @@ const router = new Router();
  * Query param: name=nameOfPokemon
  */
 router.get('/name', auth.authenticateToken, async (req, res, next) => {
-  let userEmail = req.user.name
+  let userEmail = req.user.email
   let name = req.query.name
   if (!name) {
     console.log('error searchPokemon: no param')
@@ -33,7 +33,7 @@ router.get('/name', auth.authenticateToken, async (req, res, next) => {
 
 
 router.get('/type', auth.authenticateToken, async (req, res, next) => {
-  let userEmail = req.user.name
+  let userEmail = req.user.email
   let type = req.query.type
   if (!type) {
     console.log('error searchPokemon: no param')
