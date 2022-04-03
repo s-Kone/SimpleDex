@@ -28,6 +28,12 @@ export default function Home() {
               <p>If you're new, start here</p>
             </div>
           </Link>
+          <Link href = "/test/cookietest">
+            <div className="card">
+              <h3>CookieTest&rarr;</h3>
+              <p>Fuck</p>
+            </div>
+          </Link>
           {/* <PokemonDisplay /> */}
         </div>
       </main>
