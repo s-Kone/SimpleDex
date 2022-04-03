@@ -55,10 +55,11 @@ export const AutoComplete = (props) => {
 
     const Suggestions = () => {
         return (
-            <ul className="suggestions">
+            <ul className={styles.list}>
                 {suggestions.map((suggestion, index) => {
                     return (
                         <li
+                            id="item"
                             className={index === suggestionIndex ? "active" : ""}
                             key={index}
                             onClick={handleClick}
@@ -72,12 +73,14 @@ export const AutoComplete = (props) => {
     };
 
     return (
-        <div className="autocomplete">
+        <div className={styles.box}>
+            <h3>Search for your pokemon</h3>
             <input
                 type="text"
                 value={value}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
+                className={styles.input}
             />
             {suggestionsActive && <Suggestions />}
         </div>
