@@ -1,14 +1,19 @@
 import Head from 'next/head'
+import styles from "../styles/about.module.css"
 
 function about() {
     return(
         <>
             <Head>
-                <title>SimpleDex</title>
-                <link rel="icon" href="/favicon.ico" />
+                <title>SimpleDex About</title>
+                <link rel="icon" href="./favicon.ico" />
             </Head>
 
-            <h1>This is the about page</h1>
+            <div className={styles.container}>
+            <h2>About Us</h2>
+            <p>SimpleDex is a powerfull tool that can help you look up certain pokemons</p>
+            </div> 
+
 
             <style jsx global>{`
                     html,
