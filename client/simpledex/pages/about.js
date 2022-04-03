@@ -1,5 +1,6 @@
 import Head from 'next/head'
-import styles from "../styles/about.module.css"
+import Nav from '../components/Nav'
+import Footer from '../components/Footer'
 
 function about() {
     return(
@@ -8,13 +9,9 @@ function about() {
                 <title>SimpleDex About</title>
                 <link rel="icon" href="./favicon.ico" />
             </Head>
-
-            <div className={styles.container}>
-            <h2>About Us</h2>
-            <p>SimpleDex is a powerfull tool that can help you look up certain pokemons</p>
-            </div> 
-
-
+            <Nav/>
+            <h1>This is the about page</h1>
+            <Footer/>
             <style jsx global>{`
                     html,
                     body {

@@ -1,5 +1,6 @@
 import Head from 'next/head'
-import { PokemonDisplay } from '../components/pokemon_display'
+import Link from 'next/link'
+// import { PokemonDisplay } from '../components/pokemon_display'
 
 export default function Home() {
 
@@ -12,19 +13,29 @@ export default function Home() {
       
       <main>
         <h1 className="title">
-          Welcome to SimpleDex!
+          Welcome to SimpleDex
         </h1>
 
         <div className="grid">
-          <div className="card">
-            <h3>Login &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </div>
-          <div className="card">
-            <h3>Register &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </div>
-          <PokemonDisplay />
+          <Link href ="/users/login">
+              <div className="card">
+                <h3>Login &rarr;</h3>
+                <p>Login to SimpleDex</p>
+              </div>
+          </Link>
+          <Link href = "/users/register">
+            <div className="card">
+              <h3>Register &rarr;</h3>
+              <p>If you're new, start here</p>
+            </div>
+          </Link>
+          <Link href = "/test/cookietest">
+            <div className="card">
+              <h3>CookieTest&rarr;</h3>
+              <p>Fuck</p>
+            </div>
+          </Link>
+          {/* <PokemonDisplay /> */}
         </div>
       </main>
 

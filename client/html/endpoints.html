@@ -15,16 +15,9 @@
     <input type="button" value="submit" onclick="getPokemon()">
     <p id="searchResult"></p>
     </div>
-    <div>
-        <p>view your team </p>
-        <input type="text" placeholder="team ID" id="teamID">
-        <input type="text" placeholder="pokemon ID" id="pokemonID">
-        <input type="button" value="submit" onclick="getTeam()">
-        <p id="getTeamResult"></p>
-        </div>
 
     <div>
-        <p>save your team to view later -> this is for later</p>
+        <p>save your team to view later</p>
         <input type="text" placeholder="team name" id="teamName">
         <input type="text" placeholder="enter pokemon 1 here" id="pokemon1">
         <input type="text" placeholder="enter pokemon 2 here" id="pokemon2">
@@ -34,5 +27,20 @@
         <input type="button" value="submit" onclick="postTeam()">
         <p id="postResult"></p>
     </div>
+
+    <div>
+        <p>view your team </p>
+        <input type="text" placeholder="team ID" id="teamID">
+        <input type="button" value="submit" onclick="getTeam()">
+        <p id="getTeamResult"></p>
+    </div>
+
+    <div>
+    <p>search an item by its name returns item info</p>
+    <input type="text" placeholder="enter item name here" id="item">
+    <input type="button" value="submit" onclick="getItem()">
+    <p id="itemResult"></p>
+    </div>
+    
 </body>
 </html>
