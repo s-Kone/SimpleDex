@@ -1,0 +1,29 @@
+
+.input {
+    border: none;
+    width: 40%;
+    border-bottom: 2px solid black;
+}
+
+.box {
+    margin: 10px;
+    text-align: center;
+}
+
+.list {
+    list-style-type: none;
+    text-align: center;
+    margin-right: 3%;
+}
+
+.list li:hover {
+    background-color: aqua;
+}
+
+.type {
+    color: red;
+}
+
+.stat {
+    color: rebeccapurple;
+}
