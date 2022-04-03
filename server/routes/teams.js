@@ -15,7 +15,7 @@ router.post('/', auth.authenticateToken, async (req, res,next) => {
         // validate inputs
         let userID = await user_utils.getUserID(userEmail)
         if(!userID) {
-            res.status(500).send()
+            return res.status(500).send()
         }
     
         if (!isJsonString(pokemon))
@@ -46,7 +46,7 @@ router.get('/', auth.authenticateToken, async (req, res, next) => {
     // validate inputs
     let userID = await user_utils.getUserID(userEmail)
     if(!userID) {
-        res.status(500).send()
+        return res.status(500).send()
     }
 
     let text = 'select * from teamrecord where userid = $1'
@@ -57,9 +57,66 @@ router.get('/', auth.authenticateToken, async (req, res, next) => {
     admin_stats.logAdminStats('8', userEmail);
 });
 
-router.put('/', auth.authenticateToken, async (req, res,next) => {
-    let userEmail = req.user.name
-    admin_stats.logAdminStats('9', userEmail);
+router.patch('/', auth.authenticateToken, async (req, res,next) => {
+    try {
+        let userEmail = req.user.name
+        let pokemon = req.body.pokemon
+        let userTeamID = req.body.userTeamID
+    
+        // validate inputs
+        let userID = await user_utils.getUserID(userEmail)
+        if(!userID) {
+            return res.status(500).send()
+        }
+    
+        if (!isJsonString(pokemon))
+        {
+            return res.status(400).send('Invalid pokemon json')
+        }
+    
+        // check team exists
+        if ((await doesTeamExist(userID, userTeamID)) == false) {
+            return res.status(400).send('Team does not exist')
+        }
+
+        let text = 'update teamrecord set pokemon = $1 where userid = $2 and userteamid = $3'
+        let values = [pokemon, userID, userTeamID]
+        const db_res = await pool.query(text, values)
+        res.status(200).send()
+
+        admin_stats.logAdminStats('9', userEmail);
+    } catch (e) {
+        console.log(e)
+        res.status(500).send()
+    }
+})
+
+router.delete('/', auth.authenticateToken, async (req, res,next) => {
+    try {
+        let userEmail = req.user.name
+        let userTeamID = req.body.userTeamID
+    
+        // validate inputs
+        let userID = await user_utils.getUserID(userEmail)
+        if(!userID) {
+            return res.status(500).send()
+        }
+
+        // check team exists
+        if ((await doesTeamExist(userID, userTeamID)) == false) {
+            return res.status(400).send('Team does not exist')
+        }
+
+        let text = 'delete from teamrecord where userid = $1 and userteamid = $2'
+        let values = [userID, userTeamID]
+        const db_res = await pool.query(text, values)
+        res.status(200).send()
+
+        admin_stats.logAdminStats('10', userEmail);
+    } catch (e) {
+        console.log(e)
+        res.status(500).send()
+    }
 })
 
 let getNewUserTeamID = async (userID) => {
@@ -82,6 +139,17 @@ let isJsonString = (data) => {
         return false;
     }
     return true;
+}
+
+let doesTeamExist = async (userID, userTeamID) => {
+    let text = 'select * from teamrecord where userid = $1 and userteamid = $2'
+    let values = [userID, userTeamID]
+    const db_res = await pool.query(text, values)
+    if (db_res.rowCount == 0){
+        console.log('team not found')
+        return false
+    }
+    return true
 }
 
 module.exports = router;
