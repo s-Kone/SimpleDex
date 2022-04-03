@@ -6,12 +6,10 @@ VALUES
     (4, 'Admin Stats', 'GET', '/API/v1/admin'),
     (5, 'Search Pokemon By Name', 'GET', '/API/v1/searchPokemon/name'),
     (6, 'Search Pokemon Type', 'GET', '/API/v1/searchPokemon/type'),
-    (7, 'Post Team', 'POST', '/API/v1/teams'),
+    (7, 'Add Team', 'POST', '/API/v1/teams'),
     (8, 'Get Team', 'GET', '/API/v1/teams'),
     (9, 'Update Team', 'PATCH', '/API/v1/teams'),
-    (9, 'Add Team', 'POST', '/API/v1/teams')
     (10, 'Delete Team', 'DELETE', '/API/v1/teams')
-
 ;
 
 INSERT INTO UserType (UserTypeID, UserTypeDesc)

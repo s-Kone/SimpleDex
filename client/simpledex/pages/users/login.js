@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Head from 'next/head'
 import axios from 'axios'
-import cookieCutter from 'cookie-cutter'
 
 const APIDomain = "http://localhost:8084"; // for debug, replace with http://localhost:8084
 const APIRootPath = "/comp4537/termproject/api/v1";
