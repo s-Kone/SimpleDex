@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { PokemonDisplay } from '../components/pokemon_display'
+
 
 export default function Home() {
   return (
@@ -23,7 +23,6 @@ export default function Home() {
             <h3>Register &rarr;</h3>
             <p>Learn about Next.js in an interactive course with quizzes!</p>
           </div>
-          <PokemonDisplay />
         </div>
       </main>
 

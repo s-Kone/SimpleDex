@@ -1,0 +1,8 @@
+.field {
+    display: inline-block;
+}
+
+.addButton {
+    display: inline-block;
+    vertical-align: top;
+}
