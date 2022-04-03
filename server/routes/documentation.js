@@ -1,6 +1,7 @@
 var fs = require('fs');
 var Router = require('express-promise-router');
 var auth = require('../modules/auth');
+var admin_stats = require('../modules/admin_stats');
 
 const router = new Router();
 
@@ -13,8 +14,8 @@ router.get('/', auth.authenticateToken, function(req, res, next) {
       res.send("{status: error}");
       return;
     }
-    res.type('json');
-    res.send(data);
+    res.json(data)
+    admin_stats.logAdminStats('5', req.user.name);
   })
 
 });

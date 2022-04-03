@@ -19,35 +19,30 @@ router.get('/name', auth.authenticateToken, async (req, res, next) => {
     console.log('error searchPokemon: no param')
     return
   }
+  const pokemon = await getOrSetCache(`pokemon:name=${name}`, async () => {
+    const { data } = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${name}`,
+    )
+    return data
+  })
 
-  // // Get Date
-  // const utcTime = date.getCurrentUTC();
-  // // Log Admin Stats
-  // admin_stats.logAdminStats('1', userID);
-  // // TODO: Handle error in some way. Probably return some http status code
+  admin_stats.logAdminStats('1', req.user.name);
+  res.json(pokemon)
 })
 
 
-router.get('/type', async (req, res, next) => {
+router.get('/type', auth.authenticateToken, async (req, res, next) => {
   let type = req.query.type
   if (!type) {
     console.log('error searchPokemon: no param')
     return
   }
-  const pokemon = await getOrSetCache(`pokemon?id=${type}`, async () => {
-    const { data } = await axios.get(
-      `https://pokeapi.co/api/v2/type/${type}`,
-    )
-    return data
-  })
-  res.json(pokemon["pokemon"])
-  // let userID = 1;
+  const { data } = await axios.get(
+    `https://pokeapi.co/api/v2/type/${type}`,
+  )
 
-  // // Get Date
-  // const utcTime = date.getCurrentUTC();
-  // // Log Admin Stats
-  // admin_stats.logAdminStats('1', userID);
-  // // TODO: Handle error in some way. Probably return some http status code
+  admin_stats.logAdminStats('7', req.user.name);
+  res.json(data)
 })
 
 /** Commenting out because its erroring out */

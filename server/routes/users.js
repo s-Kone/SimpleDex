@@ -2,6 +2,7 @@ var jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const db = require('../modules/pool');
 var Router = require('express-promise-router');
+var admin_stats = require('../modules/admin_stats');
 
 const router = new Router();
 
@@ -20,9 +21,10 @@ router.post('/login', async (req, res, next) => {
     }
     try {
         if ( await bcrypt.compare(req.body.password, hashedPassword) ) {
-            const userSignObj = { name: email };
+            const userSignObj = { email: email };
             const accessToken = jwt.sign(userSignObj, process.env.ACCESS_TOKEN_SECRET);
             res.json({ accessToken: accessToken });
+            admin_stats.logAdminStats('4', email);
         }
         else {
             res.send('Invalid credentials');
@@ -49,17 +51,7 @@ router.post('/register', async (req, res, next) => {
         const values = [user.name, user.email, user.hashedPassword, user.userTypeID];
         const db_res = await db.query(text, values); // TODO: error handling
         res.status(201).send();
-
-        // db.query(text, values).then(
-        //     (res) => {
-        //         console.log(res);
-        //         res.status(201).send(db_res);
-        //     },
-        //     (rej) => {
-        //         console.log(rej);
-        //         res.status(500).send();
-        //     }
-        // );
+        admin_stats.logAdminStats('3', user.email);
     }
     catch {
         res.status(500).send();

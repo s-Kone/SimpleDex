@@ -1,46 +1,25 @@
 var date = require('./date');
 var pool = require('./pool');
 
-let jsonStats = {};
 
 // Log Admin Stats
-exports.logAdminStats = (endpointID, userID) => {
+exports.logAdminStats = async (endpointID, userEmail) => {
+    console.log(userEmail)
     let utcTime = date.getCurrentUTC();
-    let adminSql = 'insert into LogEndpointAccess (EndpointID, UserID, LogDateUTC) values (?, ?, ?);'
+    let findUserQuery = 'select userid from users where Email = $1'
+    let findUserValues = [userEmail]
+    const db_res = await pool.query(findUserQuery, findUserValues)
+    const userID = db_res.rows[0].userid
 
-    pool.query(adminSql, [endpointID, userID, utcTime], function (err, results) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log(results);
-        }
-    });
+    let text = 'insert into LogEndpointAccess (EndpointID, UserID, LogDateUTC) values ($1, $2, $3);'
+    let values = [endpointID, userID, utcTime]
+    await pool.query(text, values)
 }
 
 // get admin stats and return json
 // TODO: avoid callback stacking
 exports.getAdminStats = async () => {
-    jsonStats = {};
-    let sql = 'select count (LogEndpointAccessID) from LogEndpointAccess where EndpointID = 1';
-    pool.query(sql, function(err, results) {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            jsonStats.SearchPokemon = results[0]['count (LogEndpointAccessID)'];
-
-            sql = 'select count (LogEndpointAccessID) from LogEndpointAccess where EndpointID = 2';
-            pool.query(sql, function(err, results) {
-                if (err) {
-                    console.log(err);
-                }
-                else {
-                    jsonStats.PostTeam = results[0]['count (LogEndpointAccessID)'];
-                    console.log(jsonStats);
-                    return jsonStats;
-                }
-            });
-        }
-    });
+    let text = 'select endpointdesc, count (LogEndpointAccessID) from LogEndpointAccess l inner join endpoint e on l.endpointid = e.endpointid  group by l.EndpointID, endpointdesc';
+    const db_res = await pool.query(text);
+    return db_res.rows
 }
