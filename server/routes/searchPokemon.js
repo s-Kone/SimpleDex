@@ -14,40 +14,37 @@ const router = new Router();
  * Query param: name=nameOfPokemon
  */
 router.get('/name', auth.authenticateToken, async (req, res, next) => {
+  let userEmail = req.user.name
   let name = req.query.name
   if (!name) {
     console.log('error searchPokemon: no param')
     return
   }
+  const pokemon = await getOrSetCache(`pokemon:name=${name}`, async () => {
+    const { data } = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${name}`,
+    )
+    return data
+  })
 
-  // // Get Date
-  // const utcTime = date.getCurrentUTC();
-  // // Log Admin Stats
-  // admin_stats.logAdminStats('1', userID);
-  // // TODO: Handle error in some way. Probably return some http status code
+  admin_stats.logAdminStats('5', userEmail);
+  res.json(pokemon)
 })
 
 
-router.get('/type', async (req, res, next) => {
+router.get('/type', auth.authenticateToken, async (req, res, next) => {
+  let userEmail = req.user.name
   let type = req.query.type
   if (!type) {
     console.log('error searchPokemon: no param')
     return
   }
-  const pokemon = await getOrSetCache(`pokemon?id=${type}`, async () => {
-    const { data } = await axios.get(
-      `https://pokeapi.co/api/v2/type/${type}`,
-    )
-    return data
-  })
-  res.json(pokemon["pokemon"])
-  // let userID = 1;
+  const { data } = await axios.get(
+    `https://pokeapi.co/api/v2/type/${type}`,
+  )
 
-  // // Get Date
-  // const utcTime = date.getCurrentUTC();
-  // // Log Admin Stats
-  // admin_stats.logAdminStats('1', userID);
-  // // TODO: Handle error in some way. Probably return some http status code
+  admin_stats.logAdminStats('6', userEmail);
+  res.json(data)
 })
 
 /** Commenting out because its erroring out */
@@ -78,7 +75,7 @@ function getOrSetCache(){}
 
 // Copy-pastad unauthorized version. Note the only difference is the lack of the middleware function
 router.get('/unauth', async (req, res, next) => {
-  let param = req.query.pokemon;
+  let param = req.query.name;
 
   // TODO: Handle error in some way. Probably return some http status code
   if (!param)
