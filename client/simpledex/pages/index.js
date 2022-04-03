@@ -16,23 +16,15 @@ export default function Home() {
         </h1>
 
         <div className="grid">
-            <a href="/login">
-              <div className="card">
-                <h3>Login &rarr;</h3>
-                <p>Login to see all sorts of diffrent types of pokemon!</p>
-              </div>
-            </a>
-            <a href="/register">
-              <div className="card">
-                <h3>Register &rarr;</h3>
-              <p>Register an account!</p>
-              </div>
-            </a>
-            <a href='/about'>
-              <div className="card"> 
-              <h3>About Us</h3>
-              </div>
-            </a>
+          <div className="card">
+            <h3>Login &rarr;</h3>
+            <p>Find in-depth information about Next.js features and API.</p>
+          </div>
+          <div className="card">
+            <h3>Register &rarr;</h3>
+            <p>Learn about Next.js in an interactive course with quizzes!</p>
+          </div>
+          <PokemonDisplay />
         </div>
       </main>
 
