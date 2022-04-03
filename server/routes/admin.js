@@ -6,6 +6,8 @@ var auth = require('../modules/auth');
 const router = new Router();
 
 router.get('/', auth.authenticateToken, async (req, res) => {
+  let userEmail = req.user.name
+  
   // check if req.user is admin
   let text = 'select usertypeid from users where email = $1'
   let values = [req.user.name]
@@ -20,7 +22,7 @@ router.get('/', auth.authenticateToken, async (req, res) => {
     res.status(400).send('Authentication failed');
   }
 
-  admin_stats.logAdminStats('6', req.user.name);
+  admin_stats.logAdminStats('4', userEmail);
 });
 
 module.exports = router;

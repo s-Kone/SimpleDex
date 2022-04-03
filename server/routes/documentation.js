@@ -7,15 +7,15 @@ const router = new Router();
 
 /* GET documentation page. */
 router.get('/', auth.authenticateToken, function(req, res, next) {
+  let userEmail = req.user.name
   fs.readFile('./swagger.json', 'utf8', (err, data) => {
     if (err) {
       console.error(err);
-      res.type('json');
-      res.send("{status: error}");
+      res.status(500).send()
       return;
     }
+    admin_stats.logAdminStats('3', userEmail);
     res.json(data)
-    admin_stats.logAdminStats('5', req.user.name);
   })
 
 });

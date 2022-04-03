@@ -14,6 +14,7 @@ const router = new Router();
  * Query param: name=nameOfPokemon
  */
 router.get('/name', auth.authenticateToken, async (req, res, next) => {
+  let userEmail = req.user.name
   let name = req.query.name
   if (!name) {
     console.log('error searchPokemon: no param')
@@ -26,12 +27,13 @@ router.get('/name', auth.authenticateToken, async (req, res, next) => {
     return data
   })
 
-  admin_stats.logAdminStats('1', req.user.name);
+  admin_stats.logAdminStats('5', userEmail);
   res.json(pokemon)
 })
 
 
 router.get('/type', auth.authenticateToken, async (req, res, next) => {
+  let userEmail = req.user.name
   let type = req.query.type
   if (!type) {
     console.log('error searchPokemon: no param')
@@ -41,7 +43,7 @@ router.get('/type', auth.authenticateToken, async (req, res, next) => {
     `https://pokeapi.co/api/v2/type/${type}`,
   )
 
-  admin_stats.logAdminStats('7', req.user.name);
+  admin_stats.logAdminStats('6', userEmail);
   res.json(data)
 })
 
