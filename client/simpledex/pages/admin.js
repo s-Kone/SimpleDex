@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import axios from 'axios'
 import { useRouter } from 'next/router';
+import { Nav } from '../components/Nav'
 import React, { useState, useEffect } from 'react'
 
 const APIDomain = "http://localhost:8084"; // for debug, replace with http://localhost:8084
@@ -45,6 +46,7 @@ export default function AdminStats() {
 
     return (
         <>
+            <Nav/>
             <Head>
                 <title>SimpleDex Admin Stats</title>
                 <link rel="icon" href="/favicon.ico" />

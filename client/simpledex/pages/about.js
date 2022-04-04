@@ -5,13 +5,15 @@ import Footer from '../components/Footer'
 function about() {
     return(
         <>
+        {/* <Nav/> */}
             <Head>
                 <title>SimpleDex About</title>
                 <link rel="icon" href="./favicon.ico" />
             </Head>
-            <Nav/>
+            
             <h1>This is the about page</h1>
-            <Footer/>
+            <p>We are Saga, Connie, Aidan, and Alex</p>
+       
             <style jsx global>{`
                     html,
                     body {
