@@ -11,16 +11,13 @@ const APIDomain = "https://alexgiasson.me"; // for debug, replace with http://lo
 const APIRootPath = "/comp4537/termproject/api/v1";
 const resource = "/users/register";
 
-let goLogin = (router) => {
-    router.push('/users/login')
+let goSearch = (router) => {
+    router.push('/search')
 }
 
 export default function Register() {
     const router = useRouter();
-
-    // localStorage.setItem('email', 'fooemail')
-    // localStorage.setItem('password', 'foopassword')
-
+    
     const registerUser = async (event) => {
         event.preventDefault(); // next js forms auto-redirect, cancel that.
 
@@ -37,17 +34,14 @@ export default function Register() {
 
         axios.post(APIDomain + APIRootPath + resource, user)
             .then((res) => {
-                console.log(res);
-                toast("Registration succeeded! Proceeding to login...");
-                setTimeout(goLogin(router), 3000)
-                // localStorage.setItem("email", user.email)
-                // localStorage.setItem("password", user.password)
+                localStorage.setItem('jwt', res.data.accessToken);
+                toast("Registration succeeded!");
+                setTimeout(goSearch(router), 100)
             })
             .catch((err) => {
                 console.log(err);
                 toast("Registration failed");
-            })
-
+            })     
     }
 
     return (

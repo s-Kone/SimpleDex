@@ -22,7 +22,7 @@ function about() {
                     view later.</p>
                 <h4>About team O2</h4>
                 <ul style={{ listStyleType: "none" }}>
-                    <li>Alexander Giasson</li>
+                    <li>Alex Giasson</li>
                     <li>Aidan Waterson</li>
                     <li>Connie Wu</li>
                     <li>Saga Munkhbold</li>
