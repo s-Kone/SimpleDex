@@ -394,15 +394,6 @@
   "/API/v1/documentation":{
     "get":{
       "description": "Gets the swagger.json file",
-      "parameters": [
-        {
-          "in": "path",
-          "name": "Authorization",
-          "description": "API token",
-          "type": "string",
-          "required": true
-        }
-      ],
       "operationId": "documentation",
       "responses": {
         "200":{

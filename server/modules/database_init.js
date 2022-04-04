@@ -1,4 +1,4 @@
-var pool = require('./pool.js');
+const pool = require('./pool.js');
 
 // TODO: write a sql script that will initialize database and tables, checking if each exists on the way
 // let sql = 'create table if not exists';

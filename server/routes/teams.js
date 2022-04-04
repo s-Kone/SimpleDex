@@ -1,9 +1,9 @@
-var pool = require('../modules/pool.js');
-var date = require('../modules/date.js');
-var admin_stats = require('../modules/admin_stats');
-var user_utils = require('../modules/user_utils')
-var Router = require('express-promise-router');
-var auth = require('../modules/auth');
+const pool = require('../modules/pool.js');
+const date = require('../modules/date.js');
+const admin_stats = require('../modules/admin_stats');
+const user_utils = require('../modules/user_utils')
+const Router = require('express-promise-router');
+const auth = require('../modules/auth');
 
 const router = new Router();
 

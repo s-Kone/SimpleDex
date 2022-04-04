@@ -19,7 +19,7 @@ export default function Login() {
     const loginUser = async (event) => {
         event.preventDefault() // don't redirect the page
 
-        var user = {
+        let user = {
             email: event.target.email.value,
             password: event.target.password.value
         }

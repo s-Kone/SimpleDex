@@ -1,5 +1,5 @@
-var Router = require('express-promise-router');
-var auth = require('../modules/auth');
+const Router = require('express-promise-router');
+const auth = require('../modules/auth');
 
 const router = new Router();
 

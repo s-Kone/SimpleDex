@@ -1,20 +1,7 @@
-import axios from "axios";
-import { response } from "express";
+import React from "react";
+import dynamic from 'next/dynamic'
+import "swagger-ui-react/swagger-ui.css"
 
-function doc(){
-    axios.get('https://alexgiasson.me/comp4537/termproject/api/v1/documentation').then((response)=>{
-        console.log(response.data);
-    })
-}
+const SwaggerUI = dynamic(() => import('swagger-ui-react'), {ssr: false});
 
-export default function documentation(){
-
-    return(
-        <>
-        <head>
-            <title>SimpleDex documentation</title>
-        </head>
-        <h2>Documentation</h2>
-        </>
-    )
-}
+export default () => <SwaggerUI url="https://alexgiasson.me/comp4537/termproject/api/v1/documentation"/>

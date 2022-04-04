@@ -30,7 +30,7 @@ export default function Register() {
             return;
         }
 
-        var user = {
+        let user = {
             name: event.target.username.value,
             email: event.target.email.value,
             password: event.target.password.value

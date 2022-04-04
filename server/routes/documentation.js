@@ -1,7 +1,7 @@
-var fs = require('fs');
-var Router = require('express-promise-router');
-var auth = require('../modules/auth');
-var admin_stats = require('../modules/admin_stats');
+const fs = require('fs');
+const Router = require('express-promise-router');
+const auth = require('../modules/auth');
+const admin_stats = require('../modules/admin_stats');
 
 const router = new Router();
 

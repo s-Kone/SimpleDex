@@ -1,7 +1,7 @@
-var admin_stats = require('../modules/admin_stats');
-var pool = require('../modules/pool');
-var Router = require('express-promise-router');
-var auth = require('../modules/auth');
+const admin_stats = require('../modules/admin_stats');
+const pool = require('../modules/pool');
+const Router = require('express-promise-router');
+const auth = require('../modules/auth');
 
 const router = new Router();
 
@@ -15,7 +15,7 @@ router.get('/', auth.authenticateToken, async (req, res) => {
     const db_res = await pool.query(text, values)
     if (db_res.rows[0].usertypeid == 1)
     {
-      var adminStats = await admin_stats.getAdminStats()
+      let adminStats = await admin_stats.getAdminStats()
       res.json(adminStats)
     }
     else
