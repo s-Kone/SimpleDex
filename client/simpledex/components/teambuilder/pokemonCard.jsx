@@ -4,6 +4,7 @@ import Types from '../pokemon/types'
 import Sprite from '../pokemon/sprite'
 import Stats from '../pokemon/stats'
 import styles from './teambuilder.module.css'
+
 export const PokemonCard = ({ pokemon_name, jsondata }) => {
     const [data, setData] = useState(null)
     const [loaded, setLoaded] = useState(false)
@@ -39,7 +40,7 @@ export const PokemonCard = ({ pokemon_name, jsondata }) => {
         const getPokemonData = async () => {
             const request = `https://alexgiasson.me/comp4537/termproject/api/v1/searchPokemon/name?name=${pokemon_name}`
             const token = localStorage.getItem('jwt');
-            await axios.get(request, {
+            axios.get(request, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
