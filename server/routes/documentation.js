@@ -13,8 +13,9 @@ router.get('/', function(req, res, next) {
       res.status(500).send()
       return;
     }
+    let obj = JSON.parse(data)
     admin_stats.logAdminStats('3', null);
-    res.json(data)
+    res.json(obj)
   })
 
 });
