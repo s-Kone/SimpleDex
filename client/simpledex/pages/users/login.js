@@ -2,14 +2,14 @@ import Link from 'next/link'
 import Head from 'next/head'
 import axios from 'axios'
 
-const APIDomain = "http://localhost:8084"; // for debug, replace with http://localhost:8084
+const APIDomain = "https://alexgiasson.me"; // for debug, replace with http://localhost:8084
 const APIRootPath = "/comp4537/termproject/api/v1";
 const resource = "/users/login";
 
 export default function Login() {
     const loginUser = async (event) => {
         event.preventDefault() // don't redirect the page
-        
+
         var user = {
             email: event.target.email.value,
             password: event.target.password.value
@@ -27,7 +27,7 @@ export default function Login() {
             })
     }
 
-    return ( 
+    return (
         <>
             <Head>
                 <title>SimpleDex Login</title>
@@ -36,15 +36,15 @@ export default function Login() {
 
             <main>
                 <h1>Login</h1>
-                    <form onSubmit={loginUser}>
-                        <label htmlFor="Email">Email</label>
-                        <input type="text" placeholder="Email" id="email" required />
+                <form onSubmit={loginUser}>
+                    <label htmlFor="Email">Email</label>
+                    <input type="text" placeholder="Email" id="email" required />
 
-                        <label htmlFor="password">Password</label>
-                        <input type="password" placeholder="Password" id="password" required />
+                    <label htmlFor="password">Password</label>
+                    <input type="password" placeholder="Password" id="password" required />
 
-                        <button type="submit">Login</button>
-                    </form>
+                    <button type="submit">Login</button>
+                </form>
 
                 <Link href="/">
                     <a>Back to Home</a>

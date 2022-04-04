@@ -2,20 +2,19 @@ import Link from 'next/link'
 import Head from 'next/head'
 import axios from 'axios'
 
-const APIDomain = "http://localhost:8084"; // for debug, replace with http://localhost:8084
+const APIDomain = "https://alexgiasson.me"; // for debug, replace with http://localhost:8084
 const APIRootPath = "/comp4537/termproject/api/v1";
 const resource = "/users/register";
 
 export default function Register() {
     const registerUser = async (event) => {
         event.preventDefault() // next js forms auto-redirect, cancel that.
-        
-        if (event.target.password.value != event.target.confirmPassword.value)
-        {
+
+        if (event.target.password.value != event.target.confirmPassword.value) {
             alert("Passwords must match");
             return;
         }
-        
+
         var user = {
             name: event.target.username.value,
             email: event.target.email.value,
@@ -30,10 +29,10 @@ export default function Register() {
             .catch((err) => {
                 console.log(err);
                 alert("Registration failed");
-            })     
+            })
     }
 
-    return ( 
+    return (
         <>
             <Head>
                 <title>SimpleDex Register</title>
@@ -42,7 +41,7 @@ export default function Register() {
 
             <main>
                 <h1>Register</h1>
-                    <form onSubmit={registerUser}>
+                <form onSubmit={registerUser}>
                     <label htmlFor="Email">Email</label>
                     <input type="text" placeholder="Email" id="email" required />
 

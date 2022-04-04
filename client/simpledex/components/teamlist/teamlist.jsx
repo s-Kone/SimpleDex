@@ -5,9 +5,17 @@ export function TeamList() {
     const [data, setData] = useState(null)
     const [loaded, setLoaded] = useState(false)
 
+
     useEffect(() => {
         const fetchTeams = async () => {
-            await axios.get(`https://jsonplaceholder.typicode.com/posts`).then((response) => {
+            const request = `https://alexgiasson.me/comp4537/termproject/api/v1/teams`
+            const token = localStorage.getItem('jwt');
+            console.log(token)
+            await axios.get(request, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            }).then((response) => {
                 setData(response.data)
                 setLoaded(true)
             })
