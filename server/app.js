@@ -12,7 +12,7 @@ require('dotenv').config();
 var pool = require('./modules/pool.js');
 var init_db = require('./modules/database_init.js');
 const mountRoutes = require('./routes/index');
-const whitelist = ['https://simple-dex.vercel.app/', 'http://localhost:3000']
+const allowedDomains = ['https://simple-dex.vercel.app', 'http://localhost:3000']
 
 var app = express();
 
@@ -27,8 +27,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(cors({
-  origin: whitelist
-}));
+  origin: allowedDomains
+}))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
