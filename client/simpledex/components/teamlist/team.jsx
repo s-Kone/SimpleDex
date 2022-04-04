@@ -3,19 +3,33 @@ import axios from "axios";
 import Link from "next/link";
 import { getAuthHeaders } from '../../util/token';
 import { TeamMember } from '../teamlist/teamMember'
-
+import { useRouter } from "next/router";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Team = ({ data, clicked }) => {
+    const router = useRouter()
+
     const [visible, setVisibility] = useState(true)
 
-    const HandleonClickDelete = () => {
+    const handleonClickDelete = () => {
         setVisibility(false)
         console.log('get deleted son')
     }
 
+    const handleEdit = () => {
+        if (localStorage) {
+            localStorage.setItem('team', JSON.stringify(data))
+            router.push('/teambuilder')
+        }
+        else {
+            toast("Please use a local storage-enabled browser")
+        }
+    }
+
     return (
         <>
-            {visible ? <div className='teamContainer'>
+            {visible ? <div className='teamContainer' onClick={handleEdit}>
                 < h1 > Team {data.userteamid}</h1 >
 
                 {data.pokemon.map((info, key) => {
@@ -25,9 +39,9 @@ export const Team = ({ data, clicked }) => {
                         // {/* </div> */}
                     )
                 })}
-                < button className='deleteBtn' onClick={HandleonClickDelete} >Delete Team</button >
+                < button className='deleteBtn' onClick={handleonClickDelete} >Delete Team</button >
             </div > : <div />}
-
+<ToastContainer />
             <style jsx>{`
                 .teamContainer {
                     margin:4%;

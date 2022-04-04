@@ -17,7 +17,6 @@ export const TeamMember = ({ pokemon }) => {
             axios.get(request, getAuthHeaders()
             ).then((response) => {
                 setRes(response.data)
-                console.log(response.data)
             }).catch((e) => {
                 console.log(e)
             })
@@ -25,8 +24,6 @@ export const TeamMember = ({ pokemon }) => {
         getPokemonData()
     }, [])
 
-
-    console.log(pokemon)
     return (
 
         <>
