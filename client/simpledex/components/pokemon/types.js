@@ -1,11 +1,11 @@
-import styles from '../../styles/search.module.css'
 
 const Types = ({ pokemon }) => {
+
     return (
-        <div id="types">
+        <div>
             {pokemon.types.map((data, key) => {
                 return (
-                    <div key={key} className={styles.type}> {data.type.name} </div>
+                    <div key={key} id={data.type.name}> {data.type.name} </div>
                 )
             })}
         </div>
