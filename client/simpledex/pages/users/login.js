@@ -2,13 +2,20 @@ import Link from 'next/link'
 import Head from 'next/head'
 import axios from 'axios'
 import { useRouter } from 'next/router';
+import React, { useState, useEffect } from 'react'
 
-const APIDomain = "https://alexgiasson.me"; // for debug, replace with http://localhost:8084
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const APIDomain = "http://localhost:8084"; // for debug, replace with http://localhost:8084
 const APIRootPath = "/comp4537/termproject/api/v1";
 const resource = "/users/login";
 
 export default function Login() {
     const router = useRouter();
+
+
     const loginUser = async (event) => {
         event.preventDefault() // don't redirect the page
 
@@ -19,15 +26,14 @@ export default function Login() {
 
         await axios.post(APIDomain + APIRootPath + resource, user)
             .then((res) => {
-                console.log(res.data.accessToken)
                 localStorage.setItem('jwt', res.data.accessToken);
-                alert("Login succeeded");
+                toast("Login succeeded");
+                router.push('/search')
             })
             .catch((err) => {
+                toast("Login failed");
                 console.log(err);
-                alert("Login failed");
             })
-        router.push('/search')
     }
 
     return (
@@ -39,15 +45,16 @@ export default function Login() {
 
             <main>
                 <h1>Login</h1>
-                <form onSubmit={loginUser}>
-                    <label htmlFor="Email">Email</label>
-                    <input type="text" placeholder="Email" id="email" required />
+                    <form onSubmit={loginUser}>
+                        <label htmlFor="Email">Email</label>
+                        <input name='email' type="text" placeholder="Email" id="email" required />
 
-                    <label htmlFor="password">Password</label>
-                    <input type="password" placeholder="Password" id="password" required />
+                        <label htmlFor="password">Password</label>
+                        <input name='password' type="password" placeholder="Password" id="password" required />
 
-                    <button type="submit">Login</button>
-                </form>
+                        <button type="submit">Login</button>
+                        <ToastContainer position="top-center" />
+                    </form>
 
                 <Link href="/">
                     <a>Back to Home</a>

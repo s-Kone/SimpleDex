@@ -19,7 +19,7 @@ exports.logAdminStats = async (endpointID, userEmail) => {
 
 // get admin stats and return json
 exports.getAdminStats = async () => {
-    let text = 'select endpointdesc, count (LogEndpointAccessID) from LogEndpointAccess l inner join endpoint e on l.endpointid = e.endpointid  group by l.EndpointID, endpointdesc';
+    let text = 'select endpointdesc, path, method, count (LogEndpointAccessID) from LogEndpointAccess l inner join endpoint e on l.endpointid = e.endpointid  group by l.EndpointID, endpointdesc';
     const db_res = await pool.query(text);
     return db_res.rows
 }
