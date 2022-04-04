@@ -6,15 +6,9 @@ import styles from './teambuilder.module.css'
 export const TeamItems = () => {
     //this is a list we are getting from the API
     const initialList = [
-        {
-            id: 'a',
-            name: 'weedle'
-        },
-        {
-            id: 'b',
-            name: 'caterpie'
-        },
+
     ]
+    let jsondata = { "pokemon": [] }
     const [list, setList] = useState(initialList)
     const [name, setName] = useState('')
 
@@ -46,11 +40,11 @@ const AddPokemon = ({ onAdd, setName }) => {
         </div>
     )
 }
-const TeamPokemon = ({ list }) => {
+const TeamPokemon = ({ list, jsondata }) => {
     return (
         <ul>
             {list.map((item) => (
-                <li key={item.id}>{item.name}</li>
+                <li key={item.id}><PokemonCard pokemon_name={item.name} /></li>
             ))}
         </ul>
     )

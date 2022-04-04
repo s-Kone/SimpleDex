@@ -5,7 +5,7 @@ import { pokemon_lookups } from '../../lookups/pokemon_lookup'
 import { AutoComplete } from "../util/autocomplete";
 import Stats from "../pokemon/stats";
 import Types from "../pokemon/types";
-
+import Sprite from "../pokemon/sprite"
 export function PokemonDisplay() {
     const [pokemon, setPokemon] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -31,10 +31,4 @@ export function PokemonDisplay() {
         </div>
 
     );
-}
-const Sprite = ({ pokemon }) => {
-    return (
-        <img className={styles.spirte} src={pokemon.sprites.other.home.front_default}
-            alt={pokemon.name} />
-    )
 }
