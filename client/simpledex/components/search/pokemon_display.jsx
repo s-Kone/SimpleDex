@@ -6,16 +6,21 @@ import { AutoComplete } from "../util/autocomplete";
 import Stats from "../pokemon/stats";
 import Types from "../pokemon/types";
 import Abilities from "../pokemon/ability"
+import { getAuthHeaders } from "../../util/token";
 
 export function PokemonDisplay() {
     const [pokemon, setPokemon] = useState(null)
     const [loading, setLoading] = useState(false)
     const [name, setName] = useState("")
     const handleClick = async () => {
+        const request = 'https://alexgiasson.me/comp4537/termproject/api/v1/searchPokemon/name?name='
 
-        await axios.get(`https://alexgiasson.me/comp4537/termproject/api/v1/searchPokemon/name?name=${name}`).then((response) => {
+        axios.get(`${request}${name}`, getAuthHeaders())
+        .then((response) => {
             setPokemon(response.data)
             setLoading(true)
+        }).catch( (err) => {
+            console.log(err)
         })
     }
 
