@@ -11,7 +11,7 @@
   border-bottom: 10px solid rgba(34,34,36);
 }
 
-.nav-main {
+.navmain {
   list-style-type: none;
   position: absolute;
   top: 5px;
@@ -19,13 +19,13 @@
   height: 50%;
 }
 
-.nav-links, .nav-title {
+.navlinks, .navtitle {
   text-decoration: none;
   color: rgba(240,240,240);
   font-size: large;
 }
 
-.nav-main li {
+.navmain li {
   margin: 10px;
 }
 
@@ -52,21 +52,21 @@
       align-items: center;
   }
 
-  .nav-main {
+  .navmain {
       display: flex;
       margin-right: 5%;
       flex-direction: row;
   }
 
-  .nav-links {
+  .navlinks {
     margin-left: 50px;
 }
 
-  .nav-title {
+  .navtitle {
       font-size: larger;
   }
   
-  .nav-links:hover {
+  .navlinks:hover {
       color: rgba(255, 255, 255, 1);
   }
 }

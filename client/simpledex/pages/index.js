@@ -31,6 +31,8 @@ export default function Home() {
         </div>
       </main>
 
+      
+
       <style jsx>{`
         .container {
           min-height: 100vh;
@@ -161,3 +163,9 @@ export default function Home() {
     </div>
   )
 }
+
+// Home.getLayout = function getLayout(page) {
+//   return (
+//       <NoLayout>{page}</NoLayout>
+//   )
+// }
