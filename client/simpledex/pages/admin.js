@@ -4,14 +4,14 @@ import axios from 'axios'
 import { useRouter } from 'next/router';
 import { Nav } from '../components/Nav'
 import React, { useState, useEffect } from 'react'
-import { getAuthHeaders } from '../util/token';
 
-const APIDomain = "https://alexgiasson.me"; // for debug, replace with http://localhost:8084
+const APIDomain = "http://localhost:8084"; // for debug, replace with http://localhost:8084
 const APIRootPath = "/comp4537/termproject/api/v1";
 const resource = "/admin";
 
+
+
 export default function AdminStats() {
-    const router = useRouter()
     var initialList = []
     const [list, setData] = useState(initialList)
     const [loaded, setLoaded] = useState(false)
@@ -21,17 +21,21 @@ export default function AdminStats() {
     useEffect(() => {
         const fetchStats = async () => {
             const token = localStorage.getItem('jwt');
-            if (!token) {
-                router.push('/')
+            console.log(token)
+            axios.get(request, 
+                {
+                headers: {
+                    'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJiQGFhLmFhIiwiaWF0IjoxNjQ5MDQ3NDU4fQ.A_PE4RLi0yuRIwzEteKoNK_lpLkbhoWCO-qYsDFv0Go`
+                }
             }
-            axios.get(request, getAuthHeaders()
             ).then((response) => {
+                console.log(response.data)
                 const newList = list.concat(response.data)
                 setData(newList)
                 setLoaded(true)
+                console.log(newList)
             }).catch((e) => {
                 console.log(e)
-                router.push('/')
             })
         }
         fetchStats()
@@ -52,20 +56,16 @@ export default function AdminStats() {
                 <h1>Admin Stats</h1>
                 <div>
                     
-                    <table border='1'>
-                        <thead><tr>
-                            <th>EndpointDesc</th><th>Count</th><th>Method</th><th>EndpointPath</th>
-                        </tr></thead>
-                        <tbody>
+                    <table>
+                        <th>EndpointDesc</th><th>Count</th><th>Method</th><th>EndpointPath</th>
                         {list.map( (i) => (
-                        <tr key = {i.endpointid}>   
+                        <tr>   
                             <td>{i.endpointdesc}</td>
                             <td>{i.count}</td>
                             <td>{i.method}</td>
                             <td>{i.endpointpath} </td>
                         </tr>
                         ))}
-                        </tbody>
                     </table>
                         
                     
@@ -76,15 +76,7 @@ export default function AdminStats() {
                 </Link>
             </main>
 
-            <style jsx>{`
-                td {
-                    padding: 0 15px;
-                    padding-bottom: 1em;
-                    text-align:left;
-                    vertical-align: middle;
-                }
-  
-            `}</style>
+            
         </>
 
 
