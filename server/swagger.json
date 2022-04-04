@@ -24,12 +24,28 @@
     "application/json"
   ],
   "paths": {
-    "/searchPokemon/{id}": {
+    "/searchPokemon/name?name={}": {
       "get": {
-        "description": "Returns a pokemon with the corresponding ID",
+        "description": "Search Pokemon By Name",
         "operationId": "searchPokemon",
         "produces": [
           "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Authorization",
+            "description": "API token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "pokemon Name",
+            "description": "name of pokemon",
+            "required": true,
+            "type": "string"
+          }
         ],
         "responses": {
           "200": {
@@ -50,16 +66,75 @@
         }
       }
     },
-  
-  "/postTeam": {
+    "/searchPokemon/type?type={}": {
+      "get": {
+        "description": "Search Pokemon By type",
+        "operationId": "searchPokemon",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Authorization",
+            "description": "API token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Type of pokemon",
+            "description": "Type of pokemon",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "pokemon response",
+            "schema": {
+              "type": "object",
+              "items": {
+                "$ref": "#/definitions/Pokemon"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          }
+        }
+      }
+    },
+  "/postTeams": {
     "post": {
       "description": "posts a pokemon team consisting of 6 pokemon",
-      "operationId": "postTeam",
+      "operationId": "postTeams",
       "produces": [
         "text"
       ],
+      "parameters": [
+        {
+          "in": "body",
+          "name": "Pokemon",
+          "description": "Pokemons",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/Pokemon"
+          }
+        },
+        {
+          "in": "path",
+          "name": "Authorization",
+          "description": "API token",
+          "type": "string",
+          "required": true
+        }
+      ],
       "responses": {
-        "200": {
+        "201": {
           "description": "team posted successfully",
           "schema": {
             "type": "string",
@@ -68,15 +143,326 @@
             }
           }
         },
-        "default": {
-          "description": "unexpected error",
+        "400": {
+          "description": "Invalid pokemon json",
           "schema": {
+            "$ref": "#/definitions/ErrorModel"
+          }
+        },
+        "500": {
+          "description": "Post request failed",
+          "schema":{
+            "$ref": "#/definitions/ErrorModel"
+          }
+        }
+      }
+    }
+  },
+
+  "/getTeams": {
+    "get":{
+      "description": "gets a pokemon team consisting of 6 pokemon",
+      "operationId": "getTeams",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "Authorization",
+          "description": "API token",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces":[
+        "text"
+      ],
+      "responses": {
+        "200": {
+          "description": "team got successfully",
+          "schema":{
+            "type":"object",
+            "items": {
+              "$ref": "#/definitions/Pokemon"
+            }
+          }
+        },
+        "500":{
+          "description": "get team failed",
+          "schema":{
+            "$ref": "#/definitions/ErrorModel"
+          }
+        }
+      }
+    }
+  },
+  "/patchTeams": {
+    "patch": {
+      "description": "Updates a pokemon team",
+      "operationId": "patchTeams",
+      "parameters": [
+        {
+          "in": "body",
+          "name": "userTeamId",
+          "description": "Team ID",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/Pokemon"
+          }
+        },
+        {
+          "in": "path",
+          "name": "Authorization",
+          "description": "API token",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces":[
+        "text"
+      ],
+      "responses": {
+        "200":{
+          "description": "Team updated successfully",
+          "schema":{
+            "type":"string",
+            "items": {
+              "$ref": "#/definitions/Teams"
+            }
+          }
+        },
+        "400":{
+          "description": "Invalid pokemon Json",
+          "schema":{
+            "$ref": "#definitions/ErrorModel"
+          }
+        },
+        "500":{
+          "description": "Patch team failed",
+          "schema":{
+            "$ref": "#/definitions/ErrorModel"
+          }
+        }
+      }
+    }
+  },
+  "/deleteTeams":{
+    "delete": {
+      "description": "Deletes a pokemon team",
+      "parameters": [
+        {
+          "in": "body",
+          "name": "userTeamId",
+          "description": "Team ID",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/Pokemon"
+          }
+        },
+        {
+          "in": "path",
+          "name": "Authorization",
+          "description": "API token",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "operationId": "deleteTeams",
+      "produces":[
+        "text"
+      ],
+      "responses": {
+        "200":{
+          "description": "Deleted team successfully",
+          "schema":{
+            "type":"string",
+            "items": {
+              "$ref": "#/definitions/Pokemon"
+            }
+          }
+        },
+        "400":{
+          "description": "Team does not exists",
+          "schema":{
+            "$ref": "#/definitions/ErrorModel"
+          }
+        },
+        "500":{
+          "description": "Delete team failed",
+          "schema":{
+            "$ref": "#/definitions/ErrorModel"
+          }
+        }
+      }
+    }
+  },
+
+  "/API/v1/users/register":{
+    "post":{
+      "description": "Register users",
+      "parameters": [
+        {
+          "in": "body",
+          "name": "name",
+          "description": "User's name",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/User"
+          }
+        },
+        {
+          "in": "body",
+          "name": "email",
+          "description": "Email",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/User"
+          }
+        },
+        {
+          "in": "body",
+          "name": "password",
+          "description": "Password with one number and 8 letters",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/User"
+          }
+        }
+      ],
+      "operationId": "register",
+      "produces":[
+        "text"
+      ],
+      "responses": {
+        "201":{
+          "description": "Register successful",
+          "schema":{
+            "type":"string",
+            "$ref": "#/definitions/ErrorModel"
+          }    
+        },
+        "400":{
+          "description": "Invalid Credentials",
+          "schema":{
+            "type":"string",
+            "example":"Invalid credentials",
+            "$ref": "#/definitions/ErrorModel"
+          }
+        }
+      }
+    }
+  }, 
+
+  "/API/v1/users/login":{
+    "post": {
+      "description": "Login user",
+      "parameters": [
+        {
+          "in": "body",
+          "name": "email",
+          "description": "user's email",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/User"
+          }
+        }
+      ],
+      "operationId": "/login",
+      "produces":[
+        "text"
+      ],
+      "responses": {
+        "200":{
+          "description": "Login successfull",
+          "schema":{
+            "type":"object",
+            "properties": {
+              "accessToken":{
+                "type":"string",
+                "description": "API token"
+              }
+            }
+          }
+        },
+        "400":{
+          "description": "Invalid credentials",
+          "schema":{
+            "$ref": "#/definitions/ErrorModel"
+          }
+        }
+      }
+    }
+  },
+  "/API/v1/documentation":{
+    "get":{
+      "description": "Gets the swagger.json file",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "Authorization",
+          "description": "API token",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "operationId": "documentation",
+      "responses": {
+        "200":{
+          "description": "Documentation of the simpledex API",
+          "schema":{
+            "type":"object",
+            "properties": {
+              "swagger":{
+                "type":"object",
+                "description": "Swagger.json"
+              }
+            }
+          }
+        },
+        "500":{
+          "description": "Get documentation failed",
+          "schema":{
+            "$ref": "#/definitions/ErrorModel"
+          }
+        }
+      }
+    }
+  },
+
+  "/API/v1/admin":{
+    "get": {
+      "description": "Gets admin stats",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "Authorization",
+          "description": "API token",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "operationId": "admin",
+      "responses": {
+        "200":{
+          "description": "get admin successful",
+          "schema":{
+
+          }
+        },  
+        "400":{
+          "description": "Authentication failed",
+          "schema":{
+            "$ref": "#/definitions/ErrorModel"
+          }
+        },
+        "500":{
+          "description": "Get admin failed",
+          "schema":{
             "$ref": "#/definitions/ErrorModel"
           }
         }
       }
     }
   }
+
 },
   "definitions": {
     "Pokemon": {
@@ -96,6 +482,38 @@
           }
         }
       ]
+    },
+
+    "Teams":{
+      "type":"object",
+      "required": [
+        "TeamId"
+      ],
+      "properties": {
+        "TeamID":{
+          "type": "string"
+        }
+      }
+    },
+
+    "User":{
+      "type": "object",
+      "required": [
+        "name",
+        "password",
+        "email"
+      ],
+      "properties": {
+        "name":{
+          "type":"string"
+        },
+        "password":{
+          "type":"string"
+        },
+        "email":{
+          "type":"string"
+        }
+      }
     },
 
     "ErrorModel": {

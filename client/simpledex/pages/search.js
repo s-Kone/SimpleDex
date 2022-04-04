@@ -1,16 +1,12 @@
-import Head from 'next/head'
+import Header from '../components/header'
 import { PokemonDisplay } from '../components/search/pokemon_display'
+
+
 export default function search() {
     return (
         <>
-        {/* <Nav /> */}
-        <head>
-            <title>SimplDex search</title>
-            <link rel='icon' href="/favicon.ico"/>
-        </head>
-    
+        <Header/>
         <PokemonDisplay />
-        {/* <Footer/> */}
         </>
     )
 }
