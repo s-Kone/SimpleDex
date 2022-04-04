@@ -3,12 +3,11 @@ import Head from 'next/head'
 import axios from 'axios'
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react'
+import { getAuthHeaders } from '../util/token';
 
-const APIDomain = "http://localhost:8084"; // for debug, replace with http://localhost:8084
+const APIDomain = "htts://alexgiasson.me"; // for debug, replace with http://localhost:8084
 const APIRootPath = "/comp4537/termproject/api/v1";
 const resource = "/admin";
-
-
 
 export default function AdminStats() {
     var initialList = []
@@ -21,12 +20,7 @@ export default function AdminStats() {
         const fetchStats = async () => {
             const token = localStorage.getItem('jwt');
             console.log(token)
-            axios.get(request, 
-                {
-                headers: {
-                    'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJiQGFhLmFhIiwiaWF0IjoxNjQ5MDQ3NDU4fQ.A_PE4RLi0yuRIwzEteKoNK_lpLkbhoWCO-qYsDFv0Go`
-                }
-            }
+            axios.get(request, getAuthHeaders()
             ).then((response) => {
                 console.log(response.data)
                 const newList = list.concat(response.data)

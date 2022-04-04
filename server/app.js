@@ -20,7 +20,7 @@ var app = express();
 init_db.init_db();
 
 // set pool
-app.set('pool', pool); // I don't actually know what this does anymore
+app.set('pool', pool);
 
 // setup view engine
 app.set('views', path.join(__dirname, 'views'));
