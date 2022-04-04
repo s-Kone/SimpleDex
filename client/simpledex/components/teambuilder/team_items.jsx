@@ -3,6 +3,7 @@ import { PokemonCard } from "./pokemonCard";
 import { AutoComplete } from "../util/autocomplete";
 import { pokemon_lookups } from '../../lookups/pokemon_lookup'
 import styles from './teambuilder.module.css'
+
 export const TeamItems = () => {
     //this is a list we are getting from the API
     const initialList = [

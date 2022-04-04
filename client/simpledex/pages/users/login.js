@@ -44,7 +44,6 @@ export default function Login() {
             </Head>
 
             <main>
-                <h1>Login</h1>
                     <form onSubmit={loginUser}>
                         <label htmlFor="Email">Email</label>
                         <input name='email' type="text" placeholder="Email" id="email" required />
@@ -54,11 +53,12 @@ export default function Login() {
 
                         <button type="submit">Login</button>
                         <ToastContainer position="top-center" />
+                       
+                        <button> <Link href="/">
+                        Back to Home
+                        </Link></button>
                     </form>
-
-                <Link href="/">
-                    <a>Back to Home</a>
-                </Link>
+                
             </main>
 
             <style jsx>{`
@@ -77,8 +77,8 @@ export default function Login() {
                 }
                 
                 form {
-                    height: 450px;
-                    width: 400px;
+                    height: 60%;
+                    width: 30%;
                     font-weight: 500;
                     background-color: rgba(169, 231, 255, 0.13);
                     position: absolute;
@@ -102,6 +102,10 @@ export default function Login() {
                     font-weight: 500;
                     border-radius: 5px;
                     cursor: pointer;
+                }
+
+                Link {
+                    text-decoration:none;
                 }
                 
                 input{
