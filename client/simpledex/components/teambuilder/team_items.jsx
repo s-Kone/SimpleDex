@@ -8,7 +8,7 @@ export const TeamItems = () => {
     const initialList = [
 
     ]
-    let jsondata = { "pokemon": [] }
+    let jsondata = []
     const [list, setList] = useState(initialList)
     const [name, setName] = useState('')
 

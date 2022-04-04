@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-const APIDomain = "http://localhost:8084"; // for debug, replace with http://localhost:8084
+const APIDomain = "https://alexgiasson.me"; // for debug, replace with http://localhost:8084
 const APIRootPath = "/comp4537/termproject/api/v1";
 const resource = "/users/register";
 
@@ -20,12 +20,11 @@ export default function Register() {
 
     // localStorage.setItem('email', 'fooemail')
     // localStorage.setItem('password', 'foopassword')
-    
+
     const registerUser = async (event) => {
         event.preventDefault(); // next js forms auto-redirect, cancel that.
 
-        if (event.target.password.value != event.target.confirmPassword.value)
-        {
+        if (event.target.password.value != event.target.confirmPassword.value) {
             toast("Passwords must match")
             return;
         }
@@ -47,8 +46,8 @@ export default function Register() {
             .catch((err) => {
                 console.log(err);
                 toast("Registration failed");
-            })     
-            
+            })
+
     }
 
     return (
@@ -61,9 +60,9 @@ export default function Register() {
             <main>
 
                 <h1>Register</h1>
-                
+
                 <form onSubmit={registerUser}>
-                
+
                     <label htmlFor="Email">Email</label>
                     <input type="text" placeholder="Email" id="email" required />
 

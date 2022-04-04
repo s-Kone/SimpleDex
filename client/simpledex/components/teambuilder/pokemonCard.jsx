@@ -23,13 +23,16 @@ export const PokemonCard = ({ pokemon_name, jsondata }) => {
     })
     const handleChange = e => {
         const { name, value } = e.target
+
         updateForm(prevState => ({
             ...prevState, [name]: value
         }))
     }
 
     const handleSubmit = () => {
-
+        updateForm(prevState => ({
+            ...prevState,
+        }))
         console.log(formState)
     }
     useEffect(() => {

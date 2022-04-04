@@ -8,7 +8,7 @@ import React, { useState, useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const APIDomain = "http://localhost:8084"; // for debug, replace with http://localhost:8084
+const APIDomain = "https://alexgiasson.me"; // for debug, replace with http://localhost:8084
 const APIRootPath = "/comp4537/termproject/api/v1";
 const resource = "/users/login";
 
@@ -45,16 +45,16 @@ export default function Login() {
 
             <main>
                 <h1>Login</h1>
-                    <form onSubmit={loginUser}>
-                        <label htmlFor="Email">Email</label>
-                        <input name='email' type="text" placeholder="Email" id="email" required />
+                <form onSubmit={loginUser}>
+                    <label htmlFor="Email">Email</label>
+                    <input name='email' type="text" placeholder="Email" id="email" required />
 
-                        <label htmlFor="password">Password</label>
-                        <input name='password' type="password" placeholder="Password" id="password" required />
+                    <label htmlFor="password">Password</label>
+                    <input name='password' type="password" placeholder="Password" id="password" required />
 
-                        <button type="submit">Login</button>
-                        <ToastContainer position="top-center" />
-                    </form>
+                    <button type="submit">Login</button>
+                    <ToastContainer position="top-center" />
+                </form>
 
                 <Link href="/">
                     <a>Back to Home</a>
