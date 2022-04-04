@@ -20,15 +20,12 @@ router.get('/name', auth.authenticateToken, async (req, res, next) => {
     console.log('error searchPokemon: no param')
     return
   }
-  const pokemon = await getOrSetCache(`pokemon:name=${name}`, async () => {
-    const { data } = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon/${name}`,
-    )
-    return data
-  })
+  const { data } = await axios.get(
+    `https://pokeapi.co/api/v2/pokemon/${name}`,
+  )
 
   admin_stats.logAdminStats('5', userEmail);
-  res.json(pokemon)
+  res.json(data)
 })
 
 
