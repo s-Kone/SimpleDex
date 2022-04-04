@@ -2,7 +2,8 @@ import Link from 'next/link'
 import Head from 'next/head'
 import axios from 'axios'
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState, useEffect } from 'react'
+
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,6 +14,23 @@ const resource = "/users/login";
 
 export default function Login() {
     const router = useRouter();
+
+    const [ value, setValue ] = useState({
+        email: '',
+        password: ''
+    })
+
+    useEffect(() => {
+        console.log('effect')
+        if (typeof window !== 'undefined') {
+            let emailStored = localStorage.getItem('email')
+            let passwordStored = localStorage.getItem('password')
+            if (emailStored && passwordStored) {
+                setValue({ email, password })
+            }
+        }
+    }, [])
+
     const loginUser = async (event) => {
         event.preventDefault() // don't redirect the page
         
@@ -41,13 +59,13 @@ export default function Login() {
             </Head>
 
             <main>
-                <h1>Login</h1>
+                <h1 id='fuck'>Login</h1>
                     <form onSubmit={loginUser}>
                         <label htmlFor="Email">Email</label>
-                        <input type="text" placeholder="Email" id="email" required />
+                        <input type="text" placeholder="Email" id="email" value={value.email} required />
 
                         <label htmlFor="password">Password</label>
-                        <input type="password" placeholder="Password" id="password" required />
+                        <input type="password" placeholder="Password" id="password" value={value.password} required />
 
                         <button type="submit">Login</button>
                         <ToastContainer position="top-center" />
