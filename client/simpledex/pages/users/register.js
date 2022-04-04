@@ -1,17 +1,32 @@
 import Link from 'next/link'
 import Head from 'next/head'
 import axios from 'axios'
+import { useRouter } from 'next/router';
+import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const APIDomain = "https://alexgiasson.me"; // for debug, replace with http://localhost:8084
+
+const APIDomain = "http://localhost:8084"; // for debug, replace with http://localhost:8084
 const APIRootPath = "/comp4537/termproject/api/v1";
 const resource = "/users/register";
 
-export default function Register() {
-    const registerUser = async (event) => {
-        event.preventDefault() // next js forms auto-redirect, cancel that.
+let goLogin = (router) => {
+    router.push('/users/login')
+}
 
-        if (event.target.password.value != event.target.confirmPassword.value) {
-            alert("Passwords must match");
+export default function Register() {
+    const router = useRouter();
+
+    // localStorage.setItem('email', 'fooemail')
+    // localStorage.setItem('password', 'foopassword')
+    
+    const registerUser = async (event) => {
+        event.preventDefault(); // next js forms auto-redirect, cancel that.
+
+        if (event.target.password.value != event.target.confirmPassword.value)
+        {
+            toast("Passwords must match")
             return;
         }
 
@@ -24,17 +39,16 @@ export default function Register() {
         axios.post(APIDomain + APIRootPath + resource, user)
             .then((res) => {
                 console.log(res);
-                alert("Registration succeeded");
+                toast("Registration succeeded! Proceeding to login...");
+                setTimeout(goLogin(router), 3000)
+                // localStorage.setItem("email", user.email)
+                // localStorage.setItem("password", user.password)
             })
             .catch((err) => {
                 console.log(err);
-                alert("Registration failed");
-<<<<<<< HEAD
-            })
-=======
+                toast("Registration failed");
             })     
-            router.push('/login')
->>>>>>> main
+            
     }
 
     return (
@@ -45,8 +59,11 @@ export default function Register() {
             </Head>
 
             <main>
+
                 <h1>Register</h1>
+                
                 <form onSubmit={registerUser}>
+                
                     <label htmlFor="Email">Email</label>
                     <input type="text" placeholder="Email" id="email" required />
 
@@ -60,7 +77,7 @@ export default function Register() {
                     <input type="password" placeholder="Password" id="confirmPassword" required />
 
                     <button type="submit">Register</button>
-
+                    <ToastContainer position={"top-center"} />
                 </form>
 
                 <Link href="/">
