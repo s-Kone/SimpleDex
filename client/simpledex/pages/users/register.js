@@ -18,8 +18,8 @@ let goLogin = (router) => {
 export default function Register() {
     const router = useRouter();
 
-    localStorage.setItem('email', 'fooemail')
-    localStorage.setItem('password', 'foopassword')
+    // localStorage.setItem('email', 'fooemail')
+    // localStorage.setItem('password', 'foopassword')
     
     const registerUser = async (event) => {
         event.preventDefault(); // next js forms auto-redirect, cancel that.
@@ -41,8 +41,8 @@ export default function Register() {
                 console.log(res);
                 toast("Registration succeeded! Proceeding to login...");
                 setTimeout(goLogin(router), 3000)
-                localStorage.setItem("email", user.email)
-                localStorage.setItem("password", user.password)
+                // localStorage.setItem("email", user.email)
+                // localStorage.setItem("password", user.password)
             })
             .catch((err) => {
                 console.log(err);

@@ -15,21 +15,6 @@ const resource = "/users/login";
 export default function Login() {
     const router = useRouter();
 
-    const [ value, setValue ] = useState({
-        email: '',
-        password: ''
-    })
-
-    useEffect(() => {
-        console.log('effect')
-        if (typeof window !== 'undefined') {
-            let emailStored = localStorage.getItem('email')
-            let passwordStored = localStorage.getItem('password')
-            if (emailStored && passwordStored) {
-                setValue({ email, password })
-            }
-        }
-    }, [])
 
     const loginUser = async (event) => {
         event.preventDefault() // don't redirect the page
@@ -62,10 +47,10 @@ export default function Login() {
                 <h1>Login</h1>
                     <form onSubmit={loginUser}>
                         <label htmlFor="Email">Email</label>
-                        <input type="text" placeholder="Email" id="email" value={value.email} required />
+                        <input name='email' type="text" placeholder="Email" id="email" required />
 
                         <label htmlFor="password">Password</label>
-                        <input type="password" placeholder="Password" id="password" value={value.password} required />
+                        <input name='password' type="password" placeholder="Password" id="password" required />
 
                         <button type="submit">Login</button>
                         <ToastContainer position="top-center" />
