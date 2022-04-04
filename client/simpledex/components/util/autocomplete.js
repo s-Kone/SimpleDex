@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import styles from '../util/autocomplete.module.css'
+
 export const AutoComplete = (props) => {
 
     const [suggestions, setSuggestions] = useState([]);
