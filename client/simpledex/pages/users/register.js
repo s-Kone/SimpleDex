@@ -29,12 +29,8 @@ export default function Register() {
             .catch((err) => {
                 console.log(err);
                 alert("Registration failed");
-<<<<<<< HEAD
-            })
-=======
             })     
             router.push('/login')
->>>>>>> main
     }
 
     return (
