@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Link from 'next/link'
-// import { PokemonDisplay } from '../components/pokemon_display'
 
 export default function Home() {
 
@@ -29,13 +28,6 @@ export default function Home() {
               <p>If you're new, start here</p>
             </div>
           </Link>
-          <Link href = "/test/cookietest">
-            <div className="card">
-              <h3>CookieTest&rarr;</h3>
-              <p>Fuck</p>
-            </div>
-          </Link>
-          {/* <PokemonDisplay /> */}
         </div>
       </main>
 
@@ -47,6 +39,7 @@ export default function Home() {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          background-image: url('/background.png');
         }
 
         main {

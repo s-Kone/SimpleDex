@@ -36,7 +36,11 @@ Local Database initialization:
     - windows: https://www.postgresql.org/download/windows/
         - restart if prompted
     - mac: `brew install postgresql` (f yeah mac)
-    - linux ubuntu: `apt-get install postgresql-12` (f yeah linux). Note: i have not tested the project with postgresql-12. only used brew's version v14.2 as of now
+    - linux ubuntu: `sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources list.d/pgdg.list'`
+            `wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -`
+            `sudo apt-get update`
+            `sudo apt-get -y install postgresql-14`
+
 - Back to terminal
 - `psql postgres`
 - you should now be in the postgres command line

@@ -1,8 +1,3 @@
-.container {
-    max-width: 36rem;
-    padding: 0 1rem;
-    margin: 3rem auto 6rem;
-}
 
 .input {
     border: none;
@@ -18,9 +13,17 @@
 .list {
     list-style-type: none;
     text-align: center;
-    margin-right: 4%;
+    margin-right: 3%;
 }
 
 .list li:hover {
     background-color: aqua;
+}
+
+.type {
+    color: red;
+}
+
+.stat {
+    color: rebeccapurple;
 }

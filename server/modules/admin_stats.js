@@ -1,14 +1,16 @@
 var date = require('./date');
 var pool = require('./pool');
-
+var user_utils = require('./user_utils')
 
 // Log Admin Stats
 exports.logAdminStats = async (endpointID, userEmail) => {
     let utcTime = date.getCurrentUTC();
-    let findUserQuery = 'select userid from users where Email = $1'
-    let findUserValues = [userEmail]
-    const db_res = await pool.query(findUserQuery, findUserValues)
-    const userID = db_res.rows[0].userid
+    
+    let userID = await user_utils.getUserID(userEmail)
+    if (!userID) {
+        console.log('could not log admin stats')
+        return
+    }
 
     let text = 'insert into LogEndpointAccess (EndpointID, UserID, LogDateUTC) values ($1, $2, $3);'
     let values = [endpointID, userID, utcTime]

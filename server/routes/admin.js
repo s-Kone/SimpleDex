@@ -6,23 +6,29 @@ var auth = require('../modules/auth');
 const router = new Router();
 
 router.get('/', auth.authenticateToken, async (req, res) => {
-  let userEmail = req.user.name
+  try {
+    let userEmail = req.user.email
+
+    // check if req.user is admin
+    let text = 'select usertypeid from users where email = $1'
+    let values = [userEmail]
+    const db_res = await pool.query(text, values)
+    if (db_res.rows[0].usertypeid == 1)
+    {
+      var adminStats = await admin_stats.getAdminStats()
+      res.json(adminStats)
+    }
+    else
+    {
+      res.status(400).send('Authentication failed');
+    }
   
-  // check if req.user is admin
-  let text = 'select usertypeid from users where email = $1'
-  let values = [req.user.name]
-  const db_res = await pool.query(text, values)
-  if (db_res.rows[0].usertypeid == 1)
-  {
-    var adminStats = await admin_stats.getAdminStats()
-    res.json(adminStats)
-  }
-  else
-  {
-    res.status(400).send('Authentication failed');
+    admin_stats.logAdminStats('4', userEmail);
+  } catch (e) {
+    console.log(e)
+    res.status(500).send()
   }
 
-  admin_stats.logAdminStats('4', userEmail);
 });
 
 module.exports = router;

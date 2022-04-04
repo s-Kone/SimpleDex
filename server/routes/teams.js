@@ -9,7 +9,7 @@ const router = new Router();
 
 router.post('/', auth.authenticateToken, async (req, res,next) => {
     try {
-        let userEmail = req.user.name
+        let userEmail = req.user.email
         let pokemon = req.body.pokemon
         console.log(pokemon)
         // validate inputs
@@ -22,13 +22,14 @@ router.post('/', auth.authenticateToken, async (req, res,next) => {
         {
             return res.status(400).send('Invalid pokemon json')
         }
+        let pokemonText = JSON.stringify(pokemon)
     
         let userTeamID = await getNewUserTeamID(userID)
         // console.log(`${userTeamID} ${userID} ${JSON.stringify(pokemon)}`)
         
         // store in db
         let text = 'insert into teamrecord (UserTeamID, UserID, Pokemon) values ($1, $2, $3)'
-        let values = [userTeamID, userID, pokemon]
+        let values = [userTeamID, userID, pokemonText]
         const db_res = await pool.query(text, values)
         res.status(201).send()
         
@@ -41,25 +42,32 @@ router.post('/', auth.authenticateToken, async (req, res,next) => {
 })
 
 router.get('/', auth.authenticateToken, async (req, res, next) => {
-    let userEmail = req.user.name
-    
-    // validate inputs
-    let userID = await user_utils.getUserID(userEmail)
-    if(!userID) {
-        return res.status(500).send()
+    try {
+        let userEmail = req.user.email
+        
+        // validate inputs
+        let userID = await user_utils.getUserID(userEmail)
+        if(!userID) {
+            console.log('no user id')
+            return res.status(500).send()
+        }
+
+        let text = 'select * from teamrecord where userid = $1'
+        let values = [userID]
+        const db_res = await pool.query(text, values)
+        res.json(db_res.rows)
+
+        admin_stats.logAdminStats('8', userEmail);
+    } catch (e) {
+        console.log(e)
+        res.status(500).send()
     }
 
-    let text = 'select * from teamrecord where userid = $1'
-    let values = [userID]
-    const db_res = await pool.query(text, values)
-    res.json(db_res.rows)
-
-    admin_stats.logAdminStats('8', userEmail);
 });
 
 router.patch('/', auth.authenticateToken, async (req, res,next) => {
     try {
-        let userEmail = req.user.name
+        let userEmail = req.user.email
         let pokemon = req.body.pokemon
         let userTeamID = req.body.userTeamID
     
@@ -73,6 +81,8 @@ router.patch('/', auth.authenticateToken, async (req, res,next) => {
         {
             return res.status(400).send('Invalid pokemon json')
         }
+
+        let pokemonText = JSON.stringify(pokemon)
     
         // check team exists
         if ((await doesTeamExist(userID, userTeamID)) == false) {
@@ -80,7 +90,7 @@ router.patch('/', auth.authenticateToken, async (req, res,next) => {
         }
 
         let text = 'update teamrecord set pokemon = $1 where userid = $2 and userteamid = $3'
-        let values = [pokemon, userID, userTeamID]
+        let values = [pokemonText, userID, userTeamID]
         const db_res = await pool.query(text, values)
         res.status(200).send()
 
@@ -93,7 +103,7 @@ router.patch('/', auth.authenticateToken, async (req, res,next) => {
 
 router.delete('/', auth.authenticateToken, async (req, res,next) => {
     try {
-        let userEmail = req.user.name
+        let userEmail = req.user.email
         let userTeamID = req.body.userTeamID
     
         // validate inputs
