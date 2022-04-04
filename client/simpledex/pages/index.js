@@ -9,7 +9,7 @@ export default function Home() {
         <title>SimpleDex</title>
         <link rel="icon" href="./favicon.ico"/>
       </Head>
-      
+
       <main>
         <h1 className="title">
           Welcome to SimpleDex
