@@ -18,8 +18,8 @@ let goLogin = (router) => {
 export default function Register() {
     const router = useRouter();
 
-    localStorage.setItem('email', 'fooemail')
-    localStorage.setItem('password', 'foopassword')
+    // localStorage.setItem('email', 'fooemail')
+    // localStorage.setItem('password', 'foopassword')
     
     const registerUser = async (event) => {
         event.preventDefault(); // next js forms auto-redirect, cancel that.
