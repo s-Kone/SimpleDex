@@ -41,8 +41,8 @@ export default function Register() {
                 console.log(res);
                 toast("Registration succeeded! Proceeding to login...");
                 setTimeout(goLogin(router), 3000)
-                localStorage.setItem("email", user.email)
-                localStorage.setItem("password", user.password)
+                // localStorage.setItem("email", user.email)
+                // localStorage.setItem("password", user.password)
             })
             .catch((err) => {
                 console.log(err);
