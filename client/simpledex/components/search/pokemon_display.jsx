@@ -13,7 +13,7 @@ export function PokemonDisplay() {
     const [name, setName] = useState("")
     const handleClick = async () => {
 
-        await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`).then((response) => {
+        await axios.get(`https://alexgiasson.me/comp4537/termproject/api/v1/searchPokemon/name?name=${name}`).then((response) => {
             setPokemon(response.data)
             setLoading(true)
         })
