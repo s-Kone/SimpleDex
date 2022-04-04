@@ -32,7 +32,10 @@ export function PokemonDisplay() {
                 <Types pokemon={pokemon} />
                 <h3><u>Abilities</u></h3>
                 <Abilities pokemon={pokemon} />
-                <Stats pokemon={pokemon} />
+                <br></br>
+                <div className={styles.box}>
+                <Stats pokemon={pokemon}/>
+                </div>
             </div> : <div></div>}
         </div>
 

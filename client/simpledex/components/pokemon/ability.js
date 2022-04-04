@@ -3,7 +3,7 @@ import styles from '../pokemon/stats.module.css'
 const Abilities = ({ pokemon }) => {
 
     return (
-        <ul className={styles.list}>
+        <ul className={styles.box}>
             {pokemon.abilities.map((data, key) => {
                 return (
                     <li key={key} className={styles.type}> {data.ability.name} </li>
