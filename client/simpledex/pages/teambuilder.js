@@ -11,7 +11,7 @@ export default function teambuilder() {
             router.push('/')
         }
     })
-
+    
     return (
         <TeamItems />
     )

@@ -1,7 +1,7 @@
-var fs = require('fs');
-var Router = require('express-promise-router');
-var auth = require('../modules/auth');
-var admin_stats = require('../modules/admin_stats');
+const fs = require('fs');
+const Router = require('express-promise-router');
+const auth = require('../modules/auth');
+const admin_stats = require('../modules/admin_stats');
 
 const router = new Router();
 
@@ -13,8 +13,9 @@ router.get('/', function(req, res, next) {
       res.status(500).send()
       return;
     }
+    let obj = JSON.parse(data)
     admin_stats.logAdminStats('3', null);
-    res.json(data)
+    res.json(obj)
   })
 
 });

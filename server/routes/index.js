@@ -1,9 +1,9 @@
-var homeRouter = require('./home');
-var adminRouter = require('./admin');
-var documentationRouter = require('./documentation');
-var searchPokemonRouter = require('./searchPokemon');
-var teamsRouter = require('./teams');
-var usersRouter = require('./users');
+const homeRouter = require('./home');
+const adminRouter = require('./admin');
+const documentationRouter = require('./documentation');
+const searchPokemonRouter = require('./searchPokemon');
+const teamsRouter = require('./teams');
+const usersRouter = require('./users');
 
 const endPointRoot = '/comp4537/termproject/api/v1';
 

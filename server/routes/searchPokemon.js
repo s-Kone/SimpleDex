@@ -1,11 +1,11 @@
-var axios = require('axios');
-var date = require('../modules/date');
-var admin_stats = require('../modules/admin_stats');
+const axios = require('axios');
+const date = require('../modules/date');
+const admin_stats = require('../modules/admin_stats');
 const Redis = require("redis");
 // const RedisClient = Redis.createClient() // commented out because causing crash
 const DEFAULT_EXPIRATION = 3600
-var Router = require('express-promise-router');
-var auth = require('../modules/auth');
+const Router = require('express-promise-router');
+const auth = require('../modules/auth');
 
 const router = new Router();
 

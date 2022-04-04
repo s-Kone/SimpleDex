@@ -27,7 +27,7 @@ export default function Register() {
             return;
         }
 
-        var user = {
+        let user = {
             name: event.target.username.value,
             email: event.target.email.value,
             password: event.target.password.value
@@ -53,8 +53,6 @@ export default function Register() {
             </Head>
 
             <main>
-
-                <h1>Register</h1>
                 
                 <form onSubmit={registerUser}>
                 
@@ -72,11 +70,12 @@ export default function Register() {
 
                     <button type="submit">Register</button>
                     <ToastContainer position={"top-center"} />
+                    <button> <Link href="/">
+                        <a>Back to Home</a>
+                    </Link></button>
                 </form>
 
-                <Link href="/">
-                    <a>Back to Home</a>
-                </Link>
+                
             </main>
             <style jsx>{`
                 form *{
@@ -94,8 +93,8 @@ export default function Register() {
                 }
                 
                 form {
-                    height: 450px;
-                    width: 400px;
+                    height: 60%;
+                    width: 30%;
                     font-weight: 500;
                     background-color: rgba(169, 231, 255, 0.13);
                     position: absolute;
@@ -128,14 +127,14 @@ export default function Register() {
                     background-color: #D4F3FF;
                     border-radius: 3px;
                     padding: 0 10px;
-                    margin-top: 8px;
+                    margin-top: 5px;
                     font-size: 14px;
                     font-weight: 300;
                 }
                 
                 label{
                     display: block;
-                    margin-top: 20px;
+                    margin-top: 5px;
                     font-size: 16px;
                     font-weight: 500;
                 }`
