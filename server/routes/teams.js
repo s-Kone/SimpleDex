@@ -22,13 +22,14 @@ router.post('/', auth.authenticateToken, async (req, res,next) => {
         {
             return res.status(400).send('Invalid pokemon json')
         }
+        let pokemonText = JSON.stringify(pokemon)
     
         let userTeamID = await getNewUserTeamID(userID)
         // console.log(`${userTeamID} ${userID} ${JSON.stringify(pokemon)}`)
         
         // store in db
         let text = 'insert into teamrecord (UserTeamID, UserID, Pokemon) values ($1, $2, $3)'
-        let values = [userTeamID, userID, pokemon]
+        let values = [userTeamID, userID, pokemonText]
         const db_res = await pool.query(text, values)
         res.status(201).send()
         
@@ -80,6 +81,8 @@ router.patch('/', auth.authenticateToken, async (req, res,next) => {
         {
             return res.status(400).send('Invalid pokemon json')
         }
+
+        let pokemonText = JSON.stringify(pokemon)
     
         // check team exists
         if ((await doesTeamExist(userID, userTeamID)) == false) {
@@ -87,7 +90,7 @@ router.patch('/', auth.authenticateToken, async (req, res,next) => {
         }
 
         let text = 'update teamrecord set pokemon = $1 where userid = $2 and userteamid = $3'
-        let values = [pokemon, userID, userTeamID]
+        let values = [pokemonText, userID, userTeamID]
         const db_res = await pool.query(text, values)
         res.status(200).send()
 

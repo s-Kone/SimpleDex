@@ -7,7 +7,6 @@ const Stats = ({ pokemon }) => {
                 return (
                     <div key={key} className={styles.stat}>
                         {data.stat.name} : {data.base_stat}
-                        <h1> {data.stat.HP} </h1>
                     </div>
                 )
             })}

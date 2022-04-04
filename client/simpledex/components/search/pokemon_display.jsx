@@ -3,6 +3,9 @@ import axios from 'axios'
 import styles from './pokemon_display.module.css'
 import { pokemon_lookups } from '../../lookups/pokemon_lookup'
 import { AutoComplete } from "../util/autocomplete";
+import Stats from "../pokemon/stats";
+import Types from "../pokemon/types";
+
 export function PokemonDisplay() {
     const [pokemon, setPokemon] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -33,30 +36,5 @@ const Sprite = ({ pokemon }) => {
     return (
         <img className={styles.spirte} src={pokemon.sprites.other.home.front_default}
             alt={pokemon.name} />
-    )
-}
-const Types = ({ pokemon }) => {
-    return (
-        <div id="types">
-            {pokemon.types.map((data, key) => {
-                return (
-                    <div key={key}> {data.type.name} </div>
-                )
-            })}
-        </div>
-    )
-}
-
-const Stats = ({ pokemon }) => {
-    return (
-        <div id="stats">
-            {pokemon.stats.map((data, key) => {
-                return (
-                    <div key={key}>
-                        {data.stat.name} : {data.base_stat}
-                    </div>
-                )
-            })}
-        </div>
     )
 }
