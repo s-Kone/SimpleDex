@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import axios from 'axios'
 
-const APIDomain = "http://localhost:8084"; // for debug, replace with http://localhost:8084
+const APIDomain = "https://alexgiasson.me"; // for debug, replace with http://localhost:8084
 const APIRootPath = "/comp4537/termproject/api/v1";
 const resource = "/users/register";
 
@@ -31,6 +31,7 @@ export default function Register() {
                 console.log(err);
                 alert("Registration failed");
             })     
+            router.push('/login')
     }
 
     return ( 
