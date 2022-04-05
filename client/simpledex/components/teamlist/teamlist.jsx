@@ -15,7 +15,7 @@ export function TeamList() {
             ).then((response) => {
                 setData(response.data)
                 setLoaded(true)
-                console.log(response.data)
+                // console.log(response.data)
             }).catch((err) => {
                 console.log(err)
             })

@@ -8,13 +8,12 @@ import { getAuthHeaders } from "../../util/token";
 import { APIDomain, APIRootPath, teamRoute, PokemonTemplate } from "../../common/defs";
 export const TeamItems = () => {
 
-
-
     const init_state = []
     useEffect(() => {
         const res = []
         if (res = JSON.parse(localStorage.getItem('team')))
-            init_state = res
+            init_state = res.pokemon
+            console.log(init_state)
     })
 
     const [team, updateTeam] = useState(init_state)

@@ -12,7 +12,7 @@ export const TeamMember = ({ pokemon }) => {
         const getPokemonData = async () => {
             var name = pokemon.Name
             name = name.toLowerCase()
-            const request = `https://alexgiasson.me/comp4537/termproject/api/v1/searchPokemon/name?name=${name}`
+            const request = `https://alexgiasson.me/comp4537/termproject/api/v2/searchPokemon/name?name=${name}`
 
             axios.get(request, getAuthHeaders()
             ).then((response) => {
