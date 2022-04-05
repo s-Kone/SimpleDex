@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Layout from '../../components/layouts/nolayout'
 
 
 const APIDomain = "http://localhost:8084"; // for debug, replace with http://localhost:8084
@@ -52,6 +53,7 @@ export default function Register() {
 
     return (
         <>
+        <Layout>
             <Head>
                 <title>SimpleDex Register</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -144,6 +146,7 @@ export default function Register() {
                     font-weight: 500;
                 }`
             }</style>
+            </Layout>
         </>
 
     )
