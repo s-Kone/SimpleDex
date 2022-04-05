@@ -45,15 +45,13 @@ export default function Register() {
     }
 
     return (
-        <>
+        <div className='container'>
             <Head>
                 <title>SimpleDex Register</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
             <main>
-
-                <h1>Register</h1>
 
                 <form onSubmit={registerUser}>
 
@@ -70,14 +68,19 @@ export default function Register() {
                     <input type="password" placeholder="Password" id="confirmPassword" required />
 
                     <button type="submit">Register</button>
+                     <button><Link href="/">
+                    <a>Back to Home</a>
+                    </Link></button>
+                    
                     <ToastContainer position={"top-center"} />
                 </form>
 
-                <Link href="/">
-                    <a>Back to Home</a>
-                </Link>
+               
             </main>
             <style jsx>{`
+                .container{
+                    background-image: url('../../public/background.png');
+                }
                 form *{
                     font-family: 'Poppins',sans-serif;
                     outline: none;
@@ -93,8 +96,8 @@ export default function Register() {
                 }
                 
                 form {
-                    height: 450px;
-                    width: 400px;
+                    height: 60%;
+                    width: 30%;
                     font-weight: 500;
                     background-color: rgba(169, 231, 255, 0.13);
                     position: absolute;
@@ -109,7 +112,7 @@ export default function Register() {
                 }
                 
                 button {
-                    margin-top: 25px;
+                    margin-top: 10px;
                     width: 100%;
                     background-color: #FFC1A8;
                     color: #080710;
@@ -134,12 +137,13 @@ export default function Register() {
                 
                 label{
                     display: block;
-                    margin-top: 20px;
+                    margin-top: 5px;
                     font-size: 16px;
                     font-weight: 500;
                 }`
+                
             }</style>
-        </>
+        </div>
 
     )
 }

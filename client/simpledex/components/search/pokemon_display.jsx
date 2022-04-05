@@ -8,6 +8,7 @@ import Types from "../pokemon/types";
 import { APIDomain, APIRootPath, SearchPokemonRoute } from "../../common/defs";
 import Sprite from "../pokemon/sprite"
 import Abilities from "../pokemon/ability";
+import {getAuthHeaders} from "../../util/token";
 
 export function PokemonDisplay() {
     const [pokemon, setPokemon] = useState(null)

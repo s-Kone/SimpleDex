@@ -1,3 +1,4 @@
+import styles from '../pokemon/stats.module.css'
 
 const Abilities = ({ pokemon }) => {
 

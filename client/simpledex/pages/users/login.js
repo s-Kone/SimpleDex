@@ -4,7 +4,6 @@ import axios from 'axios'
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react'
 
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -37,11 +36,10 @@ export default function Login() {
     }
 
     return (
-        <>
-        
+        <div className="container">
             <Head>
                 <title>SimpleDex Login</title>
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="../../public/favicon.ico" />
             </Head>
             <main>
                     <form onSubmit={loginUser}>
@@ -62,6 +60,10 @@ export default function Login() {
             </main>
 
             <style jsx>{`
+                .container{
+                    background-image: url('background.png');
+                }
+
                 form *{
                     font-family: 'Poppins',sans-serif;
                     outline: none;
@@ -127,6 +129,6 @@ export default function Login() {
                     font-weight: 500;
                 }`
             }</style>
-        </>
+        </div>
     )
 }
