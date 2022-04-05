@@ -4,92 +4,49 @@ import Types from '../pokemon/types'
 import Sprite from '../pokemon/sprite'
 import Stats from '../pokemon/stats'
 import styles from './teambuilder.module.css'
-export const PokemonCard = ({ pokemon_name, jsondata }) => {
-    const [data, setData] = useState(null)
-    const [loaded, setLoaded] = useState(false)
-    const [formState, updateForm] = useState({
-        name: "",
-        gender: "",
-        level: "",
-        item: "",
-        ability: "",
-        move1: "",
-        move2: "",
-        move3: "",
-        move4: "",
-        types: [],
-        sprite: "",
-        stats: []
-    })
-    const handleChange = e => {
-        const { name, value } = e.target
+import { AutoComplete } from '../util/autocomplete'
+import { pokemon_lookups } from '../../lookups/pokemon_lookup'
+export const PokemonCard = ({ data, onChange, index }) => {
+    const [name, setName] = useState("")
+    const [res, setRes] = useState(null)
+    const handleSubmitName = async () => {
+        console.log(name)
+        const request = `https://alexgiasson.me/comp4537/termproject/api/v1/searchPokemon/name?name=${name}`
+        const token = localStorage.getItem('jwt');
+        await axios.get(request, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }).then((response) => {
+            setRes(response.data)
+            data.name = name
+            data.types = response.data.types.map(x => x.type.name)
+            data.stats = response.data.stats
+            data.stats = response.data.stats.map(x => ({ [x.stat.name]: x.base_stat }))
+            console.log(data)
+        }).catch((e) => {
+            console.log(e)
+        })
 
-        updateForm(prevState => ({
-            ...prevState, [name]: value
-        }))
     }
-
-    const handleSubmit = () => {
-        updateForm(prevState => ({
-            ...prevState,
-        }))
-        console.log(formState)
-    }
-    useEffect(() => {
-        const getPokemonData = async () => {
-            const request = `https://alexgiasson.me/comp4537/termproject/api/v1/searchPokemon/name?name=${pokemon_name}`
-            const token = localStorage.getItem('jwt');
-            await axios.get(request, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            }).then((response) => {
-                setData(response.data)
-                setLoaded(true)
-            }).catch((e) => {
-                console.log(e)
-            })
-        }
-        getPokemonData()
-    }, [])
     return (
-
         <div>
-            <button onClick={handleSubmit}></button>
-            {data &&
+            <button onClick={handleSubmitName}>Submit</button>
+            <AutoComplete data={pokemon_lookups} name={setName} />
+            <input type="text" name="gender" value={data.gender} onChange={e => onChange(e, index)} />
+            <input type="text" name="ability" value={data.ability} onChange={e => onChange(e, index)} />
+            <input type="text" name="move1" value={data.move1} onChange={e => onChange(e, index)} />
+            <input type="text" name="move2" value={data.move2} onChange={e => onChange(e, index)} />
+            <input type="text" name="move3" value={data.move3} onChange={e => onChange(e, index)} />
+            <input type="text" name="move4" value={data.move4} onChange={e => onChange(e, index)} />
+            {res &&
                 <>
-                    <h1>{data.name}</h1>
-                    <div>
-                        <h3>level</h3>
-                        <input type="text" name="level" onChange={handleChange} value={formState.level} />
-                    </div>
-                    <div>
-                        <h3>gender</h3>
-                        <input type="text" name="gender" onChange={handleChange} value={formState.gender} />
-                    </div>
-                    <div>
-                        <h3>Item</h3>
-                        <input type="text" name="item" onChange={handleChange} value={formState.item} />
-                    </div>
-                    <div>
-                        <h3>Ability</h3>
-                        <input type="text" name="ability" onChange={handleChange} value={formState.ability} />
-                    </div>
-                    <h2>Moves</h2>
-                    <div className={styles.moves}>
-                        <ul>
-                            <li> <input className={styles.move} type="text" name="move1" onChange={handleChange} value={formState.move1} /></li>
-                            <li> <input className={styles.move} type="text" name="move2" onChange={handleChange} value={formState.move2} /></li>
-                            <li> <input className={styles.move} type="text" name="move3" onChange={handleChange} value={formState.move3} /></li>
-                            <li> <input className={styles.move} type="text" name="move4" onChange={handleChange} value={formState.move4} /></li>
-                        </ul>
-                    </div>
-                    <Types pokemon={data} />
-                    <Sprite pokemon={data} />
-                    <Stats pokemon={data} />
-
+                    <Stats pokemon={res} />
+                    <Types pokemon={res} />
+                    <Sprite pokemon={res} />
                 </>
             }
+
         </div>
     )
 }

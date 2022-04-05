@@ -1,51 +1,75 @@
 import React, { useState, useEffect } from "react";
 import { PokemonCard } from "./pokemonCard";
-import { AutoComplete } from "../util/autocomplete";
-import { pokemon_lookups } from '../../lookups/pokemon_lookup'
 import styles from './teambuilder.module.css'
+import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { getAuthHeaders } from "../../util/token";
 export const TeamItems = () => {
-    //this is a list we are getting from the API
-    const initialList = [
 
-    ]
-    let jsondata = []
-    const [list, setList] = useState(initialList)
-    const [name, setName] = useState('')
-
-
-    const handleAddPokemon = () => {
-        const newList = list.concat({ name })
-        setList(newList)
+    const APIDomain = "https://alexgiasson.me";
+    const APIRootPath = "/comp4537/termproject/api/v1";
+    const teamRoute = "/teams"
+    const template = {
+        name: "",
+        gender: "",
+        level: "",
+        item: "",
+        ability: "",
+        move1: "",
+        move2: "",
+        move3: "",
+        move4: "",
+        types: [],
+        sprite: "",
+        stats: []
     }
+    const init_state = []
+    useEffect(() => {
+        const res = []
+        if (res = JSON.parse(localStorage.getItem('team')))
+            init_state = res
+    })
 
+    const [team, updateTeam] = useState(init_state)
+    const addPokemon = () => {
+        updateTeam(team => [...team, template])
+        console.log(team)
+    }
+    const handleInputChange = (e, index) => {
+        const { name, value } = e.target
+        const list = [...team]
+        list[index][name] = value
+        updateTeam(list)
+        console.log(list)
+    }
+    const handleRemoveClick = index => {
+        const list = [...team]
+        list.splice(index, 1)
+        updateTeam(list)
+    }
+    const saveTeam = () => {
+        const body = { pokemon: team }
+        axios.post(APIDomain + APIRootPath + teamRoute, body, getAuthHeaders())
+            .then((res) => {
+                toast("Saved!");
+                console.log(body)
+            })
+            .catch((err) => {
+                console.log(err);
+                toast("Save Failed");
+            })
+    }
     return (
         <div>
-            <div>
-                <TeamPokemon list={list} />
-                <AddPokemon
-                    onAdd={handleAddPokemon}
-                    setName={setName}
-                />
-            </div>
-        </div>
-    )
-
-}
-const AddPokemon = ({ onAdd, setName }) => {
-    return (
-        <div className={styles.addParent}>
-            <div className={styles.field}><AutoComplete data={pokemon_lookups} name={setName} /></div>
-
-            <button className={styles.addButton} onClick={onAdd}>add pokemon</button>
-        </div>
-    )
-}
-const TeamPokemon = ({ list, jsondata }) => {
-    return (
-        <ul>
-            {list.map((item) => (
-                <li key={item.id}><PokemonCard pokemon_name={item.name} /></li>
+            {team.map((item, i) => (
+                <div key={i}><PokemonCard data={item} onChange={handleInputChange} index={i} />
+                    <button onClick={handleRemoveClick}>Delete</button></div>
             ))}
-        </ul>
+            <button onClick={addPokemon}>Add a pokemon</button>
+            <button onClick={saveTeam}>Save Team</button>
+            <ToastContainer position={"top-center"} />
+        </div>
+
     )
 }
