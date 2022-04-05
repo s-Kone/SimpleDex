@@ -1,11 +1,12 @@
 import Head from 'next/head'
 import Layout from '../components/layouts/layout';
-
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react'
 import { TeamItems } from '../components/teambuilder/team_items'
 export default function teambuilder() {
     const router = useRouter();
 
-    useEffect( () => {
+    useEffect(() => {
         if (!localStorage.getItem('jwt')) {
             router.push('/')
         }
@@ -19,11 +20,11 @@ export default function teambuilder() {
             // use it
         }
     })
-    
+
     return (
         <>
             <Layout>
-            <TeamItems />
+                <TeamItems />
             </Layout>
         </>
     )
