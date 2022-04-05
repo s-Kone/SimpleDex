@@ -4,6 +4,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react'
 import { getAuthHeaders } from '../util/token';
+import Layout from '../components/layouts/layout';
 
 const APIDomain = "https://alexgiasson.me"; // for debug, replace with http://localhost:8084
 const APIRootPath = "/comp4537/termproject/api/v2";
@@ -40,7 +41,7 @@ export default function AdminStats() {
 
 
     return (
-        <>
+        <Layout>
             <Head>
                 <title>SimpleDex Admin Stats</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -83,8 +84,6 @@ export default function AdminStats() {
                 }
   
             `}</style>
-        </>
-
-
+        </Layout>
     )
 }

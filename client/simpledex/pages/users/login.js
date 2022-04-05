@@ -3,8 +3,7 @@ import Head from 'next/head'
 import axios from 'axios'
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react'
-
-
+import styles from './background.module.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -37,31 +36,34 @@ export default function Login() {
     }
 
     return (
-        <>
-        
+        <div className={styles.container} >
             <Head>
                 <title>SimpleDex Login</title>
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="../../public/favicon.ico" />
             </Head>
             <main>
-                    <form onSubmit={loginUser}>
-                        <label htmlFor="Email">Email</label>
-                        <input name='email' type="text" placeholder="Email" id="email" required />
+                <form onSubmit={loginUser}>
+                    <label htmlFor="Email">Email</label>
+                    <input name='email' type="text" placeholder="Email" id="email" required />
 
                     <label htmlFor="password">Password</label>
                     <input name='password' type="password" placeholder="Password" id="password" required />
 
-                        <button type="submit">Login</button>
-                        <ToastContainer position="top-center" />
-                       
-                        <button> <Link href="/">
+                    <button type="submit">Login</button>
+                    <ToastContainer position="top-center" />
+
+                    <button> <Link href="/">
                         Back to Home
-                        </Link></button>
-                    </form>
-                
+                    </Link></button>
+                </form>
+
             </main>
 
             <style jsx>{`
+                .container{
+                    background-image: url('/background.png');
+                }
+
                 form *{
                     font-family: 'Poppins',sans-serif;
                     outline: none;
@@ -80,7 +82,7 @@ export default function Login() {
                     height: 60%;
                     width: 30%;
                     font-weight: 500;
-                    background-color: rgba(169, 231, 255, 0.13);
+                    background-color: rgba(169, 231, 255, 0.90);
                     position: absolute;
                     transform: translate(-50%,-50%);
                     top: 50%;
@@ -127,6 +129,6 @@ export default function Login() {
                     font-weight: 500;
                 }`
             }</style>
-        </>
+        </div>
     )
 }
