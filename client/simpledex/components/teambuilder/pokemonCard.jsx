@@ -32,14 +32,21 @@ export const PokemonCard = ({ data, onChange, index }) => {
     }
     return (
         <div>
-            <button onClick={handleSubmitName}>Submit</button>
+            <button onClick={handleSubmitName} className={styles.button}>Submit</button>
             <AutoComplete data={pokemon_lookups} name={setName} />
+            <div className={styles.move}>
+            <label className={styles.label}>Gender</label>
             <input type="text" name="gender" value={data.gender} onChange={e => onChange(e, index)} />
+            <br></br>
+            <label className={styles.label}>Ability</label>
             <input type="text" name="ability" value={data.ability} onChange={e => onChange(e, index)} />
+            <br></br>
+            <label className={styles.label}>Moves</label>
             <input type="text" name="move1" value={data.move1} onChange={e => onChange(e, index)} />
             <input type="text" name="move2" value={data.move2} onChange={e => onChange(e, index)} />
             <input type="text" name="move3" value={data.move3} onChange={e => onChange(e, index)} />
             <input type="text" name="move4" value={data.move4} onChange={e => onChange(e, index)} />
+            </div>
             {res &&
                 <>
                     <Stats pokemon={res} />

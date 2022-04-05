@@ -1,9 +1,83 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: 'Poppins',sans-serif;
+
 }
 
 .content {
     max-width: 960px;
     margin: 0 auto;
+}
+
+#normal{
+  color: burlywood;
+}
+
+#bug{
+  color: lightgreen;
+}
+
+#dark{
+  color: darkslategray;
+}
+
+#dragon{
+  color: darkorchid;
+}
+
+#fairy{
+  color: palevioletred;
+}
+
+#electric{
+  color: darkgoldenrod;
+}
+
+#fighting{
+  color: rgb(152, 86, 86);
+}
+
+#fire{
+  color: red;
+}
+
+#flying{
+  color: aqua;
+}
+
+#ghost{
+  color: cornflowerblue;
+}
+
+#grass{
+  color: darkgreen;
+}
+
+#ground{
+  color: goldenrod;
+}
+
+#ice{
+  color: darkcyan;
+}
+
+#poison{
+  color: blueviolet;
+}
+
+#psychic{
+  color: indianred;
+}
+
+#rock{
+  color: chartreuse;
+}
+
+#steel{
+  color: silver;
+}
+
+#water{
+  color: blue;
 }

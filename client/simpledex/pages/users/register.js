@@ -117,7 +117,7 @@ export default function Register() {
                 button {
                     margin-top: 25px;
                     width: 100%;
-                    background-color: #FFC1A8;
+                    background-color: rgba(228, 67, 67, 0.8);
                     color: #080710;
                     padding: 15px 0;
                     font-size: 18px;
