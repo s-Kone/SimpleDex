@@ -1,11 +1,11 @@
-const axios = require('axios');
-const date = require('../modules/date');
-const admin_stats = require('../modules/admin_stats');
+var axios = require('axios');
+var date = require('../modules/date');
+var admin_stats = require('../modules/admin_stats');
 const Redis = require("redis");
 // const RedisClient = Redis.createClient() // commented out because causing crash
 const DEFAULT_EXPIRATION = 3600
-const Router = require('express-promise-router');
-const auth = require('../modules/auth');
+var Router = require('express-promise-router');
+var auth = require('../modules/auth');
 
 const router = new Router();
 
@@ -20,12 +20,16 @@ router.get('/name', auth.authenticateToken, async (req, res, next) => {
     console.log('error searchPokemon: no param')
     return
   }
-  const { data } = await axios.get(
+  axios.get(
     `https://pokeapi.co/api/v2/pokemon/${name}`,
-  )
+  ).then((response) => {
+    res.json(response.data)
+  }).catch((err) => {
+    console.log(err)
+    res.status(400).send('Pokemon not found')
+  })
 
   admin_stats.logAdminStats('5', userEmail);
-  res.json(data)
 })
 
 
@@ -36,12 +40,17 @@ router.get('/type', auth.authenticateToken, async (req, res, next) => {
     console.log('error searchPokemon: no param')
     return
   }
-  const { data } = await axios.get(
+
+  axios.get(
     `https://pokeapi.co/api/v2/type/${type}`,
-  )
+  ).then((response) => {
+    res.json(response.data)
+  }).catch((err) => {
+    console.log(err)
+    res.status(400).send('Type not found')
+  })
 
   admin_stats.logAdminStats('6', userEmail);
-  res.json(data)
 })
 
 /** Commenting out because its erroring out */
@@ -69,44 +78,6 @@ function getOrSetCache(){}
 
 //   })
 // }
-
-// Copy-pastad unauthorized version. Note the only difference is the lack of the middleware function
-router.get('/unauth', async (req, res, next) => {
-  let param = req.query.name;
-
-  // TODO: Handle error in some way. Probably return some http status code
-  if (!param)
-  {
-    console.log('error searchPokemon: no param');
-    return;
-  }
-
-  // TODO: extract userID from app
-  let userID = 1;
-
-  // Get Date
-  const utcTime = date.getCurrentUTC();
-
-  // Make call to pokeapi
-  axios
-    .get('https://pokeapi.co/api/v2/pokemon/' + param)
-    .then(axres => {
-      console.log(`statusCode: ${axres.status}`);
-      console.log(axres.data);
-
-      // TODO: handle 'not found' case and any other error case
-
-      res.type('json');
-      res.send(axres.data);
-    })
-    .catch(axerror => {
-      console.error(axerror);
-    })
-
-  // Log Admin Stats
-  // admin_stats.logAdminStats('1', userID);
-
-})
 
 module.exports = router;
 

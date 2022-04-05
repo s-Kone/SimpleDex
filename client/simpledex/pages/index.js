@@ -28,6 +28,18 @@ export default function Home() {
               <p>If you're new, start here</p>
             </div>
           </Link>
+          <Link href = "/documentation">
+            <div className="card">
+              <h3>Documentation &rarr;</h3>
+              <p>View API Documentation</p>
+            </div>
+          </Link>
+          <Link href = "/admin">
+            <div className="card">
+              <h3>Admin Stats &rarr;</h3>
+              <p>Admins only!</p>
+            </div>
+          </Link>
         </div>
       </main>
 
@@ -114,6 +126,7 @@ export default function Home() {
           border: 1px solid #eaeaea;
           border-radius: 10px;
           transition: color 0.15s ease, border-color 0.15s ease;
+          background: rgba(255, 255, 255, 0.8)
         }
 
         .card:hover,

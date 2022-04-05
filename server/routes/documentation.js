@@ -6,8 +6,7 @@ const admin_stats = require('../modules/admin_stats');
 const router = new Router();
 
 /* GET documentation page. */
-router.get('/', auth.authenticateToken, function(req, res, next) {
-  let userEmail = req.user.email
+router.get('/', function(req, res, next) {
   fs.readFile('./swagger.json', 'utf8', (err, data) => {
     if (err) {
       console.error(err);
