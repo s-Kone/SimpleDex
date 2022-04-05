@@ -11,7 +11,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8084/comp4537/termproject/api/v1/users/",
+					"raw": "http://localhost:8084/comp4537/termproject/api/v2/users/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -44,7 +44,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8084/comp4537/termproject/api/v1/users/register",
+					"raw": "http://localhost:8084/comp4537/termproject/api/v2/users/register",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -63,7 +63,7 @@
 			"response": []
 		},
 		{
-			"name": " http://localhost:8084/comp4537/termproject/api/v1/users/login",
+			"name": " http://localhost:8084/comp4537/termproject/api/v2/users/login",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -77,7 +77,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8084/comp4537/termproject/api/v1/users/login",
+					"raw": "http://localhost:8084/comp4537/termproject/api/v2/users/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -96,7 +96,7 @@
 			"response": []
 		},
 		{
-			"name": " http://localhost:8084/comp4537/termproject/api/v1/users/login Copy",
+			"name": " http://localhost:8084/comp4537/termproject/api/v2/users/login Copy",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -119,12 +119,12 @@
 			"response": []
 		},
 		{
-			"name": " http://localhost:8084/comp4537/termproject/api/v1/searchPokemon?pokemon=charizard",
+			"name": " http://localhost:8084/comp4537/termproject/api/v2/searchPokemon?pokemon=charizard",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8084/comp4537/termproject/api/v1/searchPokemon?pokemon=charizard",
+					"raw": "http://localhost:8084/comp4537/termproject/api/v2/searchPokemon?pokemon=charizard",
 					"protocol": "http",
 					"host": [
 						"localhost"

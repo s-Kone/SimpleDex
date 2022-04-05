@@ -1,5 +1,5 @@
 const xhttp = new XMLHttpRequest();
-const endPointRoot = "https://alexgiasson.me/comp4537/termproject/api/v1";
+const endPointRoot = "https://alexgiasson.me/comp4537/termproject/api/v2";
 
 function getADLogin() {
     let u = document.getElementById("user").value;

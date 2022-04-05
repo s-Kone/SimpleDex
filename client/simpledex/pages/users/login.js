@@ -9,8 +9,8 @@ import Layout from '../../components/layouts/layout'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const APIDomain = "http://localhost:8084"; // for debug, replace with http://localhost:8084
-const APIRootPath = "/comp4537/termproject/api/v1";
+const APIDomain = "https://alexgiasson.me"; // for debug, replace with http://localhost:8084
+const APIRootPath = "/comp4537/termproject/api/v2";
 const resource = "/users/login";
 
 export default function Login() {
