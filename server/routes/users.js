@@ -73,7 +73,6 @@ router.post('/register', async (req, res, next) => {
         const accessToken = jwt.sign(userSignObj, process.env.ACCESS_TOKEN_SECRET);
         res.status(201).json({ accessToken: accessToken });
         admin_stats.logAdminStats('1', user.email);
-        res.status(201).send();
     }
     catch (err) {
         console.log(err)
