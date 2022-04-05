@@ -24,7 +24,7 @@ export default function Login() {
             password: event.target.password.value
         }
 
-        await axios.post(APIDomain + APIRootPath + resource, user)
+        axios.post(APIDomain + APIRootPath + resource, user)
             .then((res) => {
                 localStorage.setItem('jwt', res.data.accessToken);
                 toast("Login succeeded");

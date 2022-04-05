@@ -8,6 +8,7 @@ import Types from "../pokemon/types";
 import { APIDomain, APIRootPath, SearchPokemonRoute } from "../../common/defs";
 import Sprite from "../pokemon/sprite"
 import Abilities from "../pokemon/ability";
+
 export function PokemonDisplay() {
     const [pokemon, setPokemon] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -15,9 +16,12 @@ export function PokemonDisplay() {
     const handleClick = async () => {
 
 
-        await axios.get(APIDomain + APIRootPath + SearchPokemonRoute + name).then((response) => {
+        axios.get(APIDomain + APIRootPath + SearchPokemonRoute + name, getAuthHeaders()).
+        then((response) => {
             setPokemon(response.data)
             setLoading(true)
+        }).catch((e) => {
+            console.log(e)
         })
     }
 

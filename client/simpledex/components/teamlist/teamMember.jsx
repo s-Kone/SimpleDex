@@ -6,13 +6,11 @@ import Sprite from '../../components/pokemon/sprite'
 
 export const TeamMember = ({ pokemon }) => {
     const [res, setRes] = useState(null)
-    
-
-    useEffect( () => {
+    useEffect(() => {
         const getPokemonData = async () => {
-            var name = pokemon.Name
+            var name = pokemon.name
             name = name.toLowerCase()
-            const request = `https://alexgiasson.me/comp4537/termproject/api/v1/searchPokemon/name?name=${name}`
+            const request = `https://alexgiasson.me/comp4537/termproject/api/v2/searchPokemon/name?name=${name}`
 
             axios.get(request, getAuthHeaders()
             ).then((response) => {
@@ -27,11 +25,11 @@ export const TeamMember = ({ pokemon }) => {
     return (
 
         <>
-        {res &&
-                <Sprite pokemon={res} style='teambuilder'/>
+            {res &&
+                <Sprite pokemon={res} style='teambuilder' />
             }
 
-        <style jsx>{`
+            <style jsx>{`
 
         `}</style>
         </>

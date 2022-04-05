@@ -17,7 +17,7 @@ export default function teambuilder() {
         if (team) {
             localStorage.removeItem('team')
             let teamToEdit = JSON.parse(team)
-            console.log(teamToEdit)
+            // console.log(teamToEdit)
             // use it
         }
     })

@@ -8,13 +8,31 @@ import { AutoComplete } from '../util/autocomplete'
 import { pokemon_lookups } from '../../lookups/pokemon_lookup'
 import { APIDomain, APIRootPath, SearchPokemonRoute } from '../../common/defs'
 export const PokemonCard = ({ data, onChange, index }) => {
+
     const [name, setName] = useState("")
     const [res, setRes] = useState(null)
-    const handleSubmitName = async () => {
-        console.log(name)
-
+    useEffect(() => {
+        if (data)
+            updatePokemon()
+    }, [])
+    const updatePokemon = () => {
         const token = localStorage.getItem('jwt');
-        await axios.get(APIDomain + APIRootPath + SearchPokemonRoute + name, {
+        axios.get(APIDomain + APIRootPath + SearchPokemonRoute + data.name, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }).then((response) => {
+            setRes(response.data)
+            console.log("server response", res)
+        }).catch((e) => {
+            console.log(e)
+        })
+    }
+    const handleSubmitName = async () => {
+        // console.log(name)
+        console.log("updating pokemon")
+        const token = localStorage.getItem('jwt');
+        axios.get(APIDomain + APIRootPath + SearchPokemonRoute + name, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -24,29 +42,24 @@ export const PokemonCard = ({ data, onChange, index }) => {
             data.types = response.data.types.map(x => x.type.name)
             data.stats = response.data.stats
             data.stats = response.data.stats.map(x => ({ [x.stat.name]: x.base_stat }))
+            // data.spirte = response.data.sprite
             console.log(data)
         }).catch((e) => {
             console.log(e)
         })
 
     }
+
     return (
         <div>
             <button onClick={handleSubmitName} className={styles.button}>Submit</button>
             <AutoComplete data={pokemon_lookups} name={setName} />
-            <div className={styles.move}>
-            <label className={styles.label}>Gender</label>
-            <input type="text" name="gender" value={data.gender} onChange={e => onChange(e, index)} />
-            <br></br>
-            <label className={styles.label}>Ability</label>
-            <input type="text" name="ability" value={data.ability} onChange={e => onChange(e, index)} />
-            <br></br>
-            <label className={styles.label}>Moves</label>
-            <input type="text" name="move1" value={data.move1} onChange={e => onChange(e, index)} />
-            <input type="text" name="move2" value={data.move2} onChange={e => onChange(e, index)} />
-            <input type="text" name="move3" value={data.move3} onChange={e => onChange(e, index)} />
-            <input type="text" name="move4" value={data.move4} onChange={e => onChange(e, index)} />
-            </div>
+            <input type="text" name="gender" placeholder="gender" value={data.gender} onChange={e => onChange(e, index)} />
+            <input type="text" name="ability" placeholder="ability" value={data.ability} onChange={e => onChange(e, index)} />
+            <input type="text" name="move1" placeholder="move 1" value={data.move1} onChange={e => onChange(e, index)} />
+            <input type="text" name="move2" placeholder="move 2" value={data.move2} onChange={e => onChange(e, index)} />
+            <input type="text" name="move3" placeholder="move 3" value={data.move3} onChange={e => onChange(e, index)} />
+            <input type="text" name="move4" placeholder="move 4 " value={data.move4} onChange={e => onChange(e, index)} />
             {res &&
                 <>
                     <Stats pokemon={res} />

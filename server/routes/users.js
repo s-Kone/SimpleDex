@@ -69,10 +69,11 @@ router.post('/register', async (req, res, next) => {
         const text = 'INSERT INTO USERS (Username, Email, HashedPassword, UserTypeID) VALUES ($1, $2, $3, $4)';
         const values = [user.name, user.email, user.hashedPassword, user.userTypeID];
         const db_res = await db.query(text, values); // TODO: error handling
-        // console.log(db_res);
+        const userSignObj = { email: email };
+        const accessToken = jwt.sign(userSignObj, process.env.ACCESS_TOKEN_SECRET);
+        res.status(201).json({ accessToken: accessToken });
         admin_stats.logAdminStats('1', user.email);
         res.status(201).send();
-        
     }
     catch (err) {
         console.log(err)
