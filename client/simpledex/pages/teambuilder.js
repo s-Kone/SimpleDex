@@ -2,8 +2,6 @@ import Layout from '../components/layouts/layout';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react'
 import { TeamItems } from '../components/teambuilder/team_items'
-import React, { useEffect } from 'react'
-import Layout from '../components/layouts/layout'
 
 
 export default function teambuilder() {
