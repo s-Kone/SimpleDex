@@ -61,13 +61,13 @@ export const TeamItems = () => {
             })
     }
     return (
-        <div>
+        <div className={styles.box}>
             {team.map((item, i) => (
                 <div key={i}><PokemonCard data={item} onChange={handleInputChange} index={i} />
-                    <button onClick={handleRemoveClick}>Delete</button></div>
+                    <button onClick={handleRemoveClick} className={styles.button}>Delete</button></div>
             ))}
-            <button onClick={addPokemon}>Add a pokemon</button>
-            <button onClick={saveTeam}>Save Team</button>
+            <button onClick={addPokemon} className={styles.button}>Add a pokemon</button>
+            <button onClick={saveTeam} className={styles.button}>Save Team</button>
             <ToastContainer position={"top-center"} />
         </div>
 

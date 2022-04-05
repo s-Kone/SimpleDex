@@ -1,9 +1,9 @@
-import Head from 'next/head'
-import { Nav } from '../components/Nav'
-
 import { TeamItems } from '../components/teambuilder/team_items'
+import React, { useEffect } from 'react'
+import Layout from '../components/layouts/layout'
+
+
 export default function teambuilder() {
-    const router = useRouter();
 
     useEffect( () => {
         if (!localStorage.getItem('jwt')) {
@@ -22,8 +22,13 @@ export default function teambuilder() {
     
     return (
         <>
-            <Nav/>
-            <TeamItems />
+        <head>
+            <title>SimpleDex Teams</title>
+        </head>
+            <Layout>
+                <br></br>
+                <TeamItems />
+            </Layout>
         </>
     )
 }

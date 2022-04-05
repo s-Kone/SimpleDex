@@ -7,8 +7,26 @@
     vertical-align: top;
 }
 
-.moves {}
-
 .move {
     display: inline-block;
+    text-align: left;
+}
+
+.box {
+    text-align: center;
+}
+
+.button {
+    margin-top: 20px;
+    width: 15%;
+    background-color: rgba(228, 67, 67, 0.8);
+    color: #080710;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.label{
+    padding-right: 5px;
 }
