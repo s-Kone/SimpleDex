@@ -7,34 +7,34 @@ export default function Home() {
     <div className="container">
       <Head>
         <title>SimpleDex</title>
-        <link rel="icon" href="./favicon.ico"/>
+        <link rel="icon" href="./favicon.ico" />
       </Head>
 
       <main>
         <h1 className="title">
-          Welcome to SimpleDex
+          SimpleDex
         </h1>
 
         <div className="grid">
-          <Link href ="/users/login">
-              <div className="card">
-                <h3>Login &rarr;</h3>
-                <p>Login to SimpleDex</p>
-              </div>
+          <Link href="/users/login">
+            <div className="card">
+              <h3>Login &rarr;</h3>
+              <p>Login to SimpleDex</p>
+            </div>
           </Link>
-          <Link href = "/users/register">
+          <Link href="/users/register">
             <div className="card">
               <h3>Register &rarr;</h3>
               <p>If you're new, start here</p>
             </div>
           </Link>
-          <Link href = "/documentation">
+          <Link href="/documentation">
             <div className="card">
               <h3>Documentation &rarr;</h3>
               <p>View API Documentation</p>
             </div>
           </Link>
-          <Link href = "/admin">
+          <Link href="/admin">
             <div className="card">
               <h3>Admin Stats &rarr;</h3>
               <p>Admins only!</p>
@@ -43,7 +43,7 @@ export default function Home() {
         </div>
       </main>
 
-      
+
 
       <style jsx>{`
         .container {

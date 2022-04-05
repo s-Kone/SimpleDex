@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import styles from './background.module.css'
 
 const APIDomain = "https://alexgiasson.me"; // for debug, replace with http://localhost:8084
 const APIRootPath = "/comp4537/termproject/api/v2";
@@ -17,7 +17,7 @@ let goSearch = (router) => {
 
 export default function Register() {
     const router = useRouter();
-    
+
     const registerUser = async (event) => {
         event.preventDefault(); // next js forms auto-redirect, cancel that.
 
@@ -41,11 +41,11 @@ export default function Register() {
             .catch((err) => {
                 console.log(err);
                 toast("Password: length 8 and at least 1 number. Email must be valid-looking");
-            })     
+            })
     }
 
     return (
-        <div className='container'>
+        <div className={styles.container}>
             <Head>
                 <title>SimpleDex Register</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -68,14 +68,14 @@ export default function Register() {
                     <input type="password" placeholder="Password" id="confirmPassword" required />
 
                     <button type="submit">Register</button>
-                     <button><Link href="/">
-                    <a>Back to Home</a>
+                    <button><Link href="/">
+                        <a>Back to Home</a>
                     </Link></button>
-                    
+
                     <ToastContainer position={"top-center"} />
                 </form>
 
-               
+
             </main>
             <style jsx>{`
                 .container{
@@ -99,7 +99,7 @@ export default function Register() {
                     height: 60%;
                     width: 30%;
                     font-weight: 500;
-                    background-color: rgba(169, 231, 255, 0.13);
+                    background-color: rgba(169, 231, 255, 0.90);
                     position: absolute;
                     transform: translate(-50%,-50%);
                     top: 50%;
@@ -141,7 +141,7 @@ export default function Register() {
                     font-size: 16px;
                     font-weight: 500;
                 }`
-                
+
             }</style>
         </div>
 

@@ -1,4 +1,4 @@
-import styles from '../pokemon/stats.module.css'
+import styles from './stats.module.css'
 
 const Stats = ({ pokemon }) => {
     return (
