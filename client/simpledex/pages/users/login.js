@@ -3,7 +3,6 @@ import Head from 'next/head'
 import axios from 'axios'
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react'
-import Layout from '../../components/layouts/layout'
 
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -44,7 +43,7 @@ export default function Login() {
                 <title>SimpleDex Login</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Layout>
+
             <main>
                     <form onSubmit={loginUser}>
                         <label htmlFor="Email">Email</label>
@@ -129,7 +128,6 @@ export default function Login() {
                     font-weight: 500;
                 }`
             }</style>
-            </Layout>
         </>
     )
 }
