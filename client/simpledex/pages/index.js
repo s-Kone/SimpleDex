@@ -28,7 +28,7 @@ export default function Home() {
               <p>If you're new, start here</p>
             </div>
           </Link>
-          <Link href="/documentation">
+          <Link href = "/doc">
             <div className="card">
               <h3>Documentation &rarr;</h3>
               <p>View API Documentation</p>
