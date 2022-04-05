@@ -14,7 +14,7 @@ export const PokemonCard = ({ data, onChange, index }) => {
         console.log(name)
 
         const token = localStorage.getItem('jwt');
-        await axios.get(APIDomain + APIRootPath + SearchPokemonRoute + name, {
+        axios.get(APIDomain + APIRootPath + SearchPokemonRoute + name, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
