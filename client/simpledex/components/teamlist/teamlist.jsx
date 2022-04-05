@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Team } from "./team";
+import { getAuthHeaders } from "../../util/token";
+
 export function TeamList() {
     const [data, setData] = useState(null)
     const [loaded, setLoaded] = useState(false)
@@ -18,6 +20,8 @@ export function TeamList() {
             }).then((response) => {
                 setData(response.data)
                 setLoaded(true)
+            }).catch((err) => {
+                console.log(err)
             })
         }
         fetchTeams()
