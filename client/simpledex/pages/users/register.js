@@ -11,15 +11,12 @@ const APIDomain = "https://alexgiasson.me"; // for debug, replace with http://lo
 const APIRootPath = "/comp4537/termproject/api/v2";
 const resource = "/users/register";
 
-let goLogin = (router) => {
-    router.push('/users/login')
+let goSearch = (router) => {
+    router.push('/search')
 }
 
 export default function Register() {
     const router = useRouter();
-
-    // localStorage.setItem('email', 'fooemail')
-    // localStorage.setItem('password', 'foopassword')
     
     const registerUser = async (event) => {
         event.preventDefault(); // next js forms auto-redirect, cancel that.
@@ -37,29 +34,27 @@ export default function Register() {
 
         axios.post(APIDomain + APIRootPath + resource, user)
             .then((res) => {
-                console.log(res);
-                toast("Registration succeeded! Proceeding to login...");
-                setTimeout(goLogin(router), 3000)
-                // localStorage.setItem("email", user.email)
-                // localStorage.setItem("password", user.password)
+                localStorage.setItem('jwt', res.data.accessToken);
+                toast("Registration succeeded!");
+                setTimeout(goSearch(router), 100)
             })
             .catch((err) => {
                 console.log(err);
-                toast("Registration failed");
+                toast("Password: length 8 and at least 1 number. Email must be valid-looking");
             })     
-            
     }
 
     return (
         <>
-
             <Head>
                 <title>SimpleDex Register</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
             <main>
-                
+
+                <h1>Register</h1>
+
                 <form onSubmit={registerUser}>
 
                     <label htmlFor="Email">Email</label>
@@ -76,12 +71,11 @@ export default function Register() {
 
                     <button type="submit">Register</button>
                     <ToastContainer position={"top-center"} />
-                    <button> <Link href="/">
-                        <a>Back to Home</a>
-                    </Link></button>
                 </form>
 
-                
+                <Link href="/">
+                    <a>Back to Home</a>
+                </Link>
             </main>
             <style jsx>{`
                 form *{
@@ -99,8 +93,8 @@ export default function Register() {
                 }
                 
                 form {
-                    height: 60%;
-                    width: 30%;
+                    height: 450px;
+                    width: 400px;
                     font-weight: 500;
                     background-color: rgba(169, 231, 255, 0.13);
                     position: absolute;
@@ -117,7 +111,7 @@ export default function Register() {
                 button {
                     margin-top: 25px;
                     width: 100%;
-                    background-color: rgba(228, 67, 67, 0.8);
+                    background-color: #FFC1A8;
                     color: #080710;
                     padding: 15px 0;
                     font-size: 18px;
@@ -133,14 +127,14 @@ export default function Register() {
                     background-color: #D4F3FF;
                     border-radius: 3px;
                     padding: 0 10px;
-                    margin-top: 5px;
+                    margin-top: 8px;
                     font-size: 14px;
                     font-weight: 300;
                 }
                 
                 label{
                     display: block;
-                    margin-top: 5px;
+                    margin-top: 20px;
                     font-size: 16px;
                     font-weight: 500;
                 }`
