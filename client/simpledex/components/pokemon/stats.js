@@ -1,17 +1,16 @@
-import styles from '../pokemon/stats.module.css'
+import styles from '../../styles/search.module.css'
 
 const Stats = ({ pokemon }) => {
     return (
-        <ul className={styles.list}>
+        <div id="stats">
             {pokemon.stats.map((data, key) => {
                 return (
-                    <li key={key} className={styles.stat}>
+                    <div key={key} className={styles.stat}>
                         {data.stat.name} : {data.base_stat}
-                        <progress value={data.base_stat} max="255"></progress>
-                    </li>
+                    </div>
                 )
             })}
-        </ul>
+        </div>
     )
 }
 

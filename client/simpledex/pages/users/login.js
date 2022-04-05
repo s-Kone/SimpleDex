@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const APIDomain = "https://alexgiasson.me"; // for debug, replace with http://localhost:8084
-const APIRootPath = "/comp4537/termproject/api/v1";
+const APIRootPath = "/comp4537/termproject/api/v2";
 const resource = "/users/login";
 
 export default function Login() {
@@ -19,7 +19,7 @@ export default function Login() {
     const loginUser = async (event) => {
         event.preventDefault() // don't redirect the page
 
-        var user = {
+        let user = {
             email: event.target.email.value,
             password: event.target.password.value
         }
@@ -38,27 +38,28 @@ export default function Login() {
 
     return (
         <>
+        
             <Head>
                 <title>SimpleDex Login</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
             <main>
-                <h1>Login</h1>
-                <form onSubmit={loginUser}>
-                    <label htmlFor="Email">Email</label>
-                    <input name='email' type="text" placeholder="Email" id="email" required />
+                    <form onSubmit={loginUser}>
+                        <label htmlFor="Email">Email</label>
+                        <input name='email' type="text" placeholder="Email" id="email" required />
 
                     <label htmlFor="password">Password</label>
                     <input name='password' type="password" placeholder="Password" id="password" required />
 
-                    <button type="submit">Login</button>
-                    <ToastContainer position="top-center" />
-                </form>
-
-                <Link href="/">
-                    <a>Back to Home</a>
-                </Link>
+                        <button type="submit">Login</button>
+                        <ToastContainer position="top-center" />
+                       
+                        <button> <Link href="/">
+                        Back to Home
+                        </Link></button>
+                    </form>
+                
             </main>
 
             <style jsx>{`
@@ -77,8 +78,8 @@ export default function Login() {
                 }
                 
                 form {
-                    height: 450px;
-                    width: 400px;
+                    height: 60%;
+                    width: 30%;
                     font-weight: 500;
                     background-color: rgba(169, 231, 255, 0.13);
                     position: absolute;
@@ -103,6 +104,10 @@ export default function Login() {
                     border-radius: 5px;
                     cursor: pointer;
                 }
+
+                Link {
+                    text-decoration:none;
+                }
                 
                 input{
                     display: block;
@@ -124,7 +129,5 @@ export default function Login() {
                 }`
             }</style>
         </>
-
-
     )
 }

@@ -1,14 +1,14 @@
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const db = require('../modules/pool');
-var Router = require('express-promise-router');
-var admin_stats = require('../modules/admin_stats');
+const Router = require('express-promise-router');
+const admin_stats = require('../modules/admin_stats');
 
 const router = new Router();
 
 router.post('/login', async (req, res, next) => {
-    var email = req.body.email
-    var password = req.body.password
+    let email = req.body.email
+    let password = req.body.password
     if (!validateLoginInputs(email, password))
     {
         res.status(400).send('Invalid credentials')
@@ -42,9 +42,9 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/register', async (req, res, next) => {
     try {
-        var email = req.body.email
-        var password = req.body.password
-        var name = req.body.name
+        let email = req.body.email
+        let password = req.body.password
+        let name = req.body.name
 
         if ( await checkUserExists(email))
         {
@@ -59,7 +59,7 @@ router.post('/register', async (req, res, next) => {
         }
         console.log('passed all validation')
         const hashedPassword = await bcrypt.hash(password, 10);
-        var user = {    date: Date.now().toString(),
+        let user = {    date: Date.now().toString(),
                         name: name,
                         email: email,
                         hashedPassword: hashedPassword,
@@ -70,10 +70,9 @@ router.post('/register', async (req, res, next) => {
         const values = [user.name, user.email, user.hashedPassword, user.userTypeID];
         const db_res = await db.query(text, values); // TODO: error handling
         // console.log(db_res);
-        const userSignObj = { email: email };
-        const accessToken = jwt.sign(userSignObj, process.env.ACCESS_TOKEN_SECRET);
-        res.status(201).json({ accessToken: accessToken });
         admin_stats.logAdminStats('1', user.email);
+        res.status(201).send();
+        
     }
     catch (err) {
         console.log(err)
@@ -88,8 +87,8 @@ router.get('/', async (req, res, next) => {
 })
 
 let checkUserExists = async (userEmail) => {
-    var text = 'select * from users where email = $1'
-    var values = [userEmail]
+    let text = 'select * from users where email = $1'
+    let values = [userEmail]
     const db_res = await db.query(text, values)
     return (db_res.rowCount != 0)
 }

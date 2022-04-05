@@ -16,7 +16,6 @@ export default function Home() {
         </h1>
 
         <div className="grid">
-
           <Link href ="/users/login">
               <div className="card">
                 <h3>Login &rarr;</h3>
@@ -29,14 +28,10 @@ export default function Home() {
               <p>If you're new, start here</p>
             </div>
           </Link>
-          <Link href = "/documentation">
-            <div className="card">
-              <h3>Documentation &rarr;</h3>
-              <p>View API Documentation</p>
-            </div>
-          </Link>
         </div>
       </main>
+
+      
 
       <style jsx>{`
         .container {
@@ -119,14 +114,14 @@ export default function Home() {
           border: 1px solid #eaeaea;
           border-radius: 10px;
           transition: color 0.15s ease, border-color 0.15s ease;
-          background:rgba(255, 255, 255, 0.8)
         }
 
         .card:hover,
         .card:focus,
         .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
+          color: #ffffff;
+          border-color: #fafafa;
+          background-color: #0070f3;
         }
 
         .card h3 {
@@ -169,3 +164,9 @@ export default function Home() {
     </div>
   )
 }
+
+// Home.getLayout = function getLayout(page) {
+//   return (
+//       <NoLayout>{page}</NoLayout>
+//   )
+// }
