@@ -3,34 +3,10 @@
     height: 100%;
     padding: 0 1rem;
     margin: 3rem auto 6rem;
-    text-align: center;
 }
 
-.button{
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    background-color: white; 
-    color: black; 
-    border: 2px solid black;
-}
+.sprite {}
 
-.button:hover {
-    background-color: #555555;
-    color: white;
-  }
+.types {}
 
-.box{
-    text-align: center;
-}
-
-.spirte{
-    width: 30%;
-    height: auto;
-}
+.stats {}

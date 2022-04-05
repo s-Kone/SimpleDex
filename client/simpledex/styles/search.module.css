@@ -1,11 +1,9 @@
-.teambuilder {
-   max-width:10%
+.container{
+    text-align: center;
 }
 
-.search {
-
-}
-
-.default {
-
+.in {
+    width: 30%;
+    border: none;
+    border-bottom: 1px solid black;
 }
