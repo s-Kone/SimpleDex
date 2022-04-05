@@ -5,8 +5,8 @@ import { useRouter } from 'next/router';
 import { Nav } from '../components/Nav'
 import React, { useState, useEffect } from 'react'
 
-const APIDomain = "http://localhost:8084"; // for debug, replace with http://localhost:8084
-const APIRootPath = "/comp4537/termproject/api/v1";
+const APIDomain = "https://alexgiasson.me"; // for debug, replace with http://localhost:8084
+const APIRootPath = "/comp4537/termproject/api/v2";
 const resource = "/admin";
 
 

@@ -5,7 +5,7 @@ const searchPokemonRouter = require('./searchPokemon');
 const teamsRouter = require('./teams');
 const usersRouter = require('./users');
 
-const endPointRoot = '/comp4537/termproject/api/v1';
+const endPointRoot = '/comp4537/termproject/api/v2';
 
 module.exports = app => {
     app.use(endPointRoot + '', homeRouter);

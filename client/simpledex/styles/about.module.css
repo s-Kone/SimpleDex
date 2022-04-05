@@ -1,3 +1,11 @@
-.container{
-    text-align: center;
+.container
+{
+    margin: 10px;
+    padding: 10px;
+    align-items: center;
+}
+
+.content
+{
+    width: 60%;
 }

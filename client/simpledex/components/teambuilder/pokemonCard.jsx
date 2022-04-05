@@ -6,15 +6,15 @@ import Stats from '../pokemon/stats'
 import styles from './teambuilder.module.css'
 import { AutoComplete } from '../util/autocomplete'
 import { pokemon_lookups } from '../../lookups/pokemon_lookup'
-
+import { APIDomain, APIRootPath, SearchPokemonRoute } from '../../common/defs'
 export const PokemonCard = ({ data, onChange, index }) => {
     const [name, setName] = useState("")
     const [res, setRes] = useState(null)
     const handleSubmitName = async () => {
         console.log(name)
-        const request = `https://alexgiasson.me/comp4537/termproject/api/v1/searchPokemon/name?name=${name}`
+
         const token = localStorage.getItem('jwt');
-        await axios.get(request, {
+        await axios.get(APIDomain + APIRootPath + SearchPokemonRoute + name, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

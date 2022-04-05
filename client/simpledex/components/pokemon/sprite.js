@@ -1,25 +1,26 @@
 import styles from '../../styles/search.module.css'
 
 const Sprite = ({ pokemon, style }) => {
-    var spritestyle
+    const spritestyle = ""
+    const spritesrc = ""
     switch (style) {
-        case('teambuilder'): {
+        case ('teambuilder'): {
             spritestyle = styles.teambuilder
+            spritesrc = pokemon.sprites.front_default
             break
         }
-        case('search'): {
+        case ('search'): {
             spritestyle = styles.search
             break
         }
         default: {
             spritestyle = styles.default
+            spritesrc = pokemon.sprites.other.home.front_default
         }
     }
-    if (style == 'teambuilder')
-        spritestyle = styles.teambuilder
 
     return (
-        <img className={spritestyle}  src={pokemon.sprites.other.home.front_default}
+        <img className={spritestyle} src={spritesrc}
             alt={pokemon.name} />
     )
 }

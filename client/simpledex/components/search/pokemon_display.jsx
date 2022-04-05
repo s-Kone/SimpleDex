@@ -5,7 +5,7 @@ import { pokemon_lookups } from '../../lookups/pokemon_lookup'
 import { AutoComplete } from "../util/autocomplete";
 import Stats from "../pokemon/stats";
 import Types from "../pokemon/types";
-
+import { APIDomain, APIRootPath, SearchPokemonRoute } from "../../common/defs";
 import Sprite from "../pokemon/sprite"
 export function PokemonDisplay() {
     const [pokemon, setPokemon] = useState(null)
@@ -13,7 +13,8 @@ export function PokemonDisplay() {
     const [name, setName] = useState("")
     const handleClick = async () => {
 
-        await axios.get(`https://alexgiasson.me/comp4537/termproject/api/v1/searchPokemon/name?name=${name}`).then((response) => {
+
+        await axios.get(APIDomain + APIRootPath + SearchPokemonRoute + name).then((response) => {
             setPokemon(response.data)
             setLoading(true)
         })

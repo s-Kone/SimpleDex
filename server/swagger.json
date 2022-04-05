@@ -13,7 +13,7 @@
     }
   },
   "host": "alexgiasson.me",
-  "basePath": "/comp4537/termproject/api/v1",
+  "basePath": "/comp4537/termproject/api/v2",
   "schemes": [
     "https"
   ],
@@ -295,7 +295,7 @@
     }
   },
 
-  "/API/v1/users/register":{
+  "/API/v2/users/register":{
     "post":{
       "description": "Register users",
       "parameters": [
@@ -351,7 +351,7 @@
     }
   }, 
 
-  "/API/v1/users/login":{
+  "/API/v2/users/login":{
     "post": {
       "description": "Login user",
       "parameters": [
@@ -391,7 +391,7 @@
       }
     }
   },
-  "/API/v1/documentation":{
+  "/API/v2/documentation":{
     "get":{
       "description": "Gets the swagger.json file",
       "operationId": "documentation",
@@ -418,7 +418,7 @@
     }
   },
 
-  "/API/v1/admin":{
+  "/API/v2/admin":{
     "get": {
       "description": "Gets admin stats",
       "parameters": [

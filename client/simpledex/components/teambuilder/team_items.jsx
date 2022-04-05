@@ -5,25 +5,11 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getAuthHeaders } from "../../util/token";
+import { APIDomain, APIRootPath, teamRoute, PokemonTemplate } from "../../common/defs";
 export const TeamItems = () => {
 
-    const APIDomain = "https://alexgiasson.me";
-    const APIRootPath = "/comp4537/termproject/api/v1";
-    const teamRoute = "/teams"
-    const template = {
-        name: "",
-        gender: "",
-        level: "",
-        item: "",
-        ability: "",
-        move1: "",
-        move2: "",
-        move3: "",
-        move4: "",
-        types: [],
-        sprite: "",
-        stats: []
-    }
+
+
     const init_state = []
     useEffect(() => {
         const res = []
@@ -33,7 +19,7 @@ export const TeamItems = () => {
 
     const [team, updateTeam] = useState(init_state)
     const addPokemon = () => {
-        updateTeam(team => [...team, template])
+        updateTeam(team => [...team, PokemonTemplate])
         console.log(team)
     }
     const handleInputChange = (e, index) => {
