@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Nav } from '../components/Nav'
+import Layout from '../components/layouts/layout';
 
 import { TeamItems } from '../components/teambuilder/team_items'
 export default function teambuilder() {
@@ -22,8 +22,9 @@ export default function teambuilder() {
     
     return (
         <>
-            <Nav/>
+            <Layout>
             <TeamItems />
+            </Layout>
         </>
     )
 }

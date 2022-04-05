@@ -1,27 +1,29 @@
 import Head from 'next/head'
 import Layout from '../components/layouts/layout';
+import styles from '../styles/about.module.css'
 
 export default function about() {
     return(  
     <>
     <Layout>
-            <div style={{margin:"2%"}} >
-                <h2>About Page</h2>
-                <h4>About Simpledex</h4>
-                <p style={{width:"60%"}}> 
+            <div className={styles.container} >
+
+                <h2 style={{padding: '20px'}}>About Simpledex</h2>
+                <p className={styles.content}> 
                     Simpledex can be used by anyone interested in pokemon to 
                     learning about the stats and abilities of their 
                     favourite pokemon via the search feature.
                     We offer a team builder feature that allows users to
                     customize teams of 5 pokemon at a time and save it to 
                     view later.</p>
-                <h4>About team O2</h4>
-                <ul style={{ listStyleType: "none" }}>
-                    <li>Alexander Giasson</li>
-                    <li>Aidan Waterson</li>
-                    <li>Connie Wu</li>
-                    <li>Saga Munkhbold</li>
-                </ul>
+                
+                <h2 style={{padding: '20px'}}>About team O2</h2>
+                <div>
+                    <p>Alexander Giasson</p>
+                    <p>Aidan Waterson</p>
+                    <p>Connie Wu</p>
+                    <p>Saga Munkhbold</p>
+                </div>
             </div>
     </Layout>
     </>  
