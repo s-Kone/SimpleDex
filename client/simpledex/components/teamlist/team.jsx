@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Link from "next/link";
-import { getAuthHeaders } from '../../util/token';
 import { TeamMember } from '../teamlist/teamMember'
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from 'react-toastify';
@@ -35,13 +32,13 @@ export const Team = ({ data, clicked }) => {
                 {data.pokemon.map((info, key) => {
                     return (
                         // <div key={key}>
-                            < TeamMember key={key} pokemon={info} />
+                        < TeamMember key={key} pokemon={info} />
                         // {/* </div> */}
                     )
                 })}
                 < button className='deleteBtn' onClick={handleonClickDelete} >Delete Team</button >
             </div > : <div />}
-<ToastContainer />
+            <ToastContainer />
             <style jsx>{`
                 .teamContainer {
                     margin:4%;
@@ -56,6 +53,6 @@ export const Team = ({ data, clicked }) => {
             `}</style>
         </>
 
-            
+
     )
 }
