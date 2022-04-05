@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react'
 import { getAuthHeaders } from '../util/token';
 
 const APIDomain = "https://alexgiasson.me"; // for debug, replace with http://localhost:8084
-const APIRootPath = "/comp4537/termproject/api/v1";
+const APIRootPath = "/comp4537/termproject/api/v2";
 const resource = "/admin";
 
 export default function AdminStats() {

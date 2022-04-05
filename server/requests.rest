@@ -1,17 +1,17 @@
 ###
 
 # Get users (unsecured endpoint, exists for testing)
-GET http://localhost:8084/comp4537/termproject/api/v1/users
+GET http://localhost:8084/comp4537/termproject/api/v2/users
 
 ###
 
 # secured endpoint. requires JWT token in cookie. do this same thing in postman ( use /register and /login) to get a cookie stored in local storage, then try this endpoint again (in postman).
- GET http://localhost:8084/comp4537/termproject/api/v1/searchPokemon/name?name=charizard
+ GET http://localhost:8084/comp4537/termproject/api/v2/searchPokemon/name?name=charizard
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibWVAZ29vZy5jb20iLCJpYXQiOjE2NDg5NDIzMTB9.jlbq7o2bZrcJ1rVGMLheiszj4Xb7LfSawJ_r8ycswKg
  ###
 
 # POST a new user to register
-POST http://localhost:8084/comp4537/termproject/api/v1/users/register 
+POST http://localhost:8084/comp4537/termproject/api/v2/users/register 
 Content-Type: application/json
 
 {
@@ -20,7 +20,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:8084/comp4537/termproject/api/v1/users/login
+POST http://localhost:8084/comp4537/termproject/api/v2/users/login
 Content-Type: application/json
 
 {
@@ -30,7 +30,7 @@ Content-Type: application/json
 ###
 
 #wrong password
-POST http://localhost:8084/comp4537/termproject/api/v1/users/login
+POST http://localhost:8084/comp4537/termproject/api/v2/users/login
 Content-Type: application/json
 
 {

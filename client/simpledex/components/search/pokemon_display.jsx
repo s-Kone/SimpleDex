@@ -13,7 +13,7 @@ export function PokemonDisplay() {
     const [loading, setLoading] = useState(false)
     const [name, setName] = useState("")
     const handleClick = async () => {
-        const request = 'https://alexgiasson.me/comp4537/termproject/api/v1/searchPokemon/name?name='
+        const request = 'https://alexgiasson.me/comp4537/termproject/api/v2/searchPokemon/name?name='
 
         axios.get(`${request}${name}`, getAuthHeaders())
         .then((response) => {
