@@ -6,3 +6,9 @@
     display: inline-block;
     vertical-align: top;
 }
+
+.moves {}
+
+.move {
+    display: inline-block;
+}

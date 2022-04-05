@@ -26,7 +26,7 @@ export function TeamList() {
     return (
         <>
             {loaded ?
-                <div>{data.map((data, key) => {
+                <div >{data.map((data, key) => {
                     return (
                         <Team key={key} data={data} />
                     )
