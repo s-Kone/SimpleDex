@@ -7,16 +7,35 @@ import 'react-toastify/dist/ReactToastify.css';
 import { getAuthHeaders } from "../../util/token";
 import { APIDomain, APIRootPath, teamRoute, PokemonTemplate } from "../../common/defs";
 export const TeamItems = () => {
+    const PokemonTemplate = {
+        name: "",
+        gender: "",
+        level: "",
+        item: "",
+        ability: "",
+        move1: "",
+        move2: "",
+        move3: "",
+        move4: "",
+        types: [],
+        sprite: "",
+        stats: []
+    }
 
-    const init_state = []
+    const initialState = []
+    const [team, updateTeam] = useState(initialState)
     useEffect(() => {
         const res = []
-        if (res = JSON.parse(localStorage.getItem('team')))
-            init_state = res.pokemon
-            console.log(init_state)
-    })
+        if (res = JSON.parse(localStorage.getItem('team'))) {
+            console.log("local storage", res.pokemon)
+            updateTeam(initialState.concat(res.pokemon))
 
-    const [team, updateTeam] = useState(init_state)
+            console.log(initialState)
+        }
+
+    }, [])
+
+    console.log(team)
     const addPokemon = () => {
         updateTeam(team => [...team, PokemonTemplate])
         console.log(team)

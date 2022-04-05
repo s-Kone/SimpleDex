@@ -4,17 +4,3 @@ export const APIRootPath = "/comp4537/termproject/api/v2";
 export const teamRoute = "/teams"
 export const SearchPokemonRoute = "/searchPokemon/name?name="
 
-export const PokemonTemplate = {
-    name: "",
-    gender: "",
-    level: "",
-    item: "",
-    ability: "",
-    move1: "",
-    move2: "",
-    move3: "",
-    move4: "",
-    types: [],
-    sprite: "",
-    stats: []
-}
