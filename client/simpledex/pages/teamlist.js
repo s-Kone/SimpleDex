@@ -6,10 +6,11 @@ import { TeamList } from '../components/teamlist/teamlist'
 export default function teamlist() {
     return (
         <>
-           <Layout>
-            <Link href="/teambuilder">
-                <a>New Team</a>
-            </Link>
+            <Layout>
+                <Link href="/teambuilder">
+                    <a>New Team</a>
+                </Link>
+                <TeamList />
             </Layout>
         </>
     )
