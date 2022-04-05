@@ -27,7 +27,7 @@ export function PokemonDisplay() {
     return (
         <div >
             <AutoComplete data={pokemon_lookups} name={setName} />
-            <button onClick={handleClick}>Search</button>
+            <button onClick={handleClick}>Show me that Pokemon!</button>
             {loading ? <div className={styles.container}>
                 <Sprite pokemon={pokemon} />
                 <p>{pokemon.name}</p>

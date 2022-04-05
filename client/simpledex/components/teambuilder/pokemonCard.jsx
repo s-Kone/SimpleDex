@@ -52,7 +52,7 @@ export const PokemonCard = ({ data, onChange, index }) => {
 
     return (
         <div>
-            <button onClick={handleSubmitName} className={styles.button}>Submit</button>
+            <button onClick={handleSubmitName} className={styles.button}>Save Pokemon</button>
             <AutoComplete data={pokemon_lookups} name={setName} />
             <input type="text" name="gender" placeholder="gender" value={data.gender} onChange={e => onChange(e, index)} />
             <input type="text" name="ability" placeholder="ability" value={data.ability} onChange={e => onChange(e, index)} />

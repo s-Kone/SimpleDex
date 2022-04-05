@@ -70,7 +70,7 @@ export const TeamItems = () => {
                 <div key={i}><PokemonCard data={item} onChange={handleInputChange} index={i} />
                     <button onClick={handleRemoveClick} className={styles.button}>Delete</button></div>
             ))}
-            <button onClick={addPokemon} className={styles.button}>Add a pokemon</button>
+            <button onClick={addPokemon} className={styles.button}>Add another Pokemon</button>
             <button onClick={saveTeam} className={styles.button}>Save Team</button>
             <ToastContainer position={"top-center"} />
         </div>
