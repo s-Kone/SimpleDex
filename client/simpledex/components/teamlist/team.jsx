@@ -1,27 +1,61 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
+import { getAuthHeaders } from '../../util/token';
+import { TeamMember } from '../teamlist/teamMember'
+import { useRouter } from "next/router";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export const Team = ({ data }) => {
-    const [visible, setVisbility] = useState(true)
-    const HandleonClickDelete = () => {
-        setVisbility(false)
+export const Team = ({ data, clicked }) => {
+    const router = useRouter()
+
+    const [visible, setVisibility] = useState(true)
+
+    const handleonClickDelete = () => {
+        setVisibility(false)
         console.log('get deleted son')
     }
-    console.log(data.pokemon)
+
+    const handleEdit = () => {
+        if (localStorage) {
+            localStorage.setItem('team', JSON.stringify(data))
+            router.push('/teambuilder')
+        }
+        else {
+            toast("Please use a local storage-enabled browser")
+        }
+    }
+
     return (
         <>
-            {visible ? <div>
+            {visible ? <div className='teamContainer' onClick={handleEdit}>
                 < h1 > Team {data.userteamid}</h1 >
 
                 {data.pokemon.map((info, key) => {
                     return (
-                        <div key={key}> {info.Name} </div>
+                        // <div key={key}>
+                            < TeamMember key={key} pokemon={info} />
+                        // {/* </div> */}
                     )
                 })}
-                < button onClick={HandleonClickDelete} >Delete Team</button >
+                < button className='deleteBtn' onClick={handleonClickDelete} >Delete Team</button >
             </div > : <div />}
+<ToastContainer />
+            <style jsx>{`
+                .teamContainer {
+                    margin:4%;
+                    padding:1%;
+                    border-style:solid;
+                }
 
+                .deleteBtn {
+                    padding:1%;
+                    float:right;
+                }
+            `}</style>
         </>
+
+            
     )
 }

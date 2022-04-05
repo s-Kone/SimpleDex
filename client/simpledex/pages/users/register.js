@@ -21,8 +21,7 @@ export default function Register() {
     const registerUser = async (event) => {
         event.preventDefault(); // next js forms auto-redirect, cancel that.
 
-        if (event.target.password.value != event.target.confirmPassword.value)
-        {
+        if (event.target.password.value != event.target.confirmPassword.value) {
             toast("Passwords must match")
             return;
         }
@@ -55,7 +54,7 @@ export default function Register() {
             <main>
                 
                 <form onSubmit={registerUser}>
-                
+
                     <label htmlFor="Email">Email</label>
                     <input type="text" placeholder="Email" id="email" required />
 

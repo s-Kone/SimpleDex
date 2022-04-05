@@ -48,8 +48,8 @@ export default function Login() {
                         <label htmlFor="Email">Email</label>
                         <input name='email' type="text" placeholder="Email" id="email" required />
 
-                        <label htmlFor="password">Password</label>
-                        <input name='password' type="password" placeholder="Password" id="password" required />
+                    <label htmlFor="password">Password</label>
+                    <input name='password' type="password" placeholder="Password" id="password" required />
 
                         <button type="submit">Login</button>
                         <ToastContainer position="top-center" />

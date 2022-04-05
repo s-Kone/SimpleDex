@@ -8,6 +8,7 @@ import Types from "../pokemon/types";
 import Abilities from "../pokemon/ability"
 import { getAuthHeaders } from "../../util/token";
 
+import Sprite from "../pokemon/sprite"
 export function PokemonDisplay() {
     const [pokemon, setPokemon] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -45,10 +46,4 @@ export function PokemonDisplay() {
         </div>
 
     );
-}
-const Sprite = ({ pokemon }) => {
-    return (
-        <img className={styles.spirte} src={pokemon.sprites.other.home.front_default}
-            alt={pokemon.name} />
-    )
 }

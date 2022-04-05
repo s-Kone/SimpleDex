@@ -10,6 +10,15 @@ export default function teambuilder() {
         if (!localStorage.getItem('jwt')) {
             router.push('/')
         }
+
+        // get chosen team from teamList page
+        let team = localStorage.getItem('team')
+        if (team) {
+            localStorage.removeItem('team')
+            let teamToEdit = JSON.parse(team)
+            console.log(teamToEdit)
+            // use it
+        }
     })
     
     return (
