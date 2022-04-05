@@ -1,12 +1,13 @@
 import { PokemonDisplay } from '../components/search/pokemon_display'
-import { Nav } from '../components/Nav'
-import { Footer } from '../components/Footer'
+import layout from '../components/layouts/layout'
+
 export default function search() {
 
     return (
         <>
-        <Nav/>
+        <layout>
         <PokemonDisplay />
+        </layout>
         </>
     )
 }
